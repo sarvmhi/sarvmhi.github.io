@@ -10,11 +10,10 @@ owner:
   avatar: sarvin2.png
  # bio:
   email: sarvmhi@gmail.com
-  cv: file/CV-Sarvin Mohammadi copy.pdf
-  # Social networking links are used in author-bio sidebar. Update and remove as you like.
-
   github: sarvmhi
   linkedin: sarvmhi
+  cv: file/CV-Sarvin Mohammadi copy.pdf
+  
   #scholar: https://scholar.google.com/citations?user=8igSoWgAAAAJ
   #bilibili: 594030035
   #researchgate: https://www.researchgate.net/profile/Hanlin-Cai
@@ -40,17 +39,17 @@ links:
     url: /
   - title: Publications and Research
     url: /publications/
-  - title: Experience
+  - title: Teaching
+    url: /Teaching/
+  - title: Work Experience
+    url: /WorkExprience/
+  - title: Projects
+    url: /Projects/
+  - title: Certificates
     url: /awards/
-  - title: Fundings
-    url: /fundings/
-  - title: Hobbies
-    url: /hobbies/
-  - title: Blogs
-    url: /blogs/
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone: China/Beijing
+timezone: Asia/Tehran
 future: true
 highlighter: rouge
 # markdown: kramdown
