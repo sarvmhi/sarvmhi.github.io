@@ -4,18 +4,19 @@ layout: page
 
 # About Me
 
-<img src="https://sarvmhi.github.io/images/Header.png" class="floatpic" >
+<img src="https://sarvmhi.github.io/images/Header.png" >
 
 <br>
 
 ## Academic Background
 
-**<font color='red'>[Highlight]</font> I am looking for PhD to start in 2025 Fall. Contact me if you have any leads!**
+**<font color='red'>[Highlight]</font> I am looking for PhD/Master's to start in 2024 Fall. Contact me if you have any leads!**
 
-- **Sep 2020 - June 2024:** Fuzhou University (BEng)
-- **Sep 2020 - June 2024:** Maynooth University (BSc)
-- **June 2022 - Nov 2022:** Cambridge University (Exchange)
-- Expect to apply for a one-year Mphil program and graduate in Sep 2025. Looking for PhD position after that.
+- **Sep 2019 - Jan 2024:** Shahid Beheshti University of Tehran (BSc)
+  Computer Engineering
+- **Sep 2016 - June 2019:** Roshangaran HighSchool (Diploma)
+  Mathematics nad Physics
+
 
 <br>
 
