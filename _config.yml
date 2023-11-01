@@ -10,7 +10,7 @@ owner:
   avatar: sarvin2.png
  # bio:
   email: sarvmhi@gmail.com
-  cv: https://caihanlin.com/file/CV-HanlinCAI.pdf
+  cv: file/CV-Sarvin Mohammadi copy.pdf
   # Social networking links are used in author-bio sidebar. Update and remove as you like.
 
   github: sarvmhi
@@ -38,9 +38,9 @@ google_verify: "SkiyuGpJOKT74vv5GmXLvYXXDkXy4v8VWPtbelYz3Hs"
 links:
   - title: About Me
     url: /
-  - title: Publications
+  - title: Publications and Research
     url: /publications/
-  - title: Awards
+  - title: Experience
     url: /awards/
   - title: Fundings
     url: /fundings/
