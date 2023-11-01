@@ -7,6 +7,11 @@ layout: page
 <img src="https://sarvmhi.github.io/images/Header.png" >
 
 <br>
+I'm Sarvin Mohammadi, a final year Computer Engineering student at Shahid Beheshti University of Tehran, Iran. My primary interests lie in **HCI**, **Health-care Technologies**, and **Social Media Studies**. I also have some experiences in **Game Design** and **AR,VR Projects**. Explore my website to learn more about my tech journey.
+
+<br>
+
+---
 
 ## Academic Background
 
@@ -24,24 +29,16 @@ layout: page
 
 ## Research Interests
 
-- Industrial IoT System
-- Network Cybersecurity
-- Applied Machine Learning
+- Human-Computer Interaction
+- Human-AI Interaction
+- Health-Care Technology
+- Game Design
+- Software
 
-My current research focuses on practical problems that artificial intelligence faces in real life. My interests are on the **Machine Learning** and its applications in **Industrial IoT**. In a word, advanced technologies like ML and IoT positively influence the life of everybody.  I wish to devote my talent to this meaningful cause and bring well-being to society.
-
+I'm currently dedicated to research aimed at addressing mental and physical health challenges through the utilization of **algorithms**, **AI**, and **human-centered applications**. My focus revolves around **serious game design** and projects centered on **human-computer interaction**.
 <br>
 
 ---
 
-## News and Updates
 
-- **Sep 2023：**Our work [DefenderIoT](https://fzuiot.site/) has been reported by [Youth of FZU](https://mp.weixin.qq.com/s/MF2NJQtEHsVwsm8Ym-l7Gg).
-- **Aug 2023：**Happy to be awarded the FEPG Scholarship.
-- **May 2023：**Happy to be awarded the XiamenAir Scholarship.
-- **May 2023：**Collected the Finalist Award in MCM 2023 (Top 1%).
-- **Jan 2023：**One paper accepted to ICAROB 2023, see you in Japan!
-- **Jun 2022：**Started research program at [Cambridge AI Group](https://www.cl.cam.ac.uk/research/ai/), advised by Prof. Pietro Liò.
-
-<br>
 
