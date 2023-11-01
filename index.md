@@ -4,7 +4,7 @@ layout: page
 
 # About Me
 
-<img src="https://sarvmhi.github.io/images/Header.png" class="floatpic" width="360" height="780">
+<img src="https://sarvmhi.github.io/images/Header.png" class="floatpic" width="860" height="480">
 
 Here is **Hanlin Cai (Lance, 蔡汉霖)**.
 
