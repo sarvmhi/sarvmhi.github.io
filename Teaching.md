@@ -4,40 +4,40 @@ permalink: /Teaching/index.html
 title: Teaching
 ---
 
-## Chinese Blogs
+## Teaching Assistant
+[Shahid Beheshti University Tehran, Iran](https://cse.sbu.ac.ir/)
 
-### 2023
 
-- 21岁，何妨吟啸且徐行<br>
-- [数学建模竞赛的成功四要素](https://caihanlin.com/blogs/team2023)<br>
-- [极简风个人网站搭建指南（完结）](https://caihanlin.com/blogs/web)
+### Sep 2023 - Jan 2024
 
-### 2022
+- Discrete Mathematics
+- Research and Technical Presentation
+- Technical Language
+- Database
+<br>
 
-- [20岁，宽心且看月中桂](https://caihanlin.com/blogs/20yrs)<br>
-- [Cambridge 线上暑研回忆录](https://caihanlin.com/blogs/cambridge/)<br>
-- [暂停、暂停、暂停](https://caihanlin.com/blogs/stop/)
+### Jan 2023 - Jun 2023
 
-### 2021
+- Discrete Mathematics
+- Research and Technical Presentation
+- Fundamental of Computer and Programming
+<br>
 
-- [19岁，山高路亦远](https://caihanlin.com/blogs/19yrs)<br>
-- [星野学社实习回忆录](https://caihanlin.com/blogs/star)
+### Jan 2022 - Jun 2022
 
-### 2020
+- Computer Lab.
+<br>
 
-- [18岁，缓慢受锤的黄金年代](https://caihanlin.com/blogs/18yrs)<br>
-- [本科博客，笔记，回忆录](https://mieclance.club/)
+
+### Teaching
+[MehreTaha Charity Tehran, Iran](https://mehretaha.com/)
 
 <br>
 
-## Leave a Message
+## Duties
 
-<br>
+- Published homeworks, projects and quizzes
+- Instructed lectures
+- Made educational media
 
-{% include disqus.html %} 
 
-<br>
-
-## Web Star History
-
-[Leave a star if you like it 🥰](https://github.com/GuangLun2000/GuangLun2000.github.io)
