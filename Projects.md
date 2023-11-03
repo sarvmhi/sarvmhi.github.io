@@ -48,7 +48,7 @@ title: Projects
 - The project consists of a backend using **JavaScript, Node.js, and Mongoose**, along with a frontend developed in **React** that interfaces with a **MongoDB** database.
 <br>
 
-
+<br>
 ### - UI/UX Design of an online Shopping Mobile App
 <br>
 
@@ -66,15 +66,15 @@ title: Projects
 
 - The project was designed using **Adobe XD** and developed with React for a **mobile application**.
 
-
+<br>
 ### - Portfolio
 <br>
 
-<div class="third">
+
 <img src="/images/web1.png">
 <img src="/images/web2.png">
 <img src="/images/web3.png">
-</div>
+
 <br>
 
 - A dynamic personal portfolio using **HTML and CSS**.
