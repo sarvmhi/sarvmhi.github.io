@@ -16,17 +16,30 @@ title: Projects
 <img src="/images/speech1.JPG">
 <img src="/images/speech3.JPG">
 </div>
-<br>a four-phased narrative serious game tailored for undergraduate students, with a focus on enhancing their problem-solving skills using Mezirow theory.
+<br>a four-phased narrative serious game tailored for undergraduate students, with a focus on enhancing their problem-solving skills using Mezirow theory. All assests are deisgned by Adobe illustrator and the game dvelopement is done by unity engine.
+
 - Phase I: We conducted interviews with undergraduates to identify real-life problems and challenges.
-- Phase II: find possible solution strategies by help of psychologists and educational scientists.
-- Phase III: Upon the first two phases’ findings, and also Mezirow's Theory the game is designed.
-- Phase IV: Collect the test result from the players to write the research paper.
+- Phase II: We found possible solution strategies with the help of psychologists and educational scientists.
+- Phase III: Based on the findings from the first two phases and Mezirow's Theory, the game is designed.
+- Phase IV: We collected the test results from the players in order to write the research paper.
+<br>
+
+### Optimizing HCI in the Recommender System of social media with a focus on Mental Health: A case study on Instagram
+<br>
+
+- Exploring Improved Algorithms for Recommender System of Instagram to provide enhanced content for individuals with mental health conditions.
+<br>
+
+### Sample of University Registeration System
+<br>
+
+
+### UI/UX Design of an online Shopping Mobile App
+<br>
+
+
+### Portfolio
+<br>
 
 
 
-[a fantastic speech]:https://youtu.be/Dzx84KpGNoE
-[best universities in my hometown]:https://www.fzu.edu.cn/
-
-
-
-## Swimming & Surfing
