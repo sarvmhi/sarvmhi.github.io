@@ -31,7 +31,9 @@ title: Projects
 
 ### Optimizing HCI in the Recommender System of social media with a focus on Mental Health: A case study on Instagram
 <br>
-
+       
+<img src="/images/HCI.png">
+<br>
 - Exploring Improved Algorithms for Recommender System of Instagram to provide enhanced content for individuals with mental health conditions.
 <br>
 
