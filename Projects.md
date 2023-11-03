@@ -12,9 +12,14 @@ title: Projects
 
 
 <div class="third">
-<img src="/images/prelection1.JPG">
-<img src="/images/speech1.JPG">
-<img src="/images/speech3.JPG">
+<img src="/images/game1.png">
+<img src="/images/game2.png">
+<img src="/images/game3.png">
+</div>
+<div class="third">
+<img src="/images/game4.png">
+<img src="/images/game5.png">
+<img src="/images/game6.png">
 </div>
 <br>a four-phased narrative serious game tailored for undergraduate students, with a focus on enhancing their problem-solving skills using Mezirow theory. All assests are deisgned by Adobe illustrator and the game dvelopement is done by unity engine.
 
