@@ -36,7 +36,8 @@ title: Projects
 <br>
 
 - Undergraduate thesis.
-- Exploring Improved Algorithms for Recommender System of Instagram to provide enhanced content for individuals with mental health conditions.
+- Exploring Improved Algorithms for Recommender System of Instagram to provide enhanced content for individuals with mental health conditions
+- Includes Hybrid Machine-Learning Methods.
 - This Project is still in progress.
 <br>
 <br>
