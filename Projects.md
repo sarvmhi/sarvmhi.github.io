@@ -19,6 +19,12 @@ title: Projects
 <img src="/images/game5.png">
 <img src="/images/game6.png">
 </div>
+
+<br>
+<img src="/images/tabel1.png">
+<img src="/images/table2.png">
+
+<br>
 <br>four-phased narrative serious game tailored for undergraduate students, with a focus on enhancing **problem-solving skills** using **Mezirow theory**. All assests are deisgned by **Adobe illustrator** and the game dvelopement is done by **unity engine**.
 
 - Phase I: We conducted interviews with undergraduates to identify real-life problems and challenges.
