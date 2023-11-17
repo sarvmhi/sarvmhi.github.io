@@ -21,7 +21,7 @@ title: Projects
 </div>
 
 <br>
-<img src="/images/tabel1.png">
+<img src="/images/table1.png">
 <img src="/images/table2.png">
 
 <br>
