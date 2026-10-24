@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@fontsource-variable/playfair-display/wght.css";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+@import "@fontsource-variable/instrument-sans/wght.css";
+/* Stand-in until the PP Neue Montreal files are added (see app/fonts/README.md) */
+@import "@fontsource-variable/inter/wght.css";
+
+/* PP Neue Montreal: add the files and uncomment this block (see app/fonts/README.md)
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("./fonts/PPNeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("./fonts/PPNeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+*/
+
+/* Tokens taken from the Figma file (Design Hub, page 3) */
+@theme {
+  --color-page: #eceef1;
+  --color-ink: #14161a;
+  --color-muted: #656e89;
+  --color-rose: #b56576;
+  --color-coral: #e56b6f;
+  --color-clay: #c2948c;
+  --color-placeholder: #d9d9d9;
+  --color-slot: #d7dae0;
+  --color-open: #27b00c;
+  --color-track: #bdb9bc;
+
+  --font-display: "Playfair Display Variable", "Playfair Display", Georgia, serif;
+  --font-sans: "PP Neue Montreal", "Inter Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-instrument: "Instrument Sans Variable", "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+
+  /* "leading-normal" means the font's own line height, like "Auto" in Figma */
+  --leading-normal: normal;
+
+  /* extra breakpoints: 1360 and the 1440 Figma frame */
+  --breakpoint-wide: 85rem;
+  --breakpoint-frame: 90rem;
+
+  --shadow-card: 0 4px 10px 0 rgb(0 0 0 / 0.25);
+  --shadow-job: 0 4px 5px rgb(0 0 0 / 0.25);
+}
+
+@layer base {
+  html {
+    background: var(--color-page);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    background: var(--color-page);
+    color: var(--color-ink);
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 3px;
+  }
+}
+
+/* In the components layer, so utilities (absolute, shadows…) still win */
+@layer components {
+  /* Glass pill used by the nav, Download CV and project buttons */
+  .glass {
+    position: relative;
+    border-radius: 1000px;
+    background: rgb(255 255 255 / 0.2);
+    box-shadow:
+      -0.5px 0.5px 0.5px 0 rgb(0 0 0 / 0.2),
+      inset -1px 0 0.5px 0 rgb(255 255 255 / 0.8),
+      inset -2px 1px 5px 0 rgb(229 107 111 / 0.4),
+      inset 1px 1px 3px 0 rgb(0 0 0 / 0.1);
+    transition: box-shadow 180ms ease;
+  }
+
+  .glass-active,
+  .glass:hover {
+    box-shadow:
+      -0.5px 0.5px 0.5px 0 rgb(0 0 0 / 0.2),
+      inset 1px 1px 0.5px 0 rgb(255 255 255 / 0.8),
+      inset 0 0 5px 0 rgb(229 107 111 / 0.7),
+      inset 1px 1px 3px 0 rgb(0 0 0 / 0.2);
+  }
+
+  /* Gradient text, as set on the headline and the "superpower" line */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

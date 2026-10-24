@@ -1,17 +1,34 @@
-# GuangLun means Nimbus in Chinese
+# Sarvin M. — Portfolio
 
-My name is **Hanlin Cai (Lance, 蔡汉霖)**. Here is my personal website. Welcome to fork for free!
+Personal portfolio built from the "Design Hub" Figma file: Home, About Me, Experience and Projects.
+Next.js (static export) + Tailwind CSS, deployed to GitHub Pages.
 
-## Update and News
+## Run it locally
 
-- **May 2023:** **[Jekyll website building tutorial](https://www.bilibili.com/video/BV1ja4y1G7tX/?share_source=copy_web&vd_source=c8936a3bacfd65375f9e88b3bb9a12ba)** have been uploaded to Bilibili (in Chinese)
-- **Feb. 2023:** If you have any problem, please feel free to contact me - [Online Talk 15mins](https://calendly.com/lancecai/meet-with-lance)
-- **Dec. 2022:** My personal website have been implemented and deployed in [caihanlin.com](https://caihanlin.com)
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # static site in ./out
+```
 
-## Star History
+## Where things live
 
-[![Star History Chart](https://api.star-history.com/svg?repos=GuangLun2000/GuangLun2000.github.io&type=Date)](https://star-history.com/#GuangLun2000/GuangLun2000.github.io&Date)
+| What | Where |
+| --- | --- |
+| All text (bio, jobs, tasks, projects, certificates, tools) | `lib/content.ts` |
+| Colors, fonts, shadows (Figma tokens) | `app/globals.css` (`@theme`) |
+| Pages | `app/page.tsx`, `app/about/`, `app/experience/`, `app/projects/` |
+| Images and vectors | `public/assets/` |
+| CV download | `public/Sarvin-CV.pdf` |
 
-## Statement
+To add an image (badge photo, company logo, tool logo, project cover), put the file in
+`public/assets/…` and set its path in `lib/content.ts`. Spots still waiting for a file
+show a grey placeholder and have a `TODO` comment.
 
-© 2023 Hanlin Cai. Published with [GitHub Pages](https://pages.github.com/), powered by [Jekyll](https://jekyllrb.com/), based on the [Minimal Mistakes](https://mademistakes.com/) theme and [Jason Ansel's site](https://github.com/jansel/jansel.github.io). Source code for this website can be found [here](https://github.com/GuangLun2000/GuangLun2000.github.io).
+## Deploy
+
+Push to `main`. The workflow in `.github/workflows/deploy.yml` builds the site and
+publishes it. One-time setup in the GitHub repo: **Settings → Pages → Source: GitHub Actions**.
+
+The repo name decides the address: a repo called `<username>.github.io` is served at the
+root, any other repo at `/<repo-name>/`. The workflow sets the right base path either way.
