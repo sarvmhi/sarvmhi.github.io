@@ -107,6 +107,19 @@
     zoom: var(--ui-scale);
   }
 
+  /* Projects: the deck gets the screen height left over after the header (74px), the top
+     padding, the title and description and the controls (about 345px together), between 200px
+     and Figma's 435px, and never taller than the width allows (1280 x 435 proportions). */
+  @media (width >= 48rem) {
+    .project-deck {
+      --deck-h: clamp(
+        200px,
+        calc((100svh - 74px) / var(--ui-scale) - 345px),
+        min(435px, calc((100vw - 2 * var(--page-margin)) / var(--ui-scale) * 0.34))
+      );
+    }
+  }
+
   /* Left edge of the content, in the header's own (zoomed) units, so "Sarv" lines up with it.
      On wide screens the content is centred, so the edge moves in. */
   header {

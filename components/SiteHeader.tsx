@@ -19,7 +19,6 @@ import {
   ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
 import {
-  HomeIcon as HomeSolid,
   UserIcon as UserSolid,
   BriefcaseIcon as BriefcaseSolid,
   CommandLineIcon as CommandLineSolid,
@@ -31,24 +30,26 @@ import { SECTIONS, type SectionId } from "@/lib/sections";
 type Icon = ComponentType<SVGProps<SVGSVGElement>>;
 
 const ICONS: Record<SectionId, { outline: Icon; solid: Icon }> = {
-  home: { outline: HomeIcon, solid: HomeSolid },
   about: { outline: UserIcon, solid: UserSolid },
   experience: { outline: BriefcaseIcon, solid: BriefcaseSolid },
   projects: { outline: CommandLineIcon, solid: CommandLineSolid },
 };
 
-// Nav items: the four sections, then Research, which has no page yet
-const ITEMS = [
+type NavItem = { id: string; label: string; disabled: boolean; icon?: Icon };
+
+// Nav items in Figma's order. Home and Research have no section yet, so they show but don't go anywhere.
+const ITEMS: NavItem[] = [
+  { id: "home", label: "Home", disabled: true, icon: HomeIcon },
   ...SECTIONS.map((s) => ({ ...s, disabled: false })),
-  { id: "research", label: "Research", disabled: true },
-] as const;
+  { id: "research", label: "Research", disabled: true, icon: DocumentTextIcon },
+];
 
 // A section counts as "in view" once its top passes 40% down the screen
 const VIEW_LINE = 0.4;
 
 /** Which section is in view, kept in sync with scrolling and with the address bar. */
 function useActiveSection() {
-  const [active, setActive] = useState<SectionId>("home");
+  const [active, setActive] = useState<SectionId>(SECTIONS[0].id);
   // While a nav click is scrolling the page, hold the clicked section instead of
   // stepping through every section on the way.
   const lock = useRef<SectionId | null>(null);
@@ -97,7 +98,7 @@ function useActiveSection() {
 
   // Keep the address bar pointing at the section in view, so a copied link opens there
   useEffect(() => {
-    const url = active === "home" ? window.location.pathname : `#${active}`;
+    const url = active === SECTIONS[0].id ? window.location.pathname : `#${active}`;
     if (url !== window.location.pathname + window.location.hash) window.history.replaceState(null, "", url);
   }, [active]);
 
@@ -137,7 +138,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="ui-scale fixed inset-x-0 top-0 z-30 h-[74px]">
+    <header className="ui-scale fixed inset-x-0 top-0 z-50 h-[74px]">
       {/* Backdrop once the page moves, so the pills stay readable over content. It sits on its
           own layer: a backdrop-filter on the header would trap the fixed mobile nav inside it. */}
       <div
@@ -148,8 +149,8 @@ export function SiteHeader() {
       />
 
       <a
-        href="#home"
-        onClick={(e) => onNavClick(e, "home")}
+        href="#about"
+        onClick={(e) => onNavClick(e, "about")}
         className="absolute left-(--page-margin-scaled) top-[24px] font-display text-[20px] font-semibold italic leading-normal md:top-[35px]"
       >
         Sarv
@@ -167,7 +168,7 @@ export function SiteHeader() {
             const isActive = item.id === active;
             const open = hovered === null ? isActive : hovered === item.id;
             const icons = item.disabled ? null : ICONS[item.id as SectionId];
-            const IconCmp = icons ? (isActive ? icons.solid : icons.outline) : DocumentTextIcon;
+            const IconCmp = icons ? (isActive ? icons.solid : icons.outline) : (item.icon ?? DocumentTextIcon);
             const className = `glass flex h-[50px] items-center justify-center overflow-hidden transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               open ? "w-[124px]" : "w-[50px]"
             } ${isActive ? "glass-active" : ""}`;
@@ -198,7 +199,7 @@ export function SiteHeader() {
                     tabIndex={0}
                     aria-disabled="true"
                     aria-label={`${item.label} (coming soon)`}
-                    title="Research page coming soon"
+                    title={`${item.label} page coming soon`}
                     className={className}
                     {...handlers}
                   >

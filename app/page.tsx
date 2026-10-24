@@ -2,36 +2,42 @@ import type { ReactNode } from "react";
 import { ProjectDeck } from "@/components/ProjectDeck";
 import { AboutContent } from "@/components/sections/About";
 import { ExperienceContent } from "@/components/sections/Experience";
-import { HomeContent } from "@/components/sections/Home";
+import { IntroContent } from "@/components/sections/Intro";
 import { projects } from "@/lib/content";
-import type { SectionId } from "@/lib/sections";
 
-// Each section keeps 74px at its top for the fixed header, so jumping to it from the nav
-// shows it like its Figma frame. The side margins sit on the section; the content inside is
-// laid out at its Figma width and then scaled down by --ui-scale to fit them (see globals.css).
-function Section({ id, label, children }: { id: SectionId; label: string; children: ReactNode }) {
+// One Figma frame. It keeps 74px at its top for the fixed header, so jumping to it from the nav
+// shows it like its Figma frame. The side margins sit here; the content inside is laid out at
+// its Figma width and then scaled down by --ui-scale to fit them (see globals.css).
+function Frame({ children }: { children: ReactNode }) {
   return (
-    <section id={id} aria-label={label} className="px-page pt-[74px]">
+    <div className="px-page pt-[74px]">
       <div className="ui-scale mx-auto max-w-[1280px]">{children}</div>
-    </section>
+    </div>
   );
 }
 
 export default function Page() {
   return (
     <>
-      <Section id="home" label="Home">
-        <HomeContent />
-      </Section>
-      <Section id="about" label="About me">
-        <AboutContent />
-      </Section>
-      <Section id="experience" label="Experience">
-        <ExperienceContent />
-      </Section>
-      <Section id="projects" label="Projects">
-        <ProjectDeck projects={projects} />
-      </Section>
+      {/* "About Me" in the nav: the intro, then Education / Certificates / How I Work */}
+      <section id="about" aria-label="About me">
+        <Frame>
+          <IntroContent />
+        </Frame>
+        <Frame>
+          <AboutContent />
+        </Frame>
+      </section>
+      <section id="experience" aria-label="Experience">
+        <Frame>
+          <ExperienceContent />
+        </Frame>
+      </section>
+      <section id="projects" aria-label="Projects">
+        <Frame>
+          <ProjectDeck projects={projects} />
+        </Frame>
+      </section>
     </>
   );
 }

@@ -10,13 +10,18 @@ import type { Project } from "@/lib/content";
  * the next ones wait behind it, smaller. Arrows, arrow keys, a swipe or a click on a
  * waiting card move the deck.
  *
- * Slot geometry. Desktop (md+) is Figma's: in a 1280 x 435 area, cards of
- * 580 at (0,0), 436 at (518,54) and 348 at (932,87). Phones use a tighter stack.
+ * From tablets up the whole section fits on one screen: the deck takes whatever height is
+ * left after the text and controls (--deck-h in globals.css, at most Figma's 435px) and the
+ * cards are sized from that height. Figma's geometry in a 1280 x 435 area is 580 at (0,0),
+ * 436 at (518,54) and 348 at (932,87). The cards keep those proportions, so they always
+ * overlap like a deck: on a short screen the deck gets smaller and stays on the left, and on a
+ * narrow one the cards squeeze closer so the small one never passes the right edge.
+ * Phones use a tighter stack.
  */
 const SLOTS = [
-  "z-30 left-0 top-0 w-[86%] md:w-[45.3125%]",
-  "z-20 left-[15%] top-[4.65%] w-[78%] md:left-[40.46875%] md:top-[12.414%] md:w-[34.0625%]",
-  "z-10 left-[30%] top-[9.3%] w-[70%] md:left-[72.8125%] md:top-[20%] md:w-[27.1875%]",
+  "z-30 left-0 top-0 w-[86%] md:w-auto md:h-full",
+  "z-20 left-[15%] top-[4.65%] w-[78%] md:w-auto md:left-[min(calc(50%_-_0.2805*var(--deck-h)),calc(1.1908*var(--deck-h)))] md:top-[12.41%] md:h-[75.17%]",
+  "z-10 left-[30%] top-[9.3%] w-[70%] md:w-auto md:left-[min(calc(100%_-_0.8*var(--deck-h)),calc(2.1425*var(--deck-h)))] md:top-[20%] md:h-[60%]",
 ];
 
 export function ProjectDeck({ projects }: { projects: Project[] }) {
@@ -54,10 +59,11 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       aria-roledescription="carousel"
       aria-label="Project carousel"
       onKeyDown={onKeyDown}
-      className="pt-10 lg:pt-[86px]"
+      // isolate: the cards' stacking order stays inside the deck, under the fixed header
+      className="project-deck isolate pt-6 md:min-h-[calc((100svh-74px)/var(--ui-scale))] md:pt-10"
     >
       <div
-        className="relative aspect-[1/0.645] touch-pan-y md:aspect-[1280/435]"
+        className="relative aspect-[1/0.645] touch-pan-y md:aspect-auto md:h-(--deck-h)"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => (swipe.current = null)}
@@ -73,7 +79,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
               aria-label={`${i + 1} of ${count}: ${p.title}`}
               aria-hidden={!isFront}
               onClick={isFront ? undefined : () => go(i)}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]}`}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]}`}
             >
               {p.image && (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -84,7 +90,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
         })}
       </div>
 
-      <div className="mt-12 md:mt-[113px]" aria-live="polite">
+      <div className="mt-8 md:mt-10" aria-live="polite">
         <h2 className="font-display text-[30px] font-extrabold leading-[1.05] sm:text-[36px]">{project.title}</h2>
         <p className="mt-[10px] flex items-baseline gap-x-[18px] font-instrument font-semibold leading-normal">
           <span className="text-[20px] text-rose">{project.field}:</span>
@@ -130,7 +136,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-[10px] pb-12 pt-[22px]">
+      <div className="flex items-center gap-[10px] pb-8 pt-[22px]">
         {projects.map((p, i) => (
           <button
             key={p.title}
