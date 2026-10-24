@@ -30,6 +30,7 @@
   --color-clay: #c2948c;
   --color-placeholder: #d9d9d9;
   --color-slot: #d7dae0;
+  --color-dot: #d7dae0;
   --color-open: #27b00c;
   --color-track: #bdb9bc;
 
@@ -74,8 +75,11 @@
 }
 
 @layer base {
+  /* Dot grid on every page: 1px dots every 26px, from the hanging-badge study */
   html {
-    background: var(--color-page);
+    background-color: var(--color-page);
+    background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+    background-size: 26px 26px;
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
   }
@@ -83,7 +87,6 @@
   body {
     font-family: var(--font-sans);
     font-weight: 500;
-    background: var(--color-page);
     color: var(--color-ink);
     min-height: 100dvh;
   }
