@@ -162,6 +162,18 @@
     animation: draw-line 700ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 
+  /* Stats: the brush strokes behind the numbers rock gently like a wave, inside their own box
+     (a few px up and down with a slight tilt). The second one runs a quarter cycle behind, so
+     the swell seems to pass from one to the next. */
+  @media (prefers-reduced-motion: no-preference) {
+    .stat-brush {
+      animation: brush-wave 5s ease-in-out infinite;
+    }
+    .stat-brush-late {
+      animation-delay: -1.25s;
+    }
+  }
+
   /* Stats: on hover the number grows a little and lifts */
   .stat-number {
     display: inline-block;
@@ -220,6 +232,22 @@
   }
   to {
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes brush-wave {
+  0%,
+  100% {
+    transform: translateY(0) skewY(0deg);
+  }
+  25% {
+    transform: translateY(-4px) skewY(-1.5deg);
+  }
+  50% {
+    transform: translateY(0) skewY(0deg);
+  }
+  75% {
+    transform: translateY(4px) skewY(1.5deg);
   }
 }
 
