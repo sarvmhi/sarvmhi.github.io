@@ -79,7 +79,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
               aria-label={`${i + 1} of ${count}: ${p.title}`}
               aria-hidden={!isFront}
               onClick={isFront ? undefined : () => go(i)}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]}`}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]} ${isFront ? "" : "cursor-pointer"}`}
             >
               {p.image && (
                 // eslint-disable-next-line @next/next/no-img-element

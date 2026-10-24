@@ -10,13 +10,13 @@ export function IntroContent() {
         <h1 className="font-display text-[44px] font-extrabold leading-normal sm:text-[56px] lg:text-[60px] xl:text-[72px]">
           <span className="block whitespace-nowrap">
             Designing{" "}
-            <span className="text-gradient bg-[linear-gradient(to_right,#b56576_53.846%,#e56b6f_74.038%,rgba(0,0,0,0.8))] pr-[0.06em] italic">
+            <span className="text-gradient headline-clarity pr-[0.06em] italic">
               Clarity
             </span>
           </span>
           <span className="block whitespace-nowrap">
             into{" "}
-            <span className="text-gradient bg-[linear-gradient(to_right,rgba(20,22,26,0.8)_25.481%,rgba(229,107,111,0.95)_56.01%,#b56576_76.442%)] pr-[0.06em] italic">
+            <span className="text-gradient headline-complexity pr-[0.06em] italic">
               Complexity
             </span>
           </span>

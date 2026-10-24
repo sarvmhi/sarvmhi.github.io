@@ -31,6 +31,8 @@ const MAX_ANGLE = 16;
 const HOVER_PUSH = 0.3; // degrees per second added per pixel of cursor movement
 const HOVER_ENTER = 14; // degrees per second when the cursor first touches the badge
 const HOVER_MAX_SPEED = 30;
+// Coming back into view after scrolling away: about the same swing as when the page opens
+const SCROLL_IN_PUSH = 20;
 
 export function IdBadge() {
   const swingRef = useRef<HTMLDivElement>(null);
@@ -146,8 +148,35 @@ export function IdBadge() {
       }, 250);
     }
 
+    // Swing again whenever the page comes back to the badge, in the direction of the scroll
+    let hidden = false;
+    let lastScrollY = window.scrollY;
+    let scrollDir = 1;
+    const onScroll = () => {
+      scrollDir = window.scrollY < lastScrollY ? 1 : -1;
+      lastScrollY = window.scrollY;
+    };
+    const seen = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          hidden = true;
+        } else if (hidden && entry.intersectionRatio >= 0.3 && !dragging) {
+          hidden = false;
+          velocity = clampSpeed(velocity + SCROLL_IN_PUSH * scrollDir);
+          run();
+        }
+      },
+      { threshold: [0, 0.3] },
+    );
+    if (!reduced) {
+      window.addEventListener("scroll", onScroll, { passive: true });
+      seen.observe(card);
+    }
+
     return () => {
       window.clearTimeout(intro);
+      seen.disconnect();
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(frame);
       card.removeEventListener("pointerenter", onEnter);
       card.removeEventListener("pointermove", onHoverMove);

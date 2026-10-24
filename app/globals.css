@@ -88,11 +88,17 @@
     min-height: 100dvh;
   }
 
-  /* One cursor everywhere: no hand on links, no text cursor on copy */
+  /* The normal arrow everywhere (no text cursor on copy); the hand only on things you can click */
   *,
   *::before,
   *::after {
     cursor: default;
+  }
+  a[href],
+  a[href] *,
+  button:not(:disabled),
+  button:not(:disabled) * {
+    cursor: pointer;
   }
 
   :focus-visible {
@@ -163,6 +169,40 @@
     transform: translateY(-6px) scale(1.1);
   }
 
+  /* Headline gradients. At rest they are Figma's; with motion allowed the colours keep flowing
+     slowly through the words. The moving gradient is one seamless tile twice the word's width
+     (rose, coral, ink, coral, rose) slid along by one tile per loop. "Complexity" runs half a
+     loop ahead, so it starts on the ink-to-rose half, like in Figma. */
+  .headline-clarity {
+    background-image: linear-gradient(to right, #b56576 53.846%, #e56b6f 74.038%, rgb(0 0 0 / 0.8));
+  }
+  .headline-complexity {
+    background-image: linear-gradient(
+      to right,
+      rgb(20 22 26 / 0.8) 25.481%,
+      rgb(229 107 111 / 0.95) 56.01%,
+      #b56576 76.442%
+    );
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .headline-clarity,
+    .headline-complexity {
+      background-image: linear-gradient(
+        to right,
+        #b56576,
+        #e56b6f 25%,
+        rgb(20 22 26 / 0.8) 50%,
+        #e56b6f 75%,
+        #b56576
+      );
+      background-size: 200% 100%;
+      animation: headline-flow 9s linear infinite;
+    }
+    .headline-complexity {
+      animation-delay: -4.5s;
+    }
+  }
+
   /* Gradient text, as set on the headline and the "superpower" line */
   .text-gradient {
     background-clip: text;
@@ -180,11 +220,21 @@
   }
 }
 
+@keyframes headline-flow {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
