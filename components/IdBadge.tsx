@@ -10,19 +10,27 @@ const BARS: [number, number][] = [
   [3, 22], [3, 28], [3, 15], [3, 22], [3, 28], [3, 28], [3, 15], [6, 28], [1, 28],
 ];
 
-// Lanyard art (viewBox 33.4 x 174.4) drawn 54px wide, so it is 282px tall.
+// Lanyard art from Figma (raster, 335 x 2147) drawn 54px wide, so it is 346px tall.
 const LANYARD_W = 54;
-const LANYARD_H = Math.round((174.4 / 33.4) * LANYARD_W);
+const LANYARD_H = Math.round((2147 / 335) * LANYARD_W);
 const LANYARD_LEFT = 148; // from Figma: 1158 - 1010
 const CLIP_OVERLAP = 27; // the clip bites 27px into the card
 const PIVOT_Y = CLIP_OVERLAP - LANYARD_H; // top of the lanyard art, relative to the card top
-// Navy strap inside the art: x 6.65, width 20.14 (viewBox units)
-const STRAP_LEFT = LANYARD_LEFT + (6.65 / 33.4) * LANYARD_W;
-const STRAP_W = (20.14 / 33.4) * LANYARD_W;
+// Navy strap inside the art: x 67 to 268 of 335
+const STRAP_LEFT = LANYARD_LEFT + (67 / 335) * LANYARD_W;
+const STRAP_W = (202 / 335) * LANYARD_W;
+// Figma's two drop shadows on the lanyard
+const LANYARD_SHADOW = "drop-shadow(4px 4px 4px rgb(0 0 0 / 0.25)) drop-shadow(-4px 0 4px rgb(0 0 0 / 0.25))";
+const STRAP_SHADOW = "4px 4px 4px rgb(0 0 0 / 0.25), -4px 0 4px rgb(0 0 0 / 0.25)";
 
-const STIFFNESS = 38;
-const DAMPING = 3.2;
+// A soft, slow spring: about 1.3s per swing, settling over a few seconds
+const STIFFNESS = 22;
+const DAMPING = 2.2;
 const MAX_ANGLE = 16;
+// Hovering: the cursor brushes the badge, it never yanks it
+const HOVER_PUSH = 0.3; // degrees per second added per pixel of cursor movement
+const HOVER_ENTER = 14; // degrees per second when the cursor first touches the badge
+const HOVER_MAX_SPEED = 30;
 
 export function IdBadge() {
   const swingRef = useRef<HTMLDivElement>(null);
@@ -31,6 +39,8 @@ export function IdBadge() {
     const el = swingRef.current;
     if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const card = el.querySelector<HTMLElement>("[data-badge-card]");
+    if (!card) return;
 
     let angle = 0;
     let velocity = 0;
@@ -71,6 +81,24 @@ export function IdBadge() {
       if (!frame) frame = requestAnimationFrame(step);
     };
 
+    const clampSpeed = (v: number) => Math.max(-HOVER_MAX_SPEED, Math.min(HOVER_MAX_SPEED, v));
+
+    // A positive rotate() moves the card left, so a push to the right is a negative velocity
+    const onEnter = (e: PointerEvent) => {
+      if (reduced || dragging || e.pointerType !== "mouse") return;
+      const rect = card.getBoundingClientRect();
+      const fromLeft = e.clientX < rect.left + rect.width / 2;
+      const push = e.movementX !== 0 ? -e.movementX * HOVER_PUSH * 2 : fromLeft ? -HOVER_ENTER : HOVER_ENTER;
+      velocity = clampSpeed(velocity + push);
+      run();
+    };
+
+    const onHoverMove = (e: PointerEvent) => {
+      if (reduced || dragging || e.pointerType !== "mouse") return;
+      velocity = clampSpeed(velocity - e.movementX * HOVER_PUSH);
+      run();
+    };
+
     const onDown = (e: PointerEvent) => {
       if (reduced || e.button !== 0) return;
       dragging = true;
@@ -103,9 +131,9 @@ export function IdBadge() {
       run();
     };
 
-    // A positive rotate() moves the card left, so dragging right means a negative angle (see onMove)
-    const card = el.querySelector<HTMLElement>("[data-badge-card]");
-    card?.addEventListener("pointerdown", onDown);
+    card.addEventListener("pointerenter", onEnter);
+    card.addEventListener("pointermove", onHoverMove);
+    card.addEventListener("pointerdown", onDown);
     el.addEventListener("pointermove", onMove);
     el.addEventListener("pointerup", onUp);
     el.addEventListener("pointercancel", onUp);
@@ -114,7 +142,7 @@ export function IdBadge() {
     let intro = 0;
     if (!reduced) {
       intro = window.setTimeout(() => {
-        angle = 5;
+        angle = 4;
         velocity = 0;
         run();
       }, 250);
@@ -123,7 +151,9 @@ export function IdBadge() {
     return () => {
       window.clearTimeout(intro);
       cancelAnimationFrame(frame);
-      card?.removeEventListener("pointerdown", onDown);
+      card.removeEventListener("pointerenter", onEnter);
+      card.removeEventListener("pointermove", onHoverMove);
+      card.removeEventListener("pointerdown", onDown);
       el.removeEventListener("pointermove", onMove);
       el.removeEventListener("pointerup", onUp);
       el.removeEventListener("pointercancel", onUp);
@@ -143,7 +173,7 @@ export function IdBadge() {
         <div
           aria-hidden
           className="absolute bg-[#26314a]"
-          style={{ left: STRAP_LEFT, width: STRAP_W, top: PIVOT_Y - 1400, height: 1402 }}
+          style={{ left: STRAP_LEFT, width: STRAP_W, top: PIVOT_Y - 1400, height: 1402, boxShadow: STRAP_SHADOW }}
         />
 
         <article
@@ -186,7 +216,7 @@ export function IdBadge() {
             <div className="flex flex-col gap-[3px]">
               <dt className="font-bold leading-normal">Status</dt>
               <dd className="flex items-center gap-[5px] whitespace-nowrap leading-5 text-open">
-                <span className="size-2 rounded-full bg-open" aria-hidden />
+                <span className="size-2 shrink-0 rounded-full bg-open" aria-hidden />
                 {badge.status}
               </dd>
             </div>
@@ -207,12 +237,12 @@ export function IdBadge() {
         {/* lanyard clip sits over the card */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={asset("/assets/badge/lanyard.svg")}
+          src={asset("/assets/badge/lanyard.webp")}
           alt=""
           aria-hidden
           draggable={false}
-          className="pointer-events-none absolute max-w-none drop-shadow-[-4px_0_4px_rgba(0,0,0,0.25)]"
-          style={{ left: LANYARD_LEFT, top: PIVOT_Y, width: LANYARD_W, height: LANYARD_H }}
+          className="pointer-events-none absolute max-w-none"
+          style={{ left: LANYARD_LEFT, top: PIVOT_Y, width: LANYARD_W, height: LANYARD_H, filter: LANYARD_SHADOW }}
         />
       </div>
     </div>

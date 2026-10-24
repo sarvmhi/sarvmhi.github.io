@@ -93,11 +93,39 @@
       inset 1px 1px 3px 0 rgb(0 0 0 / 0.2);
   }
 
+  /* "Technologies for Learning": the brush underline draws itself from left to right on hover */
+  .learning:hover .learning-line {
+    animation: draw-line 700ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  /* Stats: on hover only the number gets a little heavier. A text shadow on both sides
+     thickens the strokes without moving the "+" and works with any font file. */
+  .stat-number {
+    text-shadow:
+      0 0 0 transparent,
+      0 0 0 transparent;
+    transition: text-shadow 220ms ease;
+  }
+  .stat:hover .stat-number {
+    text-shadow:
+      1px 0 0 currentColor,
+      -1px 0 0 currentColor;
+  }
+
   /* Gradient text, as set on the headline and the "superpower" line */
   .text-gradient {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+  }
+}
+
+@keyframes draw-line {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }
 

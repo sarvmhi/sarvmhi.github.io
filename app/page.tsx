@@ -29,9 +29,16 @@ export default function HomePage() {
         <p className="mt-6 text-[17px] leading-7 sm:text-[18px] lg:mt-[29px] lg:text-justify">
           My Computer Engineering background taught me to take systems apart, and product design lets me
           rebuild them to be simple, intuitive, and clear. Currently I&apos;m focused on{" "}
-          {/* TODO: swap for the hand-drawn underline from Figma ("Line 7") once exported */}
-          <strong className="font-bold underline decoration-rose decoration-2 underline-offset-[6px]">
+          {/* Hand-drawn underline from Figma ("Line 7"); it draws itself again on hover */}
+          <strong className="learning relative inline-block whitespace-nowrap font-bold">
             Technologies for Learning
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={asset("/assets/decor/learning-underline.svg")}
+              alt=""
+              aria-hidden
+              className="learning-line pointer-events-none absolute -left-[3px] top-[calc(100%-3.5px)] h-[5px] w-[calc(100%+3px)] max-w-none"
+            />
           </strong>
           , designing tools that make learning easier to begin and harder to quit.
         </p>
@@ -45,7 +52,7 @@ export default function HomePage() {
 
         <ul className="mt-6 flex gap-6 sm:gap-[84px] lg:mt-[25px]">
           {profile.stats.map((stat) => (
-            <li key={stat.label} className="relative h-[141px] w-[150px] sm:w-[179px]">
+            <li key={stat.label} className="stat relative h-[141px] w-[150px] sm:w-[179px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={asset("/assets/decor/stat-brush.svg")}
@@ -55,7 +62,7 @@ export default function HomePage() {
               />
               <div className="relative left-[30px] w-[127px] font-bold leading-normal sm:left-[40px]">
                 <p className="flex items-end">
-                  <span className="text-[60px] leading-normal">{stat.value}</span>
+                  <span className="stat-number text-[60px] leading-normal">{stat.value}</span>
                   <span className="pb-[2px] text-[36px] font-medium leading-normal" aria-hidden>
                     +
                   </span>
