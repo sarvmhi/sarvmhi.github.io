@@ -54,7 +54,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       aria-roledescription="carousel"
       aria-label="Project carousel"
       onKeyDown={onKeyDown}
-      className="mx-auto max-w-[1440px] px-5 pt-10 md:px-10 lg:pt-[86px] xl:px-[80px]"
+      className="pt-10 lg:pt-[86px]"
     >
       <div
         className="relative aspect-[1/0.645] touch-pan-y md:aspect-[1280/435]"

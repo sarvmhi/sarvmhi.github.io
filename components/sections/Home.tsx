@@ -4,7 +4,7 @@ import { profile } from "@/lib/content";
 
 export function HomeContent() {
   return (
-    <div className="mx-auto flex max-w-[1440px] flex-col px-5 pb-16 md:px-10 lg:flex-row lg:justify-between lg:pb-[100px] xl:px-[80px]">
+    <div className="flex flex-col pb-16 lg:flex-row lg:justify-between lg:pb-[100px]">
       <section className="min-w-0 max-w-[612px] pt-10 lg:pt-[87px]">
         <h1 className="font-display text-[44px] font-extrabold leading-normal sm:text-[56px] lg:text-[60px] xl:text-[72px]">
           <span className="block whitespace-nowrap">

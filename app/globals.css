@@ -48,6 +48,31 @@
   --shadow-job: 0 4px 5px rgb(0 0 0 / 0.25);
 }
 
+/* Page margins and scale. The content is laid out at its Figma size, then zoomed down by
+   --ui-scale so it fits 20px wider side margins than the Figma frame (100px instead of 80px
+   at 1440, 60px instead of 40px on tablets). Phones keep Figma's 20px and full size.
+   To make everything bigger or smaller, change these numbers. */
+:root {
+  --ui-scale: 1;
+  --page-margin: 20px;
+}
+@media (width >= 48rem) {
+  :root {
+    --ui-scale: 0.955;
+    --page-margin: 60px;
+  }
+}
+@media (width >= 80rem) {
+  :root {
+    --ui-scale: 0.96875; /* 1240 / 1280 */
+    --page-margin: 100px;
+  }
+}
+
+@utility px-page {
+  padding-inline: var(--page-margin);
+}
+
 @layer base {
   html {
     background: var(--color-page);
@@ -78,6 +103,16 @@
 
 /* In the components layer, so utilities (absolute, shadows…) still win */
 @layer components {
+  .ui-scale {
+    zoom: var(--ui-scale);
+  }
+
+  /* Left edge of the content, in the header's own (zoomed) units, so "Sarv" lines up with it.
+     On wide screens the content is centred, so the edge moves in. */
+  header {
+    --page-margin-scaled: max(calc(var(--page-margin) / var(--ui-scale)), calc((100% - 1280px) / 2));
+  }
+
   /* Glass pill used by the nav, Download CV and project buttons */
   .glass {
     position: relative;

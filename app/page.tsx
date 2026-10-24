@@ -7,11 +7,12 @@ import { projects } from "@/lib/content";
 import type { SectionId } from "@/lib/sections";
 
 // Each section keeps 74px at its top for the fixed header, so jumping to it from the nav
-// shows it exactly like its Figma frame.
+// shows it like its Figma frame. The side margins sit on the section; the content inside is
+// laid out at its Figma width and then scaled down by --ui-scale to fit them (see globals.css).
 function Section({ id, label, children }: { id: SectionId; label: string; children: ReactNode }) {
   return (
-    <section id={id} aria-label={label} className="pt-[74px]">
-      {children}
+    <section id={id} aria-label={label} className="px-page pt-[74px]">
+      <div className="ui-scale mx-auto max-w-[1280px]">{children}</div>
     </section>
   );
 }

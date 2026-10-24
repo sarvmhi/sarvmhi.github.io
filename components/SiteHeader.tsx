@@ -137,7 +137,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-30 h-[74px]">
+    <header className="ui-scale fixed inset-x-0 top-0 z-30 h-[74px]">
       {/* Backdrop once the page moves, so the pills stay readable over content. It sits on its
           own layer: a backdrop-filter on the header would trap the fixed mobile nav inside it. */}
       <div
@@ -150,7 +150,7 @@ export function SiteHeader() {
       <a
         href="#home"
         onClick={(e) => onNavClick(e, "home")}
-        className="absolute left-5 top-[24px] font-display text-[20px] font-semibold italic leading-normal md:left-[72px] md:top-[35px]"
+        className="absolute left-(--page-margin-scaled) top-[24px] font-display text-[20px] font-semibold italic leading-normal md:top-[35px]"
       >
         Sarv
       </a>

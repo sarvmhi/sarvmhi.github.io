@@ -4,8 +4,9 @@ import { asset } from "@/lib/asset";
 import { jobs, type Job } from "@/lib/content";
 
 /*
- * Figma frame 3. From xl up the page is a 1440-wide stage with Figma's positions
- * (y measured from below the header); between 1280 and 1440 it is zoomed to fit.
+ * Figma frame 3. From xl up this is a fixed 1280-wide stage (the 1440 frame minus its
+ * 80px margins) with Figma's positions, x measured from the content edge and y from below
+ * the header; between 1280 and 1440 it is zoomed to fit.
  * The road runs left to right in date order, so the list is in that order too.
  * Below xl the jobs stack and the road is left out.
  */
@@ -17,16 +18,16 @@ const STOPS: {
   barTop: number;
   gap: number; // card to bar
 }[] = [
-  { job: jobs.shabakeh, x: 80, y: 167, cardTop: 0, barTop: 4, gap: 19 },
-  { job: jobs.filmnet, x: 491, y: 728, cardTop: 0, barTop: 0, gap: 21 },
-  { job: jobs.freelance, x: 815, y: 171, cardTop: 2, barTop: 0, gap: 34 },
+  { job: jobs.shabakeh, x: 0, y: 167, cardTop: 0, barTop: 4, gap: 19 },
+  { job: jobs.filmnet, x: 411, y: 728, cardTop: 0, barTop: 0, gap: 21 },
+  { job: jobs.freelance, x: 735, y: 171, cardTop: 2, barTop: 0, gap: 34 },
 ];
 
 // Map pins sit on the peaks and the dip of the road
 const PINS: [number, number][] = [
-  [179, 502],
-  [715, 619],
-  [1212, 503],
+  [99, 502],
+  [635, 619],
+  [1132, 503],
 ];
 
 function JobCard({ job }: { job: Job }) {
@@ -89,12 +90,12 @@ function Tasks({ job }: { job: Job }) {
 
 function Road() {
   // Stand-in for the hand-drawn road in Figma ("2 upper peaks, 1 lower peak"), drawn through the
-  // same peaks; it runs past the 1440 frame so wide screens are covered. Path points are in
-  // Figma frame units; the frame starts 74px higher than this stage (the header).
+  // same peaks; it runs past the frame so wide screens are covered. Path points are in Figma
+  // frame units: the frame starts 80px left of this stage and 74px above it (the header).
   return (
     <svg
       aria-hidden
-      className="pointer-events-none absolute left-[-800px] top-[466px] hidden h-[220px] w-[3040px] overflow-visible xl:block"
+      className="pointer-events-none absolute left-[-880px] top-[466px] hidden h-[220px] w-[3040px] overflow-visible xl:block"
       viewBox="-800 540 3040 220"
       fill="none"
     >
@@ -110,8 +111,8 @@ function Road() {
 
 export function ExperienceContent() {
   return (
-    <div className="relative mx-auto max-w-[1440px] px-5 pb-16 pt-10 md:px-10 xl:h-[1159px] xl:w-[1440px] xl:max-w-none xl:px-0 xl:pb-0 xl:[zoom:0.888] wide:[zoom:0.944] frame:[zoom:1]">
-      <h2 className="font-display text-[28px] font-bold leading-normal text-rose xl:ml-[77px]">
+    <div className="relative pb-16 pt-10 xl:h-[1159px] xl:w-[1280px] xl:pb-0 xl:[zoom:0.87] wide:[zoom:0.935] frame:[zoom:1]">
+      <h2 className="font-display text-[28px] font-bold leading-normal text-rose xl:-ml-[3px]">
         Where I’ve been working
       </h2>
 

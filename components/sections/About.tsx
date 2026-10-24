@@ -5,7 +5,7 @@ import { education, languages } from "@/lib/content";
 
 export function AboutContent() {
   return (
-    <div className="mx-auto grid max-w-[1440px] gap-x-10 gap-y-20 px-5 pb-16 pt-12 md:px-10 lg:pt-[66px] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between xl:pb-[71px] wide:px-[80px]">
+    <div className="grid gap-x-10 gap-y-20 pb-16 pt-12 lg:pt-[66px] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between xl:pb-[71px]">
       <div className="min-w-0">
         <section>
           <SectionTitle>Education</SectionTitle>
