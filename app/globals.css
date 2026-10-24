@@ -211,10 +211,10 @@
         #b56576
       );
       background-size: 200% 100%;
-      animation: headline-flow 9s linear infinite;
+      animation: headline-flow 8s linear infinite;
     }
     .headline-complexity {
-      animation-delay: -4.5s;
+      animation-delay: -4s;
     }
   }
 
