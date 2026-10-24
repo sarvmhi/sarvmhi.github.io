@@ -5,7 +5,9 @@ import { education, languages } from "@/lib/content";
 
 export function AboutContent() {
   return (
-    <div className="grid gap-x-10 gap-y-20 pb-16 pt-12 lg:pt-[66px] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between xl:pb-[71px]">
+    // Everything in this section is drawn 15% smaller than the rest of the page (from tablets
+    // up); the two columns still reach the page margins. Change the zoom to resize it.
+    <div className="grid gap-x-10 gap-y-20 pb-16 pt-12 md:[zoom:0.85] lg:pt-[66px] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between xl:pb-[71px]">
       <div className="min-w-0">
         <section>
           <SectionTitle>Education</SectionTitle>
