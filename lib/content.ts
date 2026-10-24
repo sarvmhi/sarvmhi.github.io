@@ -113,7 +113,7 @@ export const jobs: Record<"shabakeh" | "freelance" | "filmnet", Job> = {
     company: "Shabakeh Afzar",
     location: "Tehran, Iran",
     dates: "Oct 2021 - Oct 2024",
-    logo: { src: null, width: 75, height: 37 },
+    logo: { src: "/assets/logos/shabakeh-afzar.webp", width: 75, height: 37 },
     tasks: [
       "Designed a Jira-replacing project management platform with role-based dashboards for 20 technical staff.",
       "Designed an IT support ticketing system that cut call-center volume by 26%.",
@@ -127,7 +127,7 @@ export const jobs: Record<"shabakeh" | "freelance" | "filmnet", Job> = {
     company: "Freelancer",
     location: "Hybrid",
     dates: "May 2026 - Present",
-    logo: { src: null, width: 30, height: 30 },
+    logo: { src: "/assets/logos/freelance.webp", width: 30, height: 30 },
     tasks: [
       "Designed an eyewear e-commerce site with AR virtual try-on, shifting ~30% of sales from social media to the website.",
       "Designed a pediatric booking platform for mothers of children under 5, with vaccine reminders and urgent visits.",

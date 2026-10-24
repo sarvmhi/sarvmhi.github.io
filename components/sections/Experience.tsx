@@ -35,7 +35,13 @@ function JobCard({ job }: { job: Job }) {
     <div className="flex h-[190px] w-[220px] shrink-0 flex-col items-start gap-3 rounded-[16px] bg-white py-6 pl-6 pr-[30px] shadow-job">
       {logo.src ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={asset(logo.src)} alt={`${job.company} logo`} width={logo.width} height={logo.height} />
+        <img
+          src={asset(logo.src)}
+          alt={`${job.company} logo`}
+          width={logo.width}
+          height={logo.height}
+          className="object-contain object-left"
+        />
       ) : (
         // TODO: company logo still missing; see lib/content.ts
         <span aria-hidden className="rounded bg-placeholder" style={{ width: logo.width, height: logo.height }} />
@@ -52,15 +58,29 @@ function JobCard({ job }: { job: Job }) {
   );
 }
 
+// Left-aligned with normal word spacing (Figma's justified text left big gaps), and a
+// hyphenated word like "e-commerce" never splits across two lines.
+function keepHyphensTogether(text: string) {
+  return text.split(/(\S*\w-\w\S*)/).map((part, i) =>
+    i % 2 ? (
+      <span key={i} className="whitespace-nowrap">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 function Tasks({ job }: { job: Job }) {
   return (
     <div className="relative min-w-0 pb-10 pt-[10px] pl-[25px]">
       <RoseBar />
       <Connector className="left-2 top-[15.5px]" />
       <h4 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h4>
-      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-[16px] leading-normal sm:w-[263px] sm:text-justify">
+      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[16px] leading-normal sm:w-[263px]">
         {job.tasks.map((task) => (
-          <li key={task}>{task}</li>
+          <li key={task}>{keepHyphensTogether(task)}</li>
         ))}
       </ul>
     </div>
