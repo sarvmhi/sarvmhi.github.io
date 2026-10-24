@@ -75,10 +75,10 @@
 }
 
 @layer base {
-  /* Dot grid on every page: 1px dots every 26px, from the hanging-badge study */
+  /* Dot grid on every page: dots of 2px radius every 26px (the hanging-badge study used 1px) */
   html {
     background-color: var(--color-page);
-    background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+    background-image: radial-gradient(var(--color-dot) 2px, transparent 2px);
     background-size: 26px 26px;
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
