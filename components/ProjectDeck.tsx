@@ -49,9 +49,10 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
   };
 
   return (
-    <section
+    <div
+      role="region"
       aria-roledescription="carousel"
-      aria-label="Projects"
+      aria-label="Project carousel"
       onKeyDown={onKeyDown}
       className="mx-auto max-w-[1440px] px-5 pt-10 md:px-10 lg:pt-[86px] xl:px-[80px]"
     >
@@ -72,7 +73,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
               aria-label={`${i + 1} of ${count}: ${p.title}`}
               aria-hidden={!isFront}
               onClick={isFront ? undefined : () => go(i)}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]} ${isFront ? "" : "cursor-pointer"}`}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]}`}
             >
               {p.image && (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -84,7 +85,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       </div>
 
       <div className="mt-12 md:mt-[113px]" aria-live="polite">
-        <h1 className="font-display text-[30px] font-extrabold leading-[1.05] sm:text-[36px]">{project.title}</h1>
+        <h2 className="font-display text-[30px] font-extrabold leading-[1.05] sm:text-[36px]">{project.title}</h2>
         <p className="mt-[10px] flex items-baseline gap-x-[18px] font-instrument font-semibold leading-normal">
           <span className="text-[20px] text-rose">{project.field}:</span>
           {project.tags.map((tag) => (
@@ -147,6 +148,6 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
           </button>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

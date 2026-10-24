@@ -1,10 +1,7 @@
 import type { CSSProperties } from "react";
-import type { Metadata } from "next";
 import { Connector, RoseBar } from "@/components/BarList";
 import { asset } from "@/lib/asset";
 import { jobs, type Job } from "@/lib/content";
-
-export const metadata: Metadata = { title: "Experience" };
 
 /*
  * Figma frame 3. From xl up the page is a 1440-wide stage with Figma's positions
@@ -44,7 +41,7 @@ function JobCard({ job }: { job: Job }) {
         <span aria-hidden className="rounded bg-placeholder" style={{ width: logo.width, height: logo.height }} />
       )}
       <div className="flex flex-col gap-1 leading-normal">
-        <h2 className="text-[18px] font-bold">{job.role}</h2>
+        <h3 className="text-[18px] font-bold">{job.role}</h3>
         <p className="text-[15px]">{job.company}</p>
         <p className="text-[14px]">{job.location}</p>
         <p className="text-[14px]">
@@ -60,7 +57,7 @@ function Tasks({ job }: { job: Job }) {
     <div className="relative min-w-0 pb-10 pt-[10px] pl-[25px]">
       <RoseBar />
       <Connector className="left-2 top-[15.5px]" />
-      <h3 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h3>
+      <h4 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h4>
       <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-[16px] leading-normal sm:w-[263px] sm:text-justify">
         {job.tasks.map((task) => (
           <li key={task}>{task}</li>
@@ -91,12 +88,12 @@ function Road() {
   );
 }
 
-export default function ExperiencePage() {
+export function ExperienceContent() {
   return (
     <div className="relative mx-auto max-w-[1440px] px-5 pb-16 pt-10 md:px-10 xl:h-[1159px] xl:w-[1440px] xl:max-w-none xl:px-0 xl:pb-0 xl:[zoom:0.888] wide:[zoom:0.944] frame:[zoom:1]">
-      <h1 className="font-display text-[28px] font-bold leading-normal text-rose xl:ml-[77px]">
+      <h2 className="font-display text-[28px] font-bold leading-normal text-rose xl:ml-[77px]">
         Where I’ve been working
-      </h1>
+      </h2>
 
       <Road />
       {PINS.map(([x, y]) => (

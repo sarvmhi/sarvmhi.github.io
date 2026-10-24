@@ -1,6 +1,7 @@
 # Sarvin M. — Portfolio
 
-Personal portfolio built from the "Design Hub" Figma file: Home, About Me, Experience and Projects.
+Personal portfolio built from the "Design Hub" Figma file: one scrolling page with Home, About Me,
+Experience and Projects sections.
 Next.js (static export) + Tailwind CSS, deployed to GitHub Pages.
 
 ## Run it locally
@@ -17,7 +18,8 @@ npm run build      # static site in ./out
 | --- | --- |
 | All text (bio, jobs, tasks, projects, certificates, tools) | `lib/content.ts` |
 | Colors, fonts, shadows (Figma tokens) | `app/globals.css` (`@theme`) |
-| Pages | `app/page.tsx`, `app/about/`, `app/experience/`, `app/projects/` |
+| Sections (in page order) | `app/page.tsx`, built from `components/sections/` and `components/ProjectDeck.tsx` |
+| Nav and section tracking | `components/SiteHeader.tsx`, section list in `lib/sections.ts` |
 | Images and vectors | `public/assets/` |
 | CV download | `public/Sarvin-CV.pdf` |
 

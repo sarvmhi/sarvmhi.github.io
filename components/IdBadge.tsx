@@ -111,7 +111,6 @@ export function IdBadge() {
       lever = Math.max(200, e.clientY - pivotY);
       lastAngle = angle;
       el.setPointerCapture(e.pointerId);
-      el.style.cursor = "grabbing";
       run();
     };
 
@@ -127,7 +126,6 @@ export function IdBadge() {
     const onUp = (e: PointerEvent) => {
       if (e.pointerId !== pointerId) return;
       dragging = false;
-      el.style.cursor = "";
       run();
     };
 
@@ -179,7 +177,7 @@ export function IdBadge() {
         <article
           data-badge-card
           aria-label={`ID badge: ${profile.name}, ${profile.role}`}
-          className="absolute inset-0 cursor-grab touch-pan-y select-none overflow-hidden rounded-[16px] bg-clay shadow-card"
+          className="absolute inset-0 touch-pan-y select-none overflow-hidden rounded-[16px] bg-clay shadow-card"
         >
           <div className="absolute inset-x-0 bottom-0 top-[24.27px] rounded-b-[16px] bg-white" />
           <div className="absolute left-[148px] top-[20px] h-[12px] w-[54px] rounded-[40px] bg-slot" />

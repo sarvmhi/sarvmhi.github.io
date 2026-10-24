@@ -1,12 +1,9 @@
-import type { Metadata } from "next";
 import { Connector, Leader, RoseBar, SectionTitle } from "@/components/BarList";
 import { Certificates } from "@/components/Certificates";
 import { HowIWork } from "@/components/HowIWork";
 import { education, languages } from "@/lib/content";
 
-export const metadata: Metadata = { title: "About Me" };
-
-export default function AboutPage() {
+export function AboutContent() {
   return (
     <div className="mx-auto grid max-w-[1440px] gap-x-10 gap-y-20 px-5 pb-16 pt-12 md:px-10 lg:pt-[66px] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between xl:pb-[71px] wide:px-[80px]">
       <div className="min-w-0">
