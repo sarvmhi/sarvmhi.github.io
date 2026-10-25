@@ -63,7 +63,7 @@ function useActiveSection() {
     let pending: SectionId | null = null;
 
     // The nav only switches once a section has stayed in view for a moment, so a fast scroll
-    // across several sections doesn't make the pills open and close one after another.
+    // across a section boundary doesn't flicker between the two.
     const commit = (id: SectionId, now: boolean) => {
       if (id === shown) {
         window.clearTimeout(settleTimer);
@@ -84,7 +84,7 @@ function useActiveSection() {
         shown = id;
         pending = null;
         setActive(id);
-      }, 180);
+      }, 60);
     };
 
     const compute = (now = false) => {
@@ -174,7 +174,7 @@ export function SiteHeader() {
           own layer: a backdrop-filter on the header would trap the fixed mobile nav inside it. */}
       <div
         aria-hidden
-        className={`absolute inset-0 bg-page/80 backdrop-blur-md transition-opacity duration-300 [transform:translateZ(0)] ${
+        className={`absolute inset-0 bg-page/90 transition-opacity duration-300 ${
           scrolled ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -193,16 +193,16 @@ export function SiteHeader() {
       >
         <ul
           onPointerLeave={() => setHovered(null)}
-          className="flex items-center gap-1.5 rounded-full bg-page/75 p-1 backdrop-blur-md md:gap-2 md:bg-transparent md:p-0 md:backdrop-blur-none"
+          className="flex w-[356px] items-center gap-1.5 rounded-full bg-page/90 p-1 md:gap-2 md:bg-transparent md:p-0"
         >
           {ITEMS.map((item) => {
             const isActive = item.id === active;
             const open = hovered === null ? isActive : hovered === item.id;
             const icons = item.disabled ? null : ICONS[item.id as SectionId];
             const IconCmp = icons ? (isActive ? icons.solid : icons.outline) : (item.icon ?? DocumentTextIcon);
-            const className = `glass flex h-[50px] items-center justify-center overflow-hidden transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-              open ? "w-[124px]" : "w-[50px]"
-            } ${isActive ? "glass-active" : ""}`;
+            const className = `glass flex h-[50px] w-full items-center justify-center overflow-hidden ${
+              isActive ? "glass-active" : ""
+            }`;
             const handlers = {
               onPointerEnter: (e: PointerEvent) => e.pointerType === "mouse" && setHovered(item.id),
               onFocus: (e: FocusEvent<HTMLElement>) =>
@@ -223,7 +223,15 @@ export function SiteHeader() {
             );
 
             return (
-              <li key={item.id}>
+              // The bar has a fixed width: every item is 50px and the open one takes the rest
+              // (124px). Growing one item shrinks the other by the same amount, so nothing
+              // else in the bar moves while they change.
+              <li
+                key={item.id}
+                className={`flex shrink-0 basis-[50px] transition-[flex-grow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                  open ? "grow" : "grow-0"
+                }`}
+              >
                 {item.disabled ? (
                   <span
                     role="link"
