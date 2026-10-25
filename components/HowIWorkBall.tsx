@@ -27,9 +27,8 @@ const LINE = (() => {
 })();
 
 const SIZE = 22; // ball diameter, px
-const SPEED = 110; // px of line per second on the straights
-const BEND_SLOWDOWN = 0.55; // in the tightest bend it rolls at 45% of that
-const GLIDE = 380; // px per second at most when moving to where the reader scrolled
+const SPEED = 110; // px of line per second, the same on straights and bends
+const HEADER = 74; // fixed header height, px
 const SECTION_W = 545; // the section's width in its own units
 
 export function HowIWorkBall() {
@@ -44,54 +43,28 @@ export function HowIWorkBall() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const total = path.getTotalLength();
-    // y of the line every 4px along it, to find the point at a given height
+    // y of the line every 4px along it, to find where the line enters the screen
     const samples: number[] = [];
-    const turn: number[] = []; // how sharply the line bends at each sample, 0 to 1
-    let prev = path.getPointAtLength(0);
-    let prevAngle = 0;
-    for (let l = 0; l <= total; l += 4) {
-      const pt = path.getPointAtLength(l);
-      samples.push(pt.y);
-      const angle = Math.atan2(pt.y - prev.y, pt.x - prev.x);
-      let d = Math.abs(angle - prevAngle);
-      if (d > Math.PI) d = 2 * Math.PI - d;
-      turn.push(l === 0 ? 0 : Math.min(1, d / 0.35));
-      prev = pt;
-      prevAngle = angle;
-    }
-    // spread each bend over its neighbours, so the ball slows before it and speeds up after
-    const bend = turn.map((_, i) => {
-      let m = 0;
-      for (let k = -8; k <= 8; k++) m = Math.max(m, (turn[i + k] ?? 0) * (1 - Math.abs(k) / 9));
-      return m;
-    });
-    const speedAt = (l: number) => SPEED * (1 - BEND_SLOWDOWN * (bend[Math.round(l / 4)] ?? 0));
+    for (let l = 0; l <= total; l += 4) samples.push(path.getPointAtLength(l).y);
 
-    let at = 0; // where the ball is, in px along the line
-    let jumpTo: number | null = null; // where a scroll asked it to go
+    let at = 0; // px along the line; only ever grows, except when the ball is moved by a scroll
     let started = false;
     let frame = 0;
     let last = 0;
 
+    const scale = () => section.getBoundingClientRect().width / SECTION_W; // the section is zoomed
     const place = () => {
       const pt = path.getPointAtLength(at);
       ball.style.transform = `translate(${pt.x - SIZE / 2}px, ${pt.y - SIZE / 2}px)`;
     };
 
+    // Same speed the whole way, forward only, stopping at the end
     const step = (time: number) => {
       const dt = Math.min(0.05, (time - (last || time)) / 1000);
       last = time;
-      if (jumpTo !== null) {
-        // glide to the new spot (easing in as it gets close), then carry on rolling
-        const gap = jumpTo - at;
-        const move = Math.sign(gap) * Math.min(Math.abs(gap), Math.max(SPEED, Math.min(GLIDE, Math.abs(gap) * 2.5)) * dt);
-        at += move;
-        if (Math.abs(jumpTo - at) < 1) jumpTo = null;
-      } else {
-        at = Math.min(total, at + speedAt(at) * dt);
-      }
+      at = Math.min(total, at + SPEED * dt);
       place();
-      if (at < total || jumpTo !== null) {
+      if (at < total) {
         frame = requestAnimationFrame(step);
       } else {
         frame = 0;
@@ -99,22 +72,33 @@ export function HowIWorkBall() {
       }
     };
     const run = () => {
-      if (!frame) frame = requestAnimationFrame(step);
+      if (!frame) {
+        last = 0;
+        frame = requestAnimationFrame(step);
+      }
     };
 
-    // The point of the line level with the middle of the screen
-    const lengthAtScreenMiddle = () => {
+    // Is the ball on screen (below the header)?
+    const ballOnScreen = () => {
+      const r = ball.getBoundingClientRect();
+      return r.bottom > HEADER && r.top < window.innerHeight;
+    };
+    // The first point of the line that is on screen, just below the header
+    const lineStartOnScreen = () => {
       const rect = section.getBoundingClientRect();
-      const scale = rect.width / SECTION_W; // the section is drawn zoomed
-      const y = (window.innerHeight / 2 - rect.top) / scale;
+      const y = (HEADER + 8 - rect.top) / scale();
       const i = samples.findIndex((sy) => sy >= y);
-      return i === -1 ? total : i * 4;
+      return i === -1 ? null : i * 4;
     };
 
     const seen = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started) {
           started = true;
+          const start = lineStartOnScreen();
+          at = start === null ? 0 : Math.max(0, start);
+          place();
+          ball.style.opacity = "1";
           run();
         }
       },
@@ -122,25 +106,35 @@ export function HowIWorkBall() {
     );
     seen.observe(section);
 
+    // After a scroll that leaves the ball off screen, it disappears and comes back at the
+    // start of the part of the line now on screen, then rolls on from there.
     let scrollTimer = 0;
+    let fadeTimer = 0;
     const onScroll = () => {
       if (!started) return;
       window.clearTimeout(scrollTimer);
       scrollTimer = window.setTimeout(() => {
-        const rect = section.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-        jumpTo = lengthAtScreenMiddle();
-        run();
-      }, 120);
+        if (ballOnScreen()) return;
+        const start = lineStartOnScreen();
+        if (start === null) return;
+        ball.style.opacity = "0";
+        window.clearTimeout(fadeTimer);
+        fadeTimer = window.setTimeout(() => {
+          at = start;
+          place();
+          ball.style.opacity = "1";
+          run();
+        }, 200);
+      }, 150);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
     place();
-    ball.style.opacity = "1";
     return () => {
       seen.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.clearTimeout(scrollTimer);
+      window.clearTimeout(fadeTimer);
       cancelAnimationFrame(frame);
     };
   }, []);
@@ -153,7 +147,7 @@ export function HowIWorkBall() {
       <span
         ref={ballRef}
         aria-hidden
-        className="pointer-events-none absolute left-0 top-0 z-10 hidden rounded-full bg-coral opacity-0 shadow-[0_2px_6px_rgba(229,107,111,0.45)] will-change-transform sm:block"
+        className="pointer-events-none absolute left-0 top-0 z-10 hidden rounded-full bg-coral opacity-0 shadow-[0_2px_6px_rgba(229,107,111,0.45)] transition-opacity duration-200 will-change-transform sm:block"
         style={{ width: SIZE, height: SIZE }}
       />
     </>
