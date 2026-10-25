@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { SectionTitle } from "@/components/BarList";
+import { HowIWorkBall } from "@/components/HowIWorkBall";
 import { asset } from "@/lib/asset";
 import { howIWork, type Tool } from "@/lib/content";
 
@@ -79,6 +80,8 @@ export function HowIWork() {
           style={{ left: x, top: y }}
         />
       ))}
+
+      <HowIWorkBall />
 
       {/* back halves of the clips go under the cards, so they come first */}
       <Clips part="back" />

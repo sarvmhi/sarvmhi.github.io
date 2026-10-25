@@ -207,3 +207,11 @@ export const research = {
     "[PARAGRAPH 2: HOW YOU WORK ON IT AND WHAT YOU FOUND: THE METHODS, WHAT THE STUDY SHOWED, AND WHAT YOU WANT TO EXPLORE NEXT.]",
   ],
 };
+
+// Footer links. Set the email and Google Scholar profile; an icon without a link shows but
+// doesn't go anywhere yet.
+export const contact = {
+  email: null as string | null, // e.g. "you@example.com"
+  scholar: null as string | null, // e.g. "https://scholar.google.com/citations?user=..."
+  github: "https://github.com/sarvmhi" as string | null,
+};

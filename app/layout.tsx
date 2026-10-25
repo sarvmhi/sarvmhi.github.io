@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
@@ -16,7 +17,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className="antialiased">
       <body>
         <SiteHeader />
-        <main className="overflow-x-clip pb-28 md:pb-0">{children}</main>
+        <main className="overflow-x-clip">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
