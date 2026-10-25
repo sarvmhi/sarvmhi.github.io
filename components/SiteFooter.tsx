@@ -16,7 +16,7 @@ function Brand({ d }: { d: string }) {
 
 function Contact({ href, label, children }: { href: string | null; label: string; children: ReactNode }) {
   const className =
-    "flex size-[50px] items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/25 transition-[background-color,transform] duration-200";
+    "glass flex size-[50px] items-center justify-center text-white";
   if (!href) {
     return (
       <span role="link" aria-disabled="true" aria-label={`${label} (coming soon)`} title={`${label}: link coming soon`} className={className}>
@@ -30,7 +30,7 @@ function Contact({ href, label, children }: { href: string | null; label: string
       href={href}
       aria-label={label}
       {...(external && { target: "_blank", rel: "noreferrer" })}
-      className={`${className} hover:-translate-y-0.5 hover:bg-white/20`}
+      className={className}
     >
       {children}
     </a>
@@ -39,11 +39,11 @@ function Contact({ href, label, children }: { href: string | null; label: string
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 bg-[#656e89] px-page pb-28 pt-14 text-white md:mt-24 md:pb-10">
+    <footer className="mt-16 bg-[#656e89] px-page pb-32 pt-20 text-white md:mt-24 md:pb-20 md:pt-24">
       <div className="ui-scale mx-auto flex max-w-[1280px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="font-display text-[32px] font-bold leading-tight">Let’s get in touch</h2>
-          <ul className="mt-6 flex gap-3">
+          <h2 className="font-display text-[36px] font-extrabold leading-tight md:text-[44px]">Let’s get in touch</h2>
+          <ul className="mt-8 flex gap-2">
             <li>
               <Contact href={contact.email && `mailto:${contact.email}`} label="Email">
                 <EnvelopeIcon className="size-[22px]" aria-hidden />
