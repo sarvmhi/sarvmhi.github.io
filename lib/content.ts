@@ -201,11 +201,9 @@ export const research = {
   me: "Sarvin M.",
   summary:
     "We built a serious game grounded in psychology. [ONE OR TWO LINES: WHAT IT DOES, WHO IT IS FOR, WHAT YOU FOUND]",
-  role: "[E.G. GAME UX, STUDY DESIGN]",
-  method: "[E.G. USER STUDY, N = ?]",
-  // Link to the paper (DOI or journal page); the button waits until this is set
+  // Where "View Case Study" goes (case study or the paper); the button waits until this is set
   paperUrl: null as string | null,
-  // What "Copy citation" puts on the clipboard
+  // Shown under the summary by "View citation"
   citation: "[FULL CITATION, E.G. APA: AUTHORS (2025). TITLE. ENTERTAINMENT COMPUTING, VOLUME, PAGES. DOI]",
   about: [
     "[PARAGRAPH 1: WHAT YOUR RESEARCH IS ABOUT: THE QUESTION BEHIND IT, AND WHY IT MATTERS FOR PEOPLE WHO LEARN OR PLAY WITH TECHNOLOGY.]",

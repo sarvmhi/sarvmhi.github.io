@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { SectionTitle } from "@/components/BarList";
-import { CopyCitation } from "@/components/CopyCitation";
+import { ViewCitation } from "@/components/ViewCitation";
 import { research } from "@/lib/content";
 
 /*
@@ -61,8 +61,9 @@ function JournalCover() {
 }
 
 function PublicationCard() {
-  const linkClass =
-    "flex h-10 items-center gap-1.5 rounded-full bg-[#1f1d1e] px-5 text-[14px] font-semibold text-white";
+  // Same pill as "View Case Study" on the projects
+  const buttonClass =
+    "glass glass-active inline-flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]";
   return (
     <div className="w-full max-w-[560px]">
       <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted">{research.label}</p>
@@ -72,18 +73,7 @@ function PublicationCard() {
         <PublishedStamp />
         <JournalCover />
 
-        <ul className="mt-7 flex flex-wrap gap-[7px]" aria-label="Keywords">
-          {research.keywords.map((keyword, i) => (
-            <li
-              key={keyword}
-              className={`flex h-[24px] items-center rounded-full px-[11px] text-[12px] font-semibold ${
-                i === 0 ? "bg-[#1f1d1e] text-white" : "bg-[#efeceb] text-ink"
-              }`}
-            >
-              {keyword}
-            </li>
-          ))}
-        </ul>
+        <p className="mt-7 text-[13px] font-semibold text-rose">{research.keywords.join(" · ")}</p>
 
         <h3 className="mt-4 font-display text-[22px] font-bold leading-[1.15]">{research.title}</h3>
 
@@ -103,31 +93,20 @@ function PublicationCard() {
         </p>
 
         <p className="mt-3 text-[14px] leading-[1.6] text-ink/85">{research.summary}</p>
+        <ViewCitation citation={research.citation} />
 
-        <dl className="mt-4 grid grid-cols-2 gap-x-6 border-y border-dashed border-[#cfd0d6] py-3">
-          <div>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.06em] text-muted">My role</dt>
-            <dd className="mt-0.5 text-[13px] font-bold leading-snug">{research.role}</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.06em] text-muted">Method</dt>
-            <dd className="mt-0.5 text-[13px] font-bold leading-snug">{research.method}</dd>
-          </div>
-        </dl>
-
-        <div className="mt-5 flex flex-wrap gap-2.5">
+        <div className="mt-5">
           {research.paperUrl ? (
-            <a href={research.paperUrl} target="_blank" rel="noreferrer" className={linkClass}>
-              Read the paper
-              <ArrowUpRightIcon className="size-4" aria-hidden />
+            <a href={research.paperUrl} target="_blank" rel="noreferrer" className={buttonClass}>
+              View Case Study
+              <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
             </a>
           ) : (
-            <span role="link" aria-disabled="true" title="Link to the paper coming soon" className={linkClass}>
-              Read the paper
-              <ArrowUpRightIcon className="size-4" aria-hidden />
+            <span role="link" aria-disabled="true" title="Link coming soon" className={buttonClass}>
+              View Case Study
+              <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
             </span>
           )}
-          <CopyCitation citation={research.citation} />
         </div>
       </article>
     </div>
