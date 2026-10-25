@@ -187,3 +187,28 @@ export const projects: Project[] = [
     caseStudyUrl: null,
   },
 ];
+
+// Research section: the publication card on the left, two paragraphs on the right.
+// Fields in [BRACKETS] still need your text.
+export const research = {
+  label: "Publication",
+  journal: "Entertainment Computing",
+  year: "2025",
+  publisher: "Elsevier",
+  keywords: ["Serious games", "Psychology-grounded design", "[KEYWORD]"],
+  title: "[FULL PAPER TITLE]",
+  authors: ["[CO-AUTHOR]", "Sarvin M.", "[CO-AUTHOR]"],
+  me: "Sarvin M.",
+  summary:
+    "We built a serious game grounded in psychology. [ONE OR TWO LINES: WHAT IT DOES, WHO IT IS FOR, WHAT YOU FOUND]",
+  role: "[E.G. GAME UX, STUDY DESIGN]",
+  method: "[E.G. USER STUDY, N = ?]",
+  // Link to the paper (DOI or journal page); the button waits until this is set
+  paperUrl: null as string | null,
+  // What "Copy citation" puts on the clipboard
+  citation: "[FULL CITATION, E.G. APA: AUTHORS (2025). TITLE. ENTERTAINMENT COMPUTING, VOLUME, PAGES. DOI]",
+  about: [
+    "[PARAGRAPH 1: WHAT YOUR RESEARCH IS ABOUT: THE QUESTION BEHIND IT, AND WHY IT MATTERS FOR PEOPLE WHO LEARN OR PLAY WITH TECHNOLOGY.]",
+    "[PARAGRAPH 2: HOW YOU WORK ON IT AND WHAT YOU FOUND: THE METHODS, WHAT THE STUDY SHOWED, AND WHAT YOU WANT TO EXPLORE NEXT.]",
+  ],
+};

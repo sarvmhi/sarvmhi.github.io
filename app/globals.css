@@ -2,6 +2,8 @@
 @import "@fontsource-variable/playfair-display/wght.css";
 @import "@fontsource-variable/playfair-display/wght-italic.css";
 @import "@fontsource-variable/instrument-sans/wght.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 /* Stand-in until the PP Neue Montreal files are added (see app/fonts/README.md) */
 @import "@fontsource-variable/inter/wght.css";
 
@@ -37,6 +39,7 @@
   --font-display: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   --font-sans: "PP Neue Montreal", "Inter Variable", "Helvetica Neue", Arial, sans-serif;
   --font-instrument: "Instrument Sans Variable", "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   /* "leading-normal" means the font's own line height, like "Auto" in Figma */
   --leading-normal: normal;

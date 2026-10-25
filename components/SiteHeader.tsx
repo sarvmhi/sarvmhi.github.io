@@ -22,6 +22,7 @@ import {
   UserIcon as UserSolid,
   BriefcaseIcon as BriefcaseSolid,
   CommandLineIcon as CommandLineSolid,
+  DocumentTextIcon as DocumentTextSolid,
 } from "@heroicons/react/24/solid";
 import { asset } from "@/lib/asset";
 import { profile } from "@/lib/content";
@@ -33,15 +34,15 @@ const ICONS: Record<SectionId, { outline: Icon; solid: Icon }> = {
   about: { outline: UserIcon, solid: UserSolid },
   experience: { outline: BriefcaseIcon, solid: BriefcaseSolid },
   projects: { outline: CommandLineIcon, solid: CommandLineSolid },
+  research: { outline: DocumentTextIcon, solid: DocumentTextSolid },
 };
 
 type NavItem = { id: string; label: string; disabled: boolean; icon?: Icon };
 
-// Nav items in Figma's order. Home and Research have no section yet, so they show but don't go anywhere.
+// Nav items in Figma's order. Home has no section yet, so it shows but doesn't go anywhere.
 const ITEMS: NavItem[] = [
   { id: "home", label: "Home", disabled: true, icon: HomeIcon },
   ...SECTIONS.map((s) => ({ ...s, disabled: false })),
-  { id: "research", label: "Research", disabled: true, icon: DocumentTextIcon },
 ];
 
 // A section counts as "in view" once its top passes 40% down the screen

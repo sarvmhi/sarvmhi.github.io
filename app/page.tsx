@@ -3,6 +3,7 @@ import { ProjectDeck } from "@/components/ProjectDeck";
 import { AboutContent } from "@/components/sections/About";
 import { ExperienceContent } from "@/components/sections/Experience";
 import { IntroContent } from "@/components/sections/Intro";
+import { ResearchContent } from "@/components/sections/Research";
 import { projects } from "@/lib/content";
 
 // One Figma frame. It keeps 74px at its top for the fixed header, so jumping to it from the nav
@@ -36,6 +37,11 @@ export default function Page() {
       <section id="projects" aria-label="Projects">
         <Frame>
           <ProjectDeck projects={projects} />
+        </Frame>
+      </section>
+      <section id="research" aria-label="Research">
+        <Frame>
+          <ResearchContent />
         </Frame>
       </section>
     </>
