@@ -27,7 +27,9 @@ const LINE = (() => {
 })();
 
 const SIZE = 22; // ball diameter, px
-const SPEED = 260; // px of line per second while rolling on its own
+const SPEED = 110; // px of line per second on the straights
+const BEND_SLOWDOWN = 0.55; // in the tightest bend it rolls at 45% of that
+const GLIDE = 380; // px per second at most when moving to where the reader scrolled
 const SECTION_W = 545; // the section's width in its own units
 
 export function HowIWorkBall() {
@@ -44,7 +46,26 @@ export function HowIWorkBall() {
     const total = path.getTotalLength();
     // y of the line every 4px along it, to find the point at a given height
     const samples: number[] = [];
-    for (let l = 0; l <= total; l += 4) samples.push(path.getPointAtLength(l).y);
+    const turn: number[] = []; // how sharply the line bends at each sample, 0 to 1
+    let prev = path.getPointAtLength(0);
+    let prevAngle = 0;
+    for (let l = 0; l <= total; l += 4) {
+      const pt = path.getPointAtLength(l);
+      samples.push(pt.y);
+      const angle = Math.atan2(pt.y - prev.y, pt.x - prev.x);
+      let d = Math.abs(angle - prevAngle);
+      if (d > Math.PI) d = 2 * Math.PI - d;
+      turn.push(l === 0 ? 0 : Math.min(1, d / 0.35));
+      prev = pt;
+      prevAngle = angle;
+    }
+    // spread each bend over its neighbours, so the ball slows before it and speeds up after
+    const bend = turn.map((_, i) => {
+      let m = 0;
+      for (let k = -8; k <= 8; k++) m = Math.max(m, (turn[i + k] ?? 0) * (1 - Math.abs(k) / 9));
+      return m;
+    });
+    const speedAt = (l: number) => SPEED * (1 - BEND_SLOWDOWN * (bend[Math.round(l / 4)] ?? 0));
 
     let at = 0; // where the ball is, in px along the line
     let jumpTo: number | null = null; // where a scroll asked it to go
@@ -61,11 +82,13 @@ export function HowIWorkBall() {
       const dt = Math.min(0.05, (time - (last || time)) / 1000);
       last = time;
       if (jumpTo !== null) {
-        // glide to the new spot, then carry on rolling
-        at += (jumpTo - at) * Math.min(1, dt * 8);
-        if (Math.abs(jumpTo - at) < 2) jumpTo = null;
+        // glide to the new spot (easing in as it gets close), then carry on rolling
+        const gap = jumpTo - at;
+        const move = Math.sign(gap) * Math.min(Math.abs(gap), Math.max(SPEED, Math.min(GLIDE, Math.abs(gap) * 2.5)) * dt);
+        at += move;
+        if (Math.abs(jumpTo - at) < 1) jumpTo = null;
       } else {
-        at = Math.min(total, at + SPEED * dt);
+        at = Math.min(total, at + speedAt(at) * dt);
       }
       place();
       if (at < total || jumpTo !== null) {

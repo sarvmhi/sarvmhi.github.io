@@ -77,7 +77,7 @@ export function Certificates() {
           const cert = certificates[stamp.key];
           const [x, y, w, h] = stamp.frame;
           return (
-            <li key={stamp.key} className="absolute" style={box(x, y, w, h)}>
+            <li key={stamp.key} className="stamp absolute" style={box(x, y, w, h)}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={asset(stamp.art)}

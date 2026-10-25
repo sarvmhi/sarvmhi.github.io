@@ -39,7 +39,7 @@ function Contact({ href, label, children }: { href: string | null; label: string
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#656e89] px-page pb-28 pt-14 text-white md:pb-10">
+    <footer className="mt-16 bg-[#656e89] px-page pb-28 pt-14 text-white md:mt-24 md:pb-10">
       <div className="ui-scale mx-auto flex max-w-[1280px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="font-display text-[32px] font-bold leading-tight">Let’s get in touch</h2>

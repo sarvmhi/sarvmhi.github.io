@@ -88,6 +88,9 @@ function Tasks({ job }: { job: Job }) {
   );
 }
 
+const ROAD =
+  "M-800 741 C-500 741 -330 716 -169.5 708 C 0 700 80 625 195 625 C 330 625 520 741 731 741 C 940 741 1100 625 1228 625 C 1360 625 1450 700 1539.5 708 C 1700 716 1940 741 2240 741";
+
 function Road() {
   // Stand-in for the hand-drawn road in Figma ("2 upper peaks, 1 lower peak"), drawn through the
   // same peaks; it runs past the frame so wide screens are covered. Path points are in Figma
@@ -99,12 +102,19 @@ function Road() {
       viewBox="-800 540 3040 220"
       fill="none"
     >
-      <path
-        d="M-800 741 C-500 741 -330 716 -169.5 708 C 0 700 80 625 195 625 C 330 625 520 741 731 741 C 940 741 1100 625 1228 625 C 1360 625 1450 700 1539.5 708 C 1700 716 1940 741 2240 741"
-        stroke="#656e89"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
+      {/* Pencil look like the How I Work line: a few thin, slightly offset strokes with a
+          small wobble from a noise filter */}
+      <defs>
+        <filter id="pencil" x="-1%" y="-50%" width="102%" height="200%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9 0.06" numOctaves="2" seed="4" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" />
+        </filter>
+      </defs>
+      <g stroke="#656e89" strokeLinecap="round" fill="none" filter="url(#pencil)">
+        <path d={ROAD} strokeWidth="1.4" opacity="0.9" />
+        <path d={ROAD} strokeWidth="1.1" opacity="0.6" transform="translate(1 2.2)" />
+        <path d={ROAD} strokeWidth="0.6" opacity="0.5" transform="translate(-0.6 -1.2)" />
+      </g>
     </svg>
   );
 }

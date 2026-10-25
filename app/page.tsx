@@ -11,7 +11,7 @@ import { projects } from "@/lib/content";
 // its Figma width and then scaled down by --ui-scale to fit them (see globals.css).
 function Frame({ children }: { children: ReactNode }) {
   return (
-    <div className="px-page pt-[74px]">
+    <div className="px-page pb-10 pt-[74px] md:pb-20">
       <div className="ui-scale mx-auto max-w-[1280px]">{children}</div>
     </div>
   );

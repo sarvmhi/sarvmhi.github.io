@@ -117,15 +117,17 @@ function PublicationCard() {
 
 export function ResearchContent() {
   return (
-    <div className="grid gap-12 pb-20 pt-12 lg:pt-[66px] xl:grid-cols-[minmax(0,560px)_minmax(0,500px)] xl:items-center xl:justify-between">
+    <div className="pt-10">
+      <SectionTitle>My research area</SectionTitle>
+      <div className="mt-8 grid gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,500px)] xl:items-center xl:justify-between">
       <PublicationCard />
       <div className="max-w-[500px]">
-        <SectionTitle>Research</SectionTitle>
-        {research.about.map((paragraph) => (
-          <p key={paragraph} className="mt-4 text-[16px] leading-[1.65] text-ink/85">
+        {research.about.map((paragraph, i) => (
+          <p key={paragraph} className={`${i ? "mt-4" : ""} text-[16px] leading-[1.65] text-ink/85`}>
             {paragraph}
           </p>
         ))}
+      </div>
       </div>
     </div>
   );
