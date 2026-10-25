@@ -60,7 +60,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       aria-label="Project carousel"
       onKeyDown={onKeyDown}
       // isolate: the cards' stacking order stays inside the deck, under the fixed header
-      className="project-deck isolate pt-6 md:min-h-[calc((100svh-74px)/var(--ui-scale))] md:pt-10"
+      className="project-deck isolate pt-2 md:min-h-[calc((100svh-74px)/var(--ui-scale))]"
     >
       <h2 className="mb-7 font-display text-[28px] font-bold leading-normal text-rose">What I’ve done</h2>
       <div

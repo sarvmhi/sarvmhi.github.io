@@ -119,16 +119,11 @@
     zoom: var(--ui-scale);
   }
 
-  /* Projects: the deck gets the screen height left over after the header (74px), the top
-     padding, the section title, the project title and description and the controls (about 415px), between 200px
-     and Figma's 435px, and never taller than the width allows (1280 x 435 proportions). */
+  /* Projects: the cards keep Figma's sizes (580 x 435, 436 x 327, 348 x 261); only a screen
+     too narrow for the 1280 x 435 deck shrinks them, keeping the proportions. */
   @media (width >= 48rem) {
     .project-deck {
-      --deck-h: clamp(
-        200px,
-        calc((100svh - 74px) / var(--ui-scale) - 415px),
-        min(435px, calc((100vw - 2 * var(--page-margin)) / var(--ui-scale) * 0.34))
-      );
+      --deck-h: min(435px, calc((100vw - 2 * var(--page-margin)) / var(--ui-scale) * 0.34));
     }
   }
 
