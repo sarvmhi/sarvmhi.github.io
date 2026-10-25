@@ -52,14 +52,14 @@ export function IntroContent() {
         </p>
 
         <ul className="mt-6 flex gap-6 sm:gap-[84px] lg:mt-[25px]">
-          {profile.stats.map((stat, i) => (
+          {profile.stats.map((stat) => (
             <li key={stat.label} className="stat relative h-[141px] w-[150px] sm:w-[179px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={asset("/assets/decor/stat-brush.svg")}
                 alt=""
                 aria-hidden
-                className={`stat-brush absolute left-0 top-[26px] w-full opacity-50 ${i % 2 ? "stat-brush-late" : ""}`}
+                className="absolute left-0 top-[26px] w-full opacity-50"
               />
               <div className="relative left-[30px] w-[127px] font-bold leading-normal sm:left-[40px]">
                 <p className="flex items-end">

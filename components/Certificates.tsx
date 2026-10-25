@@ -68,7 +68,7 @@ const STAMPS: Stamp[] = [
 
 export function Certificates() {
   return (
-    <div className="@container mt-[39px] w-full max-w-[588px]">
+    <div className="@container mt-[39px] w-full max-w-[500px]">
       <ul
         className="relative aspect-[588/459] w-full [--u:calc(100cqw/588)]"
         aria-label="Certificates"

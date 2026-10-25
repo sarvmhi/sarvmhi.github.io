@@ -42,8 +42,6 @@ export const languages = [
   { name: "French", level: "A2" },
 ];
 
-// Logos for Google Forms, MS Clarity and Maze are still missing (the versions in Figma differ
-// from the public icon sets). Put them in public/assets/tools/ and set the path.
 export type Tool = { name: string; logo: string | null; size?: number };
 
 export const howIWork: {
@@ -60,7 +58,7 @@ export const howIWork: {
     skills: ["User Research (Interviews, Surveys)", "Competitive Analysis", "Personas and Journey Mapping"],
     tools: [
       { name: "Notion", logo: "/assets/tools/notion.svg" },
-      { name: "Google Forms", logo: null },
+      { name: "Google Forms", logo: "/assets/tools/google-forms.webp" },
       { name: "NotebookLM", logo: "/assets/tools/notebooklm.svg" },
     ],
   },
@@ -81,8 +79,8 @@ export const howIWork: {
     align: "left",
     skills: ["Usability Testing", "A/B Testing", "Heuristic Evaluation"],
     tools: [
-      { name: "MS Clarity", logo: null },
-      { name: "Maze", logo: null },
+      { name: "MS Clarity", logo: "/assets/tools/ms-clarity.webp" },
+      { name: "Maze", logo: "/assets/tools/maze.webp" },
     ],
   },
   {
@@ -138,7 +136,7 @@ export const jobs: Record<"shabakeh" | "freelance" | "filmnet", Job> = {
     company: "Filmnet",
     location: "Tehran, Iran",
     dates: "Aug 2025 - Jan 2026",
-    logo: { src: null, width: 75, height: 17 },
+    logo: { src: "/assets/logos/filmnet.webp", width: 75, height: 17 },
     tasks: [
       "Established a token-based design system across TV and web apps.",
       "Redesigned TV web browsing flow: −27% rage clicks, +14% load speed.",
@@ -191,7 +189,6 @@ export const projects: Project[] = [
 // Research section: the publication card on the left, two paragraphs on the right.
 // Fields in [BRACKETS] still need your text.
 export const research = {
-  label: "Publication",
   journal: "Entertainment Computing",
   year: "2025",
   publisher: "Elsevier",

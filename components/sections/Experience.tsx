@@ -6,7 +6,7 @@ import { jobs, type Job } from "@/lib/content";
 /*
  * Figma frame 3. From xl up this is a fixed 1280-wide stage (the 1440 frame minus its
  * 80px margins) with Figma's positions, x measured from the content edge and y from below
- * the header; between 1280 and 1440 it is zoomed to fit.
+ * the header (moved up 62px so the title sits 32px above the cards, as on About); between 1280 and 1440 it is zoomed to fit.
  * The road runs left to right in date order, so the list is in that order too.
  * Below xl the jobs stack and the road is left out.
  */
@@ -18,22 +18,22 @@ const STOPS: {
   barTop: number;
   gap: number; // card to bar
 }[] = [
-  { job: jobs.shabakeh, x: 0, y: 167, cardTop: 0, barTop: 4, gap: 19 },
-  { job: jobs.filmnet, x: 411, y: 728, cardTop: 0, barTop: 0, gap: 21 },
-  { job: jobs.freelance, x: 735, y: 171, cardTop: 2, barTop: 0, gap: 34 },
+  { job: jobs.shabakeh, x: 0, y: 105, cardTop: 0, barTop: 4, gap: 19 },
+  { job: jobs.filmnet, x: 411, y: 666, cardTop: 0, barTop: 0, gap: 21 },
+  { job: jobs.freelance, x: 735, y: 109, cardTop: 2, barTop: 0, gap: 34 },
 ];
 
 // Map pins sit on the peaks and the dip of the road
 const PINS: [number, number][] = [
-  [99, 502],
-  [635, 619],
-  [1132, 503],
+  [99, 440],
+  [635, 557],
+  [1132, 441],
 ];
 
 function JobCard({ job }: { job: Job }) {
   const { logo } = job;
   return (
-    <div className="flex h-[190px] w-[220px] shrink-0 flex-col items-start gap-3 rounded-[16px] bg-white py-6 pl-6 pr-[30px] shadow-job">
+    <div className="job-card flex h-[190px] w-[220px] shrink-0 flex-col items-start gap-3 rounded-[16px] bg-white py-6 pl-6 pr-[30px] shadow-job">
       {logo.src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -95,7 +95,7 @@ function Road() {
   return (
     <svg
       aria-hidden
-      className="pointer-events-none absolute left-[-880px] top-[466px] hidden h-[220px] w-[3040px] overflow-visible xl:block"
+      className="pointer-events-none absolute left-[-880px] top-[404px] hidden h-[220px] w-[3040px] overflow-visible xl:block"
       viewBox="-800 540 3040 220"
       fill="none"
     >
@@ -111,7 +111,7 @@ function Road() {
 
 export function ExperienceContent() {
   return (
-    <div className="relative pb-16 pt-10 xl:h-[1159px] xl:w-[1280px] xl:pb-0 xl:[zoom:0.87] wide:[zoom:0.935] frame:[zoom:1]">
+    <div className="relative pb-16 pt-10 xl:h-[1097px] xl:w-[1280px] xl:pb-0 xl:[zoom:0.87] wide:[zoom:0.935] frame:[zoom:1]">
       <h2 className="font-display text-[28px] font-bold leading-normal text-rose xl:-ml-[3px]">
         Where I’ve been working
       </h2>
@@ -129,7 +129,7 @@ export function ExperienceContent() {
         />
       ))}
 
-      <ol className="mt-12 flex flex-col gap-14 md:mx-auto md:w-fit xl:mx-0 xl:mt-0 xl:block xl:w-auto">
+      <ol className="mt-8 flex flex-col gap-14 md:mx-auto md:w-fit xl:mx-0 xl:mt-0 xl:block xl:w-auto">
         {STOPS.map(({ job, x, y, cardTop, barTop, gap }) => (
           <li
             key={job.company}

@@ -66,14 +66,16 @@ function PublicationCard() {
     "glass glass-active inline-flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]";
   return (
     <div className="w-full max-w-[560px]">
-      <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted">{research.label}</p>
-
-      <article className="relative -rotate-[0.7deg] rounded-[8px] bg-[#fbfaf8] px-6 pb-7 pt-8 shadow-[0_10px_30px_-12px_rgba(20,22,26,0.28)] sm:px-[34px] [background-image:repeating-linear-gradient(to_bottom,transparent_0_30px,#f4e1e3_30px_31px)] [background-position:0_14px]">
+      <article className="relative -rotate-[0.7deg] rounded-[8px] bg-white px-6 pb-7 pt-8 shadow-[0_10px_30px_-12px_rgba(20,22,26,0.28)] sm:px-[34px] [background-image:repeating-linear-gradient(to_bottom,transparent_0_30px,#f4e1e3_30px_31px)] [background-position:0_14px]">
         <Paperclip />
         <PublishedStamp />
         <JournalCover />
 
-        <p className="mt-7 text-[13px] font-semibold text-rose">{research.keywords.join(" · ")}</p>
+        <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-1 text-[13px] font-semibold text-rose" aria-label="Keywords">
+          {research.keywords.map((keyword) => (
+            <li key={keyword}>{keyword}</li>
+          ))}
+        </ul>
 
         <h3 className="mt-4 font-display text-[22px] font-bold leading-[1.15]">{research.title}</h3>
 

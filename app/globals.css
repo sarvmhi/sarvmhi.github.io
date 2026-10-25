@@ -120,13 +120,13 @@
   }
 
   /* Projects: the deck gets the screen height left over after the header (74px), the top
-     padding, the title and description and the controls (about 345px together), between 200px
+     padding, the section title, the project title and description and the controls (about 415px), between 200px
      and Figma's 435px, and never taller than the width allows (1280 x 435 proportions). */
   @media (width >= 48rem) {
     .project-deck {
       --deck-h: clamp(
         200px,
-        calc((100svh - 74px) / var(--ui-scale) - 345px),
+        calc((100svh - 74px) / var(--ui-scale) - 415px),
         min(435px, calc((100vw - 2 * var(--page-margin)) / var(--ui-scale) * 0.34))
       );
     }
@@ -165,16 +165,15 @@
     animation: draw-line 700ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 
-  /* Stats: the brush strokes behind the numbers rock gently like a wave, inside their own box
-     (a few px up and down with a slight tilt). The second one runs a quarter cycle behind, so
-     the swell seems to pass from one to the next. */
-  @media (prefers-reduced-motion: no-preference) {
-    .stat-brush {
-      animation: brush-wave 5s ease-in-out infinite;
-    }
-    .stat-brush-late {
-      animation-delay: -1.25s;
-    }
+  /* Job cards: on hover the card lifts a little and its shadow deepens */
+  .job-card {
+    transition:
+      transform 320ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      box-shadow 320ms ease;
+  }
+  .job-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 22px rgb(0 0 0 / 0.22);
   }
 
   /* Stats: on hover the number grows a little and lifts */
@@ -235,22 +234,6 @@
   }
   to {
     clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes brush-wave {
-  0%,
-  100% {
-    transform: translateY(0) skewY(0deg);
-  }
-  25% {
-    transform: translateY(-4px) skewY(-1.5deg);
-  }
-  50% {
-    transform: translateY(0) skewY(0deg);
-  }
-  75% {
-    transform: translateY(4px) skewY(1.5deg);
   }
 }
 
