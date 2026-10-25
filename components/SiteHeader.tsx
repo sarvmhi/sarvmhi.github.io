@@ -58,8 +58,36 @@ function useActiveSection() {
   useEffect(() => {
     let frame = 0;
     let unlockTimer = 0;
+    let settleTimer = 0;
+    let shown: SectionId | null = null;
+    let pending: SectionId | null = null;
 
-    const compute = () => {
+    // The nav only switches once a section has stayed in view for a moment, so a fast scroll
+    // across several sections doesn't make the pills open and close one after another.
+    const commit = (id: SectionId, now: boolean) => {
+      if (id === shown) {
+        window.clearTimeout(settleTimer);
+        pending = null;
+        return;
+      }
+      if (now) {
+        window.clearTimeout(settleTimer);
+        shown = id;
+        pending = null;
+        setActive(id);
+        return;
+      }
+      if (id === pending) return;
+      pending = id;
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        shown = id;
+        pending = null;
+        setActive(id);
+      }, 180);
+    };
+
+    const compute = (now = false) => {
       frame = 0;
       if (lock.current) return;
       const line = window.innerHeight * VIEW_LINE;
@@ -70,7 +98,7 @@ function useActiveSection() {
       }
       const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
       if (atBottom) current = SECTIONS[SECTIONS.length - 1].id;
-      setActive(current);
+      commit(current, now);
     };
 
     const onScroll = () => {
@@ -78,20 +106,22 @@ function useActiveSection() {
         // smooth scrolling has no reliable "done" event everywhere, so wait for a pause
         window.clearTimeout(unlockTimer);
         unlockTimer = window.setTimeout(() => {
+          shown = lock.current;
           lock.current = null;
-          compute();
+          compute(true);
         }, 150);
         return;
       }
-      if (!frame) frame = requestAnimationFrame(compute);
+      if (!frame) frame = requestAnimationFrame(() => compute());
     };
 
-    compute();
+    compute(true);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
       cancelAnimationFrame(frame);
       window.clearTimeout(unlockTimer);
+      window.clearTimeout(settleTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
@@ -144,7 +174,7 @@ export function SiteHeader() {
           own layer: a backdrop-filter on the header would trap the fixed mobile nav inside it. */}
       <div
         aria-hidden
-        className={`absolute inset-0 bg-page/80 backdrop-blur-md transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-page/80 backdrop-blur-md transition-opacity duration-300 [transform:translateZ(0)] ${
           scrolled ? "opacity-100" : "opacity-0"
         }`}
       />
