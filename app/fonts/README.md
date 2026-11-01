@@ -1,15 +1,10 @@
 # PP Neue Montreal
 
-The Figma file sets body text in PP Neue Montreal (Medium 500 and Bold 700). It is a
-commercial font from Pangram Pangram, so it is not in this repo; until it is added the
-site falls back to Inter.
+The Figma file sets body text in PP Neue Montreal (Medium 500 and Bold 700), a font by
+Pangram Pangram. `PPNeueMontreal-Medium.woff2` is in this folder and active.
 
-To switch it on:
+Still missing: **Bold**. Until it is added, bold text is Medium thickened by the browser.
+To add it: put `PPNeueMontreal-Bold.woff2` here and uncomment the Bold `@font-face` block
+in `app/globals.css`.
 
-1. Put the two web font files in this folder, named exactly:
-   - `PPNeueMontreal-Medium.woff2`
-   - `PPNeueMontreal-Bold.woff2`
-2. In `app/globals.css`, remove the comment markers around the `@font-face` block
-   marked "PP Neue Montreal".
-
-Nothing else needs to change: `--font-sans` already lists "PP Neue Montreal" first.
+Check that your licence covers use on a website.

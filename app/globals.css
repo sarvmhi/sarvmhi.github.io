@@ -4,16 +4,18 @@
 @import "@fontsource-variable/instrument-sans/wght.css";
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
-/* Stand-in until the PP Neue Montreal files are added (see app/fonts/README.md) */
+/* Fallback for any character PP Neue Montreal lacks */
 @import "@fontsource-variable/inter/wght.css";
 
-/* PP Neue Montreal: add the files and uncomment this block (see app/fonts/README.md)
+/* PP Neue Montreal, the body font from Figma. Only Medium is here so far; bold text is
+   drawn by thickening Medium until PPNeueMontreal-Bold.woff2 is added (see app/fonts/README.md). */
 @font-face {
   font-family: "PP Neue Montreal";
   src: url("./fonts/PPNeueMontreal-Medium.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
+/* Add the Bold file and uncomment:
 @font-face {
   font-family: "PP Neue Montreal";
   src: url("./fonts/PPNeueMontreal-Bold.woff2") format("woff2");
