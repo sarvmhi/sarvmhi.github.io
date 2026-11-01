@@ -7,7 +7,7 @@ export function AboutContent() {
   return (
     // Everything in this section is drawn 15% smaller than the rest of the page (from tablets
     // up); the two columns still reach the page margins. Change the zoom to resize it.
-    <div className="grid gap-x-10 gap-y-20 pt-10 md:pt-[47px] md:[zoom:0.85] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between">
+    <div className="grid gap-x-10 gap-y-20 pt-10 md:pt-[47px] md:[zoom:0.85] md:[--section-zoom:0.85] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between">
       <div className="min-w-0">
         <section>
           <SectionTitle>Education</SectionTitle>

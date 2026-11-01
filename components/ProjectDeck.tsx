@@ -62,7 +62,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       // isolate: the cards' stacking order stays inside the deck, under the fixed header
       className="project-deck isolate pt-10"
     >
-      <h2 className="mb-8 font-display text-[28px] font-bold leading-normal text-rose">What I’ve done</h2>
+      <h2 className="mb-8 font-display text-[calc(28px/var(--section-zoom,1))] font-bold leading-normal text-rose">What I’ve done</h2>
       <div
         className="relative aspect-[1/0.645] touch-pan-y md:aspect-auto md:h-(--deck-h)"
         onPointerDown={onPointerDown}

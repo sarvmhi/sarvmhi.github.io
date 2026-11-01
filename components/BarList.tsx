@@ -35,7 +35,7 @@ export function SectionTitle({
   id?: string;
 }) {
   return (
-    <h2 id={id} className={`font-display text-[28px] font-bold leading-normal text-rose ${className}`}>
+    <h2 id={id} className={`font-display text-[calc(28px/var(--section-zoom,1))] font-bold leading-normal text-rose ${className}`}>
       {children}
     </h2>
   );

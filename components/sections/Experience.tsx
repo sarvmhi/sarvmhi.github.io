@@ -70,8 +70,8 @@ function Tasks({ job }: { job: Job }) {
 export function ExperienceContent() {
   return (
     // Drawn 8% smaller from tablets up; spacing divided by the zoom so it matches other sections
-    <div className="pt-10 md:pt-[43px] md:[zoom:0.92]">
-      <h2 className="font-display text-[28px] font-bold leading-normal text-rose">Where I’ve been working</h2>
+    <div className="pt-10 md:pt-[43px] md:[zoom:0.92] md:[--section-zoom:0.92]">
+      <h2 className="font-display text-[calc(28px/var(--section-zoom,1))] font-bold leading-normal text-rose">Where I’ve been working</h2>
 
       <div className="relative mt-8 md:mt-[35px]">
         {/* the hand-drawn line, stretched to the height of the list */}

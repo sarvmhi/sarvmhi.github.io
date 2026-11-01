@@ -118,9 +118,9 @@ function PublicationCard() {
 export function ResearchContent() {
   return (
     // Drawn 8% smaller from tablets up; spacing divided by the zoom so it matches other sections
-    <div className="pt-10 md:pt-[43px] md:[zoom:0.92]">
+    <div className="pt-10 md:pt-[43px] md:[zoom:0.92] md:[--section-zoom:0.92]">
       <SectionTitle>My research area</SectionTitle>
-      <div className="mt-9 md:mt-[38px] grid gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,500px)] xl:items-center xl:justify-between">
+      <div className="mt-[30px] md:mt-[31px] grid gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,500px)] xl:items-center xl:justify-between">
       <PublicationCard />
       <div className="max-w-[500px]">
         {research.about.map((paragraph, i) => (
