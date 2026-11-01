@@ -5,7 +5,7 @@ import { profile } from "@/lib/content";
 export function IntroContent() {
   return (
     // Drawn 10% smaller than the rest of the page from tablets up; change the zoom to resize it.
-    <div className="flex flex-col pb-16 md:[zoom:0.9] lg:flex-row lg:justify-between lg:pb-[100px]">
+    <div className="flex flex-col md:[zoom:0.9] lg:flex-row lg:justify-between">
       <section className="min-w-0 max-w-[612px] pt-10 lg:pt-[87px]">
         <h1 className="font-display text-[44px] font-extrabold leading-normal sm:text-[56px] lg:text-[60px] xl:text-[72px]">
           <span className="block whitespace-nowrap">

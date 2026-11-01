@@ -9,11 +9,11 @@ import { useEffect, useRef } from "react";
  * screen and keeps rolling down from there. The fixed coral dots stay where they are.
  *
  * LINE is the centre of the drawn stroke, in the section's own coordinates (the line image
- * sits at (-1.8, 97), so these are the image's points shifted by that much).
+ * sits at (-1.8, 87), so these are the image's points shifted by that much).
  */
 const LINE = (() => {
   const dx = -1.8;
-  const dy = 97;
+  const dy = 87;
   const p = (x: number, y: number) => `${x + dx} ${y + dy}`;
   return [
     `M ${p(2, 0)} V ${210 + dy} Q ${p(2, 228)} ${p(20, 228)} H ${518 + dx}`,

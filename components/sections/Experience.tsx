@@ -69,10 +69,10 @@ function Tasks({ job }: { job: Job }) {
 
 export function ExperienceContent() {
   return (
-    <div className="pb-6 pt-10">
+    <div className="pt-10">
       <h2 className="font-display text-[28px] font-bold leading-normal text-rose">Where I’ve been working</h2>
 
-      <div className="relative mt-[43px]">
+      <div className="relative mt-8">
         {/* the hand-drawn line, stretched to the height of the list */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

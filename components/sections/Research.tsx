@@ -32,12 +32,12 @@ function PublishedStamp() {
   return (
     <div
       aria-hidden
-      className="absolute right-5 top-5 flex size-[84px] rotate-[10deg] items-center justify-center rounded-full border-[1.5px] border-rose/60 text-rose sm:right-6 sm:size-[104px]"
+      className="absolute right-5 top-5 flex size-[84px] items-center justify-center rounded-full border-[1.5px] border-rose/60 text-rose sm:right-6 sm:size-[104px]"
     >
       <span className="absolute inset-[6px] rounded-full border border-rose/35 sm:inset-[7px]" />
       <span className="flex flex-col items-center leading-none">
         <span className="pl-[0.3em] font-mono text-[7px] font-medium tracking-[0.3em] sm:text-[8px]">PEER</span>
-        <span className="my-[3px] -rotate-[6deg] font-display text-[17px] font-bold sm:text-[20px]">Published</span>
+        <span className="my-[3px] font-display text-[17px] font-bold sm:text-[20px]">Published</span>
         <span className="pl-[0.3em] font-mono text-[7px] font-medium tracking-[0.3em] sm:text-[8px]">REVIEWED</span>
       </span>
     </div>

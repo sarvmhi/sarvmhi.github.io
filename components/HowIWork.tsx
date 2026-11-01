@@ -6,14 +6,14 @@ import { howIWork, type Tool } from "@/lib/content";
 
 /*
  * "How I Work" from Figma: four note cards pinned along a hand-drawn line.
- * From the sm breakpoint up the cards keep their Figma positions (545 x 1180 area);
+ * From the sm breakpoint up the cards keep their Figma positions (545 x 1170 area);
  * on phones they stack and the line, dots and clips are left out.
  */
-const CARD_TOPS = [113, 392, 677, 959];
+const CARD_TOPS = [103, 382, 667, 949];
 const DOTS: [number, number][] = [
-  [495, 329],
-  [495, 612],
-  [494, 896],
+  [495, 319],
+  [495, 602],
+  [494, 886],
 ];
 
 // Paperclips, relative to their card: the back half sits under the card, the front half over it
@@ -60,7 +60,7 @@ function Clips({ part }: { part: "back" | "front" }) {
 
 export function HowIWork() {
   return (
-    <section className="relative sm:h-[1180px] sm:w-[545px]" aria-labelledby="how-i-work">
+    <section className="relative sm:h-[1170px] sm:w-[545px]" aria-labelledby="how-i-work">
       <SectionTitle id="how-i-work" className="relative z-10">
         How I Work
       </SectionTitle>
@@ -70,7 +70,7 @@ export function HowIWork() {
         src={asset("/assets/decor/how-i-work-line.svg")}
         alt=""
         aria-hidden
-        className="absolute left-[-1.8px] top-[97px] hidden h-[1082px] w-[547px] max-w-none sm:block"
+        className="absolute left-[-1.8px] top-[87px] hidden h-[1082px] w-[547px] max-w-none sm:block"
       />
       {DOTS.map(([x, y]) => (
         <span
@@ -86,7 +86,7 @@ export function HowIWork() {
       {/* back halves of the clips go under the cards, so they come first */}
       <Clips part="back" />
 
-      <ol className="mt-14 flex flex-col gap-14 sm:mt-0 sm:block">
+      <ol className="mt-[60px] flex flex-col gap-14 sm:mt-0 sm:block">
         {howIWork.map((step, i) => {
           const right = step.align === "right";
           return (

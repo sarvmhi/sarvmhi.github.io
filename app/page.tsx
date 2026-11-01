@@ -7,7 +7,9 @@ import { ResearchContent } from "@/components/sections/Research";
 import { projects } from "@/lib/content";
 
 // One Figma frame. It keeps 74px at its top for the fixed header, so jumping to it from the nav
-// shows it like its Figma frame. The side margins sit here; the content inside is laid out at
+// shows it like its Figma frame. Spacing is the same everywhere: each section's title starts
+// 40px below that header space, sits 32px above its content, and every section ends with the
+// same bottom padding here, so the gap between any two sections is equal. The side margins sit here; the content inside is laid out at
 // its Figma width and then scaled down by --ui-scale to fit them (see globals.css).
 function Frame({ children }: { children: ReactNode }) {
   return (

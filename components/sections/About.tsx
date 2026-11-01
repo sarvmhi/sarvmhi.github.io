@@ -7,11 +7,11 @@ export function AboutContent() {
   return (
     // Everything in this section is drawn 15% smaller than the rest of the page (from tablets
     // up); the two columns still reach the page margins. Change the zoom to resize it.
-    <div className="grid gap-x-10 gap-y-20 pb-16 pt-12 md:[zoom:0.85] lg:pt-[66px] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between xl:pb-[71px]">
+    <div className="grid gap-x-10 gap-y-20 pt-10 md:pt-[47px] md:[zoom:0.85] xl:grid-cols-[minmax(0,588px)_545px] xl:justify-between">
       <div className="min-w-0">
         <section>
           <SectionTitle>Education</SectionTitle>
-          <ul className="relative mt-8 pb-8 pt-[17px] pl-[67px]">
+          <ul className="relative mt-8 pb-8 pt-[17px] pl-[67px] md:mt-[38px]">
             <RoseBar />
             {education.map((item) => (
               <li key={item.degree} className="relative">
@@ -32,9 +32,9 @@ export function AboutContent() {
           <Certificates />
         </section>
 
-        <section className="mt-16 lg:mt-[104px]">
+        <section className="mt-16 lg:mt-[94px]">
           <SectionTitle>Languages</SectionTitle>
-          <ul className="relative mt-8 flex flex-col gap-7 pb-[46px] pt-[19px] pl-16">
+          <ul className="relative mt-8 flex flex-col gap-7 pb-[46px] pt-[19px] pl-16 md:mt-[38px]">
             <RoseBar />
             {languages.map((lang) => (
               <li key={lang.name} className="relative flex items-baseline gap-[2px]">
