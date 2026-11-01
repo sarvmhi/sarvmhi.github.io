@@ -69,10 +69,11 @@ function Tasks({ job }: { job: Job }) {
 
 export function ExperienceContent() {
   return (
-    <div className="pt-10">
+    // Drawn 8% smaller from tablets up; spacing divided by the zoom so it matches other sections
+    <div className="pt-10 md:pt-[43px] md:[zoom:0.92]">
       <h2 className="font-display text-[28px] font-bold leading-normal text-rose">Where I’ve been working</h2>
 
-      <div className="relative mt-8">
+      <div className="relative mt-8 md:mt-[35px]">
         {/* the hand-drawn line, stretched to the height of the list */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -81,7 +82,7 @@ export function ExperienceContent() {
           aria-hidden
           className="absolute left-0 top-0 h-full w-1 max-w-none"
         />
-        <ol className="flex flex-col gap-[104px] pb-[60px] pl-9 pt-[34px] sm:pl-[115px]">
+        <ol className="flex flex-col gap-[104px] pb-[60px] pl-9 sm:pl-[115px]">
           {ORDER.map((job) => (
             <li key={job.company} className="relative flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-[80px]">
               {/* branch from the line to the card, level with the card's middle */}
