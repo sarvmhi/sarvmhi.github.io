@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { SectionTitle } from "@/components/BarList";
 import { ViewCitation } from "@/components/ViewCitation";
@@ -53,13 +52,13 @@ function JournalCover() {
   return (
     <div className="relative w-[182px]">
       {/* rose block peeking out behind the cover */}
-      <span aria-hidden className="absolute inset-0 translate-x-[5px] translate-y-[5px] rounded-[3px] bg-[#d99a9e]" />
-      <div className="relative flex h-[227px] flex-col justify-between rounded-[3px] bg-[#362e31] px-[18px] pb-[18px] pt-[22px]">
-        <p className="text-[12px] font-medium uppercase tracking-[0.2em] text-[#ef9ea2]">
+      <span aria-hidden className="absolute inset-0 translate-x-[5px] translate-y-[5px] rounded-[3px] bg-[#8f625b]" />
+      <div className="relative flex h-[227px] flex-col justify-between rounded-[3px] bg-[#C2948C] px-[18px] pb-[18px] pt-[22px]">
+        <p className="text-[12px] font-medium uppercase tracking-[0.2em] text-white/85">
           Journal · {research.year}
         </p>
         <p className="font-display text-[24px] font-bold leading-[1.1] text-white">{research.journal}</p>
-        <p className="text-[12px] font-medium text-[#d9d3d5]">{research.publisher} · peer-reviewed</p>
+        <p className="text-[12px] font-medium text-white/85">{research.publisher} · peer-reviewed</p>
       </div>
     </div>
   );
@@ -83,21 +82,6 @@ function PublicationCard() {
         </ul>
 
         <h3 className="mt-4 font-display text-[24px] font-bold leading-[1.15]">{research.title}</h3>
-
-        <p className="mt-2 text-[14px] font-medium text-ink/75">
-          {research.authors.map((author, i) => (
-            <Fragment key={`${author}-${i}`}>
-              {i > 0 && ", "}
-              {author === research.me ? (
-                <strong className="font-bold text-ink underline decoration-[#e3a1a6] decoration-2 underline-offset-[4px]">
-                  {author}
-                </strong>
-              ) : (
-                author
-              )}
-            </Fragment>
-          ))}
-        </p>
 
         <p className="mt-3 text-[16px] font-medium leading-[1.6] text-ink/85">{research.summary}</p>
         <ViewCitation citation={research.citation} />

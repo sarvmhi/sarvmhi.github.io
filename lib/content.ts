@@ -191,10 +191,8 @@ export const research = {
   journal: "Entertainment Computing",
   year: "2025",
   publisher: "Elsevier",
-  keywords: ["Serious games", "Psychology-grounded design", "[KEYWORD]"],
-  title: "[FULL PAPER TITLE]",
-  authors: ["[CO-AUTHOR]", "Sarvin M.", "[CO-AUTHOR]"],
-  me: "Sarvin M.",
+  keywords: ["Serious games", "Learning Psychology"],
+  title: "Developing a Serious Game for Enhancing Student Problem-Solving: A Three-Layers Effectiveness Model",
   summary:
     "We built a serious game grounded in psychology. [ONE OR TWO LINES: WHAT IT DOES, WHO IT IS FOR, WHAT YOU FOUND]",
   // Where "View Case Study" goes (case study or the paper); the button waits until this is set

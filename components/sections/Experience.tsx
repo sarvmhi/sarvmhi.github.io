@@ -31,7 +31,7 @@ function JobCard({ job }: { job: Job }) {
       </span>
       <div className="flex flex-col gap-1 leading-normal">
         <h3 className="text-[18px] font-bold">{job.role}</h3>
-        <p className="text-[14px] font-medium">{job.company}</p>
+        <p className="text-[14px] font-bold">{job.company}</p>
         <p className="text-[14px] font-medium">{job.location}</p>
         <p className="text-[14px] font-medium">
           <time>{job.dates}</time>
