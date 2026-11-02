@@ -190,7 +190,7 @@ export function IdBadge() {
   const { badge } = profile;
 
   return (
-    <div className="relative h-[546px] w-[350px]">
+    <div className="relative h-[606px] w-[350px]">
       <div
         ref={swingRef}
         className="absolute inset-0 will-change-transform"
@@ -211,7 +211,7 @@ export function IdBadge() {
           <div className="absolute inset-x-0 bottom-0 top-[24.27px] rounded-b-[16px] bg-white" />
           <div className="absolute left-[148px] top-[20px] h-[12px] w-[54px] rounded-[40px] bg-slot" />
 
-          <div className="absolute left-[45px] top-[35px] h-[240px] w-[260px] overflow-hidden rounded-[10px] bg-placeholder">
+          <div className="absolute left-[45px] top-[35px] h-[300px] w-[260px] overflow-hidden rounded-[10px] bg-placeholder">
             {badge.photo && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -223,13 +223,13 @@ export function IdBadge() {
             )}
           </div>
 
-          <div className="absolute left-[45px] top-[294px] flex w-[260px] flex-col items-center gap-[2px] font-bold leading-normal">
+          <div className="absolute left-[45px] top-[354px] flex w-[260px] flex-col items-center gap-[2px] font-bold leading-normal">
             <p className="text-[24px]">{profile.name}</p>
             <p className="text-[18px]">{profile.role}</p>
           </div>
 
-          <div className="absolute left-[45px] top-[352px] h-[131px] w-[260px] rounded-[16px] border border-muted/30" />
-          <dl className="absolute left-[60px] top-[363px] flex h-[100px] w-[114px] flex-col justify-between text-[14px]">
+          <div className="absolute left-[45px] top-[412px] h-[131px] w-[260px] rounded-[16px] border border-muted/30" />
+          <dl className="absolute left-[60px] top-[423px] flex h-[100px] w-[114px] flex-col justify-between text-[14px]">
             <div className="flex flex-col gap-[3px]">
               <dt className="font-bold leading-normal">Specializations</dt>
               <dd className="whitespace-nowrap leading-5 text-muted">{badge.specializations}</dd>
@@ -239,7 +239,7 @@ export function IdBadge() {
               <dd className="leading-5 text-muted">{badge.focus}</dd>
             </div>
           </dl>
-          <dl className="absolute left-[192px] top-[363px] flex w-[97px] flex-col gap-5 text-[14px]">
+          <dl className="absolute left-[192px] top-[423px] flex w-[97px] flex-col gap-5 text-[14px]">
             <div className="flex flex-col gap-[3px]">
               <dt className="font-bold leading-normal">Status</dt>
               <dd className="flex items-center gap-[5px] whitespace-nowrap leading-5 text-open">
@@ -253,12 +253,12 @@ export function IdBadge() {
             </div>
           </dl>
 
-          <div className="absolute left-[193px] top-[496px] flex items-end gap-[3px]" aria-hidden>
+          <div className="absolute left-[193px] top-[556px] flex items-end gap-[3px]" aria-hidden>
             {BARS.map(([w, h], i) => (
               <span key={i} className="block bg-ink" style={{ width: w, height: h }} />
             ))}
           </div>
-          <p className="absolute left-[45px] top-[510px] text-[14px] leading-normal text-muted">{badge.id}</p>
+          <p className="absolute left-[45px] top-[570px] text-[14px] leading-normal text-muted">{badge.id}</p>
         </article>
 
         {/* lanyard clip sits over the card */}
