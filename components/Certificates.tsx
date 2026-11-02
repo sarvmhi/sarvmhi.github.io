@@ -41,7 +41,7 @@ const STAMPS: Stamp[] = [
     key: "ibm",
     art: "/assets/stamps/stamp-portrait-b.svg",
     frame: [374, 0, 214, 250],
-    shadow: false,
+    shadow: true,
     logo: { src: "/assets/logos/ibm.webp", at: [31, 33], w: 52 },
     title: { at: [21, 117], w: 120 },
     issuer: { at: [21, 181] },

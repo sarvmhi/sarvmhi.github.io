@@ -41,7 +41,7 @@ function JobCard({ job }: { job: Job }) {
   );
 }
 
-// Justified at a width wide enough that the word gaps stay even, and a
+// Left-aligned with normal word spacing (justified text left big gaps between words), and a
 // hyphenated word like "e-commerce" never splits across two lines.
 function keepHyphensTogether(text: string) {
   return text.split(/(\S*\w-\w\S*)/).map((part, i) =>
@@ -61,7 +61,7 @@ function Tasks({ job }: { job: Job }) {
       <RoseBar />
       <Connector className="left-2 top-[15.5px]" />
       <h4 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h4>
-      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-justify text-[16px] leading-normal sm:w-[340px]">
+      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[16px] leading-normal sm:w-[340px]">
         {job.tasks.map((task) => (
           <li key={task}>{keepHyphensTogether(task)}</li>
         ))}

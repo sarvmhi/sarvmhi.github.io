@@ -446,6 +446,10 @@
 }
 @keyframes hh-blush { 0%, 42%, 100% { fill: #e5989b; } 50%, 80% { fill: #e56b6f; } }
 
+/* the belt: with the mouse on the belt or a wheel, the wheels keep turning */
+.home-hero .wheel-spin { transform-origin: 30px 30px; }
+.home-hero .belt:has(.belt-top:hover, .belt-wheel:hover) .wheel-spin { animation: hh-spin 1.1s linear infinite; }
+
 /* entrance, a little slower than the canvas version */
 @media (prefers-reduced-motion: no-preference) {
   .home-hero .belt > svg.lt { animation: hh-slidein 1.6s cubic-bezier(0.2, 0.75, 0.25, 1) both; }

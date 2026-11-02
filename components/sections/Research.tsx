@@ -72,7 +72,7 @@ function PublicationCard() {
   return (
     <div className="relative w-full max-w-[560px]">
       <Paperclip part="back" />
-      <article className="relative z-10 rounded-[8px] bg-white px-6 pb-7 pt-8 shadow-[0_10px_30px_-12px_rgba(20,22,26,0.28)] sm:px-[34px] [background-image:repeating-linear-gradient(to_bottom,transparent_0_30px,#f4e1e3_30px_31px)] [background-position:0_14px]">
+      <article className="relative z-10 rounded-[8px] bg-white px-6 pb-14 pt-11 shadow-[0_10px_30px_-12px_rgba(20,22,26,0.28)] sm:px-[34px] [background-image:repeating-linear-gradient(to_bottom,transparent_0_30px,#f4e1e3_30px_31px)] [background-position:0_14px]">
         <PublishedStamp />
         <JournalCover />
 
