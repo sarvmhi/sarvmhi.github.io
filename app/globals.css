@@ -239,36 +239,98 @@
   }
 }
 
-/* Home hero (Assembly line): letters slide in on the belt, the crane drops the T and bobs,
-   the stations and measurement marks fade in; letters hop on hover. */
+/* Home hero (Assembly line). On load the letters slide in on the belt (its wheels turn), the
+   crane sets down the T, the stations and measurement marks fade in. Every letter has a hover:
+   most hop; P's folded corner opens flat, the tape reels in and out, the gears turn, the colour
+   wheel's handle slides round the ring, the magnet's field pulses, iterate spins, the pencil
+   scribbles and the bézier handles swing. */
 .home-hero .lt {
   display: block;
   width: auto;
   overflow: visible;
   transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
 }
-.home-hero .lt:hover {
+.home-hero .lt:not(.lt-note, .lt-tape, .lt-gears, .lt-wheel):hover {
   transform: translateY(-8px) rotate(-3deg);
 }
+.home-hero svg * {
+  transform-box: view-box;
+}
+
+/* P: the flap turns over its crease and lies flat, taking the note's colour */
+.home-hero .note-flap {
+  fill: #b56576;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 0.55s cubic-bezier(0.3, 1.2, 0.5, 1),
+    fill 0.3s ease 0.15s;
+}
+.home-hero .lt-note:hover .note-flap {
+  transform: rotate3d(1, -1, 0, 180deg);
+  fill: #e5989b;
+}
+
+/* D: the tape goes all the way into the case and comes back out */
+.home-hero .lt-tape:hover .tape-reel {
+  animation: hh-reel 1.2s cubic-bezier(0.45, 0, 0.3, 1);
+}
+@keyframes hh-reel {
+  0%, 100% { transform: translateY(0); }
+  45%, 55% { transform: translateY(-30px); }
+}
+
+/* O: the two gears turn against each other while the mouse is on them */
+.home-hero .gear-big { transform-origin: 58px 80px; }
+.home-hero .gear-small { transform-origin: 110px 28px; }
+.home-hero .lt-gears:hover .gear-big { animation: hh-spin 4s linear infinite; }
+.home-hero .lt-gears:hover .gear-small { animation: hh-spin 3.2s linear infinite reverse; }
+@keyframes hh-spin { to { transform: rotate(360deg); } }
+
+/* C: the handle slides along the ring and back */
+.home-hero .wheel-handle { transform-origin: 62px 75px; }
+.home-hero .lt-wheel:hover .wheel-handle { animation: hh-handle 1.4s cubic-bezier(0.45, 0, 0.3, 1); }
+@keyframes hh-handle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-150deg); }
+}
+
+/* the others: magnet field pulses, iterate spins once, pencil scribbles, bézier handles swing */
+.home-hero .magnet-field { transform-origin: 50px 0px; }
+.home-hero .lt-magnet:hover .magnet-field { animation: hh-pulse 0.9s ease-in-out 2; }
+@keyframes hh-pulse { 50% { transform: scale(1.5) translateY(-3px); opacity: 0.4; } }
+.home-hero .lt-iterate { transform-origin: 50% 54%; }
+.home-hero .lt-iterate:hover { animation: hh-spin 0.9s cubic-bezier(0.45, 0, 0.3, 1); transform: none; }
+.home-hero .lt-pencil { transform-origin: 50% 100%; }
+.home-hero .lt-pencil:hover { animation: hh-scribble 0.7s ease-in-out; transform: none; }
+@keyframes hh-scribble {
+  20% { transform: rotate(-9deg); }
+  45% { transform: rotate(7deg) translateX(3px); }
+  70% { transform: rotate(-5deg); }
+}
+.home-hero .lt-bezier line { transform-origin: 52px 72px; transition: transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.home-hero .lt-bezier:hover line { transform: rotate(-35deg); }
+
+/* entrance, a little slower than the canvas version */
 @media (prefers-reduced-motion: no-preference) {
-  .home-hero .belt > svg.lt { animation: hh-slidein 1s cubic-bezier(0.2, 0.75, 0.25, 1) both; }
+  .home-hero .belt > svg.lt { animation: hh-slidein 1.6s cubic-bezier(0.2, 0.75, 0.25, 1) both; }
   .home-hero .belt > svg.lt:nth-of-type(8) { animation-delay: 0s; }
-  .home-hero .belt > svg.lt:nth-of-type(7) { animation-delay: 0.08s; }
-  .home-hero .belt > svg.lt:nth-of-type(6) { animation-delay: 0.16s; }
-  .home-hero .belt > svg.lt:nth-of-type(5) { animation-delay: 0.24s; }
-  .home-hero .belt > svg.lt:nth-of-type(4) { animation-delay: 0.32s; }
-  .home-hero .belt > svg.lt:nth-of-type(3) { animation-delay: 0.4s; }
-  .home-hero .belt > svg.lt:nth-of-type(2) { animation-delay: 0.48s; }
-  .home-hero .belt > svg.lt:nth-of-type(1) { animation-delay: 0.56s; }
-  .home-hero .belt-top { animation: hh-beltmove 1.6s linear both; }
-  .home-hero .belt-rollers { animation: hh-rollers 1.6s linear both; }
-  .home-hero .t-lift { animation: hh-drop 1.1s 1.6s cubic-bezier(0.3, 0.7, 0.3, 1) both, hh-bob 3.4s 2.9s ease-in-out infinite; }
-  .home-hero .after { animation: hh-fadein 0.5s 2.8s both; }
-  .home-hero .station { animation: hh-fadein 0.4s both; }
-  .home-hero .station:nth-child(1) { animation-delay: 0.5s; }
-  .home-hero .station:nth-child(2) { animation-delay: 0.8s; }
-  .home-hero .station:nth-child(3) { animation-delay: 1.1s; }
-  .home-hero .station:nth-child(4) { animation-delay: 1.4s; }
+  .home-hero .belt > svg.lt:nth-of-type(7) { animation-delay: 0.12s; }
+  .home-hero .belt > svg.lt:nth-of-type(6) { animation-delay: 0.24s; }
+  .home-hero .belt > svg.lt:nth-of-type(5) { animation-delay: 0.36s; }
+  .home-hero .belt > svg.lt:nth-of-type(4) { animation-delay: 0.48s; }
+  .home-hero .belt > svg.lt:nth-of-type(3) { animation-delay: 0.6s; }
+  .home-hero .belt > svg.lt:nth-of-type(2) { animation-delay: 0.72s; }
+  .home-hero .belt > svg.lt:nth-of-type(1) { animation-delay: 0.84s; }
+  .home-hero .belt-top { animation: hh-beltmove 2.4s linear both; }
+  .home-hero .belt-wheel { animation: hh-spin 2.4s linear both; transform-box: fill-box; transform-origin: center; }
+  .home-hero .t-lift { animation: hh-drop 1.5s 2.4s cubic-bezier(0.3, 0.7, 0.3, 1) both, hh-bob 3.4s 3.9s ease-in-out infinite; }
+  .home-hero .after { animation: hh-fadein 0.6s 3.9s both; }
+  .home-hero .station { animation: hh-fadein 0.5s both; }
+  .home-hero .station:nth-child(1) { animation-delay: 0.8s; }
+  .home-hero .station:nth-child(2) { animation-delay: 1.25s; }
+  .home-hero .station:nth-child(3) { animation-delay: 1.7s; }
+  .home-hero .station:nth-child(4) { animation-delay: 2.15s; }
 }
 @keyframes hh-slidein { from { transform: translateX(-115vw); } to { transform: none; } }
 @keyframes hh-drop {
@@ -280,7 +342,6 @@
 @keyframes hh-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @keyframes hh-fadein { from { opacity: 0; } to { opacity: 1; } }
 @keyframes hh-beltmove { from { background-position: 0 0, 0 0, 0 0; } to { background-position: 420px 0, 420px 0, 0 0; } }
-@keyframes hh-rollers { from { background-position: 0 0; } to { background-position: 420px 0; } }
 
 @keyframes headline-flow {
   from {
