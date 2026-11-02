@@ -78,7 +78,7 @@ export function IntroContent() {
         </ul>
       </section>
 
-      <div className="order-first flex h-[490px] justify-center pt-10 sm:h-auto lg:order-none lg:block lg:pt-[102px]">
+      <div className="order-first flex h-[490px] justify-center pt-10 sm:h-auto lg:order-none lg:block lg:pt-[162px]">
         <div className="origin-top scale-[0.86] sm:scale-100">
           <IdBadge />
         </div>

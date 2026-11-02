@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { asset } from "@/lib/asset";
 import type { Project } from "@/lib/content";
@@ -28,6 +28,46 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState(0);
   const count = projects.length;
   const swipe = useRef<{ x: number; id: number } | null>(null);
+
+  const deckRef = useRef<HTMLDivElement>(null);
+
+  // As the deck scrolls into view, the two waiting cards slide out from behind the front card
+  // to their places (and back in when scrolling up). Done by hand on scroll, as a translate on
+  // top of each card's slot position, so the arrows' left/top transitions still work.
+  useEffect(() => {
+    const deck = deckRef.current;
+    if (!deck || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const vh = window.innerHeight;
+      const top = deck.getBoundingClientRect().top;
+      // 0 while the deck's top is at the bottom of the screen, 1 once it is 45% from the top
+      const r = Math.min(1, Math.max(0, (vh - top) / (vh * 0.55)));
+      const out = 1 - (1 - r) ** 3; // eases out
+      deck.querySelectorAll<HTMLElement>("[data-slot]").forEach((card) => {
+        const slot = Number(card.dataset.slot);
+        if (slot === 0 || out === 1) {
+          card.style.translate = "";
+          card.style.rotate = "";
+          return;
+        }
+        card.style.translate = `${-(1 - out) * card.offsetLeft}px ${-(1 - out) * card.offsetTop}px`;
+        card.style.rotate = `${-(1 - out) * 4 * slot}deg`;
+      });
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [active]);
 
   const go = (index: number) => setActive(((index % count) + count) % count);
   const project = projects[active];
@@ -64,6 +104,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
     >
       <h2 className="mb-8 font-display text-[calc(28px/var(--section-zoom,1))] font-bold leading-normal text-rose">What I’ve done</h2>
       <div
+        ref={deckRef}
         className="relative aspect-[1/0.645] touch-pan-y md:aspect-auto md:h-(--deck-h)"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
@@ -79,6 +120,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${count}: ${p.title}`}
               aria-hidden={!isFront}
+              data-slot={slot}
               onClick={isFront ? undefined : () => go(i)}
               className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]} ${isFront ? "" : "cursor-pointer"}`}
             >

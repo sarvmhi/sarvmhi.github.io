@@ -12,7 +12,9 @@ const ORDER: Job[] = [jobs.freelance, jobs.filmnet, jobs.shabakeh];
 function JobCard({ job }: { job: Job }) {
   const { logo } = job;
   return (
-    <div className="job-card flex h-[190px] w-[220px] shrink-0 flex-col items-start gap-3 rounded-[16px] bg-white py-6 pl-6 pr-[30px] shadow-job">
+    <div className="job-card flex w-[220px] shrink-0 flex-col items-start gap-3 rounded-[16px] bg-white p-6 shadow-job">
+      {/* every logo sits in the same 37px slot, so all cards are the same height */}
+      <span className="flex h-[37px] items-center">
       {logo.src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -26,6 +28,7 @@ function JobCard({ job }: { job: Job }) {
         // TODO: company logo still missing; see lib/content.ts
         <span aria-hidden className="rounded bg-placeholder" style={{ width: logo.width, height: logo.height }} />
       )}
+      </span>
       <div className="flex flex-col gap-1 leading-normal">
         <h3 className="text-[18px] font-bold">{job.role}</h3>
         <p className="text-[15px]">{job.company}</p>
@@ -38,7 +41,7 @@ function JobCard({ job }: { job: Job }) {
   );
 }
 
-// Left-aligned with normal word spacing (Figma's justified text left big gaps), and a
+// Justified at a width wide enough that the word gaps stay even, and a
 // hyphenated word like "e-commerce" never splits across two lines.
 function keepHyphensTogether(text: string) {
   return text.split(/(\S*\w-\w\S*)/).map((part, i) =>
@@ -58,7 +61,7 @@ function Tasks({ job }: { job: Job }) {
       <RoseBar />
       <Connector className="left-2 top-[15.5px]" />
       <h4 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h4>
-      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[16px] leading-normal sm:w-[263px]">
+      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-justify text-[16px] leading-normal sm:w-[340px]">
         {job.tasks.map((task) => (
           <li key={task}>{keepHyphensTogether(task)}</li>
         ))}
@@ -91,7 +94,7 @@ export function ExperienceContent() {
                 src={asset("/assets/decor/experience-branch.svg")}
                 alt=""
                 aria-hidden
-                className="absolute -left-[33px] top-[93px] h-1 w-[26px] max-w-none sm:-left-[112px] sm:w-[97px]"
+                className="absolute -left-[33px] top-[89px] h-1 w-[26px] max-w-none sm:-left-[112px] sm:w-[97px]"
               />
               <JobCard job={job} />
               <Tasks job={job} />

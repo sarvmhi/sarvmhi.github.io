@@ -2,29 +2,34 @@ import { Fragment } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { SectionTitle } from "@/components/BarList";
 import { ViewCitation } from "@/components/ViewCitation";
+import { asset } from "@/lib/asset";
 import { research } from "@/lib/content";
 
 /*
  * Research: a publication card on the left (a sheet of lined paper, clipped, with the journal
  * cover and a "Published" stamp) and two paragraphs on the right. Kept compact on purpose:
- * the card is at most 560px wide.
+ * the card is at most 560px wide. Like the other sections, the content starts 32px under the
+ * title; here that is the top of the paperclip, which stands 44px above the paper.
  */
 
-function Paperclip() {
+// The same paperclip as on the "How I Work" cards: its back half goes under the paper, its
+// front half over it, so it looks clipped on. It stands 44px above the paper's top edge.
+const CLIP_ABOVE = 44;
+function Paperclip({ part }: { part: "back" | "front" }) {
+  const back = part === "back";
   return (
-    <svg
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={asset(`/assets/clips/clip-${part}.webp`)}
+      alt=""
       aria-hidden
-      viewBox="0 0 16 48"
-      fill="none"
-      className="absolute -top-[26px] left-[54px] z-20 h-[56px] w-[19px] drop-shadow-[1px_1px_1px_rgba(0,0,0,0.15)]"
-    >
-      <path
-        d="M5 14v22a3 3 0 0 0 6 0V6a5 5 0 0 0-10 0v32a7 7 0 0 0 14 0V14"
-        stroke="#8d9199"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-      />
-    </svg>
+      className={`absolute max-w-none ${back ? "z-0" : "z-20"}`}
+      style={
+        back
+          ? { left: 54, top: -CLIP_ABOVE, width: 48, height: 80 }
+          : { left: 56, top: 16 - CLIP_ABOVE, width: 45, height: 55 }
+      }
+    />
   );
 }
 
@@ -65,9 +70,9 @@ function PublicationCard() {
   const buttonClass =
     "glass glass-active inline-flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]";
   return (
-    <div className="w-full max-w-[560px]">
-      <article className="relative -rotate-[0.7deg] rounded-[8px] bg-white px-6 pb-7 pt-8 shadow-[0_10px_30px_-12px_rgba(20,22,26,0.28)] sm:px-[34px] [background-image:repeating-linear-gradient(to_bottom,transparent_0_30px,#f4e1e3_30px_31px)] [background-position:0_14px]">
-        <Paperclip />
+    <div className="relative w-full max-w-[560px]">
+      <Paperclip part="back" />
+      <article className="relative z-10 rounded-[8px] bg-white px-6 pb-7 pt-8 shadow-[0_10px_30px_-12px_rgba(20,22,26,0.28)] sm:px-[34px] [background-image:repeating-linear-gradient(to_bottom,transparent_0_30px,#f4e1e3_30px_31px)] [background-position:0_14px]">
         <PublishedStamp />
         <JournalCover />
 
@@ -111,6 +116,7 @@ function PublicationCard() {
           )}
         </div>
       </article>
+      <Paperclip part="front" />
     </div>
   );
 }
@@ -120,7 +126,7 @@ export function ResearchContent() {
     // Drawn 8% smaller from tablets up; spacing divided by the zoom so it matches other sections
     <div className="pt-10 md:pt-[43px] md:[zoom:0.92] md:[--section-zoom:0.92]">
       <SectionTitle>My research area</SectionTitle>
-      <div className="mt-[30px] md:mt-[31px] grid gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,500px)] xl:items-center xl:justify-between">
+      <div className="mt-[76px] md:mt-[79px] grid gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,500px)] xl:items-center xl:justify-between">
       <PublicationCard />
       <div className="max-w-[500px]">
         {research.about.map((paragraph, i) => (
