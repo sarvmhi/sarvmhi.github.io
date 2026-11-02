@@ -70,6 +70,58 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
   }, [active]);
 
   const go = (index: number) => setActive(((index % count) + count) % count);
+
+  // Scrolling with the mouse over the carousel steps through the projects first: down goes to
+  // the next project until the last one, up goes back to the first; only then does the page
+  // scroll on. It takes over only once the whole deck is on screen, so the page still scrolls
+  // the carousel into view normally. One step per wheel gesture (a pause in between), so a
+  // trackpad flick doesn't skip projects.
+  const rootRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef(active);
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+  useEffect(() => {
+    const root = rootRef.current;
+    const deck = deckRef.current;
+    if (!root || !deck) return;
+    const HEADER = 74;
+    let lockedUntil = 0;
+    let sum = 0;
+    let idle = 0;
+    const onWheel = (e: WheelEvent) => {
+      if (e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+      const down = e.deltaY > 0;
+      const at = activeRef.current;
+      const canStep = down ? at < count - 1 : at > 0;
+      if (!canStep) return; // first or last project: let the page scroll
+      const r = deck.getBoundingClientRect();
+      if (r.top < HEADER - 2 || r.bottom > window.innerHeight + 2) return; // not fully in view yet
+      e.preventDefault();
+      window.clearTimeout(idle);
+      idle = window.setTimeout(() => (sum = 0), 180);
+      const now = performance.now();
+      if (now < lockedUntil) return; // still finishing the last step
+      // first bring the whole section neatly under the header, then start stepping
+      const section = root.closest("section");
+      if (section && Math.abs(section.getBoundingClientRect().top) > 8) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        lockedUntil = now + 700;
+        sum = 0;
+        return;
+      }
+      sum += e.deltaY;
+      if (Math.abs(sum) < 30) return;
+      sum = 0;
+      lockedUntil = now + 650;
+      setActive(at + (down ? 1 : -1));
+    };
+    root.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      root.removeEventListener("wheel", onWheel);
+      window.clearTimeout(idle);
+    };
+  }, [count]);
   const project = projects[active];
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -95,6 +147,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
 
   return (
     <div
+      ref={rootRef}
       role="region"
       aria-roledescription="carousel"
       aria-label="Project carousel"
