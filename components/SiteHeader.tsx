@@ -19,6 +19,7 @@ import {
   ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
 import {
+  HomeIcon as HomeSolid,
   UserIcon as UserSolid,
   BriefcaseIcon as BriefcaseSolid,
   CommandLineIcon as CommandLineSolid,
@@ -31,6 +32,7 @@ import { SECTIONS, type SectionId } from "@/lib/sections";
 type Icon = ComponentType<SVGProps<SVGSVGElement>>;
 
 const ICONS: Record<SectionId, { outline: Icon; solid: Icon }> = {
+  home: { outline: HomeIcon, solid: HomeSolid },
   about: { outline: UserIcon, solid: UserSolid },
   experience: { outline: BriefcaseIcon, solid: BriefcaseSolid },
   projects: { outline: CommandLineIcon, solid: CommandLineSolid },
@@ -39,11 +41,8 @@ const ICONS: Record<SectionId, { outline: Icon; solid: Icon }> = {
 
 type NavItem = { id: string; label: string; disabled: boolean; icon?: Icon };
 
-// Nav items in Figma's order. Home has no section yet, so it shows but doesn't go anywhere.
-const ITEMS: NavItem[] = [
-  { id: "home", label: "Home", disabled: true, icon: HomeIcon },
-  ...SECTIONS.map((s) => ({ ...s, disabled: false })),
-];
+// Nav items in Figma's order, one per section
+const ITEMS: NavItem[] = SECTIONS.map((s) => ({ ...s, disabled: false }));
 
 // A section counts as "in view" once its top passes 40% down the screen
 const VIEW_LINE = 0.4;
@@ -180,8 +179,8 @@ export function SiteHeader() {
       />
 
       <a
-        href="#about"
-        onClick={(e) => onNavClick(e, "about")}
+        href="#home"
+        onClick={(e) => onNavClick(e, "home")}
         className="absolute left-(--page-margin-scaled) top-[24px] font-display text-[20px] font-semibold italic leading-normal md:top-[35px]"
       >
         Sarv

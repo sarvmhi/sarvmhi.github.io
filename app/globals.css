@@ -239,6 +239,49 @@
   }
 }
 
+/* Home hero (Assembly line): letters slide in on the belt, the crane drops the T and bobs,
+   the stations and measurement marks fade in; letters hop on hover. */
+.home-hero .lt {
+  display: block;
+  width: auto;
+  overflow: visible;
+  transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.home-hero .lt:hover {
+  transform: translateY(-8px) rotate(-3deg);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero .belt > svg.lt { animation: hh-slidein 1s cubic-bezier(0.2, 0.75, 0.25, 1) both; }
+  .home-hero .belt > svg.lt:nth-of-type(8) { animation-delay: 0s; }
+  .home-hero .belt > svg.lt:nth-of-type(7) { animation-delay: 0.08s; }
+  .home-hero .belt > svg.lt:nth-of-type(6) { animation-delay: 0.16s; }
+  .home-hero .belt > svg.lt:nth-of-type(5) { animation-delay: 0.24s; }
+  .home-hero .belt > svg.lt:nth-of-type(4) { animation-delay: 0.32s; }
+  .home-hero .belt > svg.lt:nth-of-type(3) { animation-delay: 0.4s; }
+  .home-hero .belt > svg.lt:nth-of-type(2) { animation-delay: 0.48s; }
+  .home-hero .belt > svg.lt:nth-of-type(1) { animation-delay: 0.56s; }
+  .home-hero .belt-top { animation: hh-beltmove 1.6s linear both; }
+  .home-hero .belt-rollers { animation: hh-rollers 1.6s linear both; }
+  .home-hero .t-lift { animation: hh-drop 1.1s 1.6s cubic-bezier(0.3, 0.7, 0.3, 1) both, hh-bob 3.4s 2.9s ease-in-out infinite; }
+  .home-hero .after { animation: hh-fadein 0.5s 2.8s both; }
+  .home-hero .station { animation: hh-fadein 0.4s both; }
+  .home-hero .station:nth-child(1) { animation-delay: 0.5s; }
+  .home-hero .station:nth-child(2) { animation-delay: 0.8s; }
+  .home-hero .station:nth-child(3) { animation-delay: 1.1s; }
+  .home-hero .station:nth-child(4) { animation-delay: 1.4s; }
+}
+@keyframes hh-slidein { from { transform: translateX(-115vw); } to { transform: none; } }
+@keyframes hh-drop {
+  0% { transform: translateY(-340px); }
+  68% { transform: translateY(9px); }
+  84% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+@keyframes hh-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes hh-fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hh-beltmove { from { background-position: 0 0, 0 0, 0 0; } to { background-position: 420px 0, 420px 0, 0 0; } }
+@keyframes hh-rollers { from { background-position: 0 0; } to { background-position: 420px 0; } }
+
 @keyframes headline-flow {
   from {
     background-position: 200% 0;

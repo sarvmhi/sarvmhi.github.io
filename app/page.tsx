@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ProjectDeck } from "@/components/ProjectDeck";
 import { AboutContent } from "@/components/sections/About";
 import { ExperienceContent } from "@/components/sections/Experience";
+import { HomeContent } from "@/components/sections/Home";
 import { IntroContent } from "@/components/sections/Intro";
 import { ResearchContent } from "@/components/sections/Research";
 import { projects } from "@/lib/content";
@@ -23,6 +24,11 @@ function Frame({ children }: { children: ReactNode }) {
 export default function Page() {
   return (
     <>
+      <section id="home" aria-label="Home">
+        <Frame>
+          <HomeContent />
+        </Frame>
+      </section>
       {/* "About Me" in the nav: the intro, then Education / Certificates / How I Work */}
       <section id="about" aria-label="About me">
         <Frame>

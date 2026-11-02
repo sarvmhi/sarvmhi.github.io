@@ -5,9 +5,11 @@ import { profile } from "@/lib/content";
 export function IntroContent() {
   return (
     // Drawn 10% smaller than the rest of the page from tablets up; change the zoom to resize it.
-    <div className="flex flex-col md:[zoom:0.9] lg:flex-row lg:justify-between">
+    // overflow-y clip: the badge strap hangs from the top of this section instead of running up
+    // over Home
+    <div className="flex flex-col [overflow-y:clip] md:[zoom:0.9] lg:flex-row lg:justify-between">
       <section className="min-w-0 max-w-[612px] pt-10 lg:pt-[87px]">
-        <h1 className="font-display text-[44px] font-extrabold leading-normal sm:text-[56px] lg:text-[60px] xl:text-[72px]">
+        <h2 className="font-display text-[44px] font-extrabold leading-normal sm:text-[56px] lg:text-[60px] xl:text-[72px]">
           <span className="block whitespace-nowrap">
             Designing{" "}
             <span className="text-gradient headline-clarity pr-[0.06em] italic">
@@ -20,7 +22,7 @@ export function IntroContent() {
               Complexity
             </span>
           </span>
-        </h1>
+        </h2>
 
         <p className="mt-8 flex items-center gap-3 text-[20px] font-bold leading-normal sm:text-[22px] lg:mt-[44px]">
           <span className="block h-9 w-2 shrink-0 rounded-2xl bg-rose" aria-hidden />
