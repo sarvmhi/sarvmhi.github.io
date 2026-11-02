@@ -55,13 +55,15 @@ function keepHyphensTogether(text: string) {
   );
 }
 
+// Task text looks the same as the skills on the How I Work cards: 18px drawn in a section at 85%,
+// so here, in a section at 92%, it is scaled to match on screen.
 function Tasks({ job }: { job: Job }) {
   return (
     <div className="relative min-w-0 pb-10 pt-[10px] pl-[25px]">
       <RoseBar />
       <Connector className="left-2 top-[15.5px]" />
       <h4 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h4>
-      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[18px] font-medium leading-normal sm:w-[340px]">
+      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[16px] font-medium leading-normal sm:text-[calc(18px*0.85/var(--section-zoom,1))] sm:w-[340px]">
         {job.tasks.map((task) => (
           <li key={task}>{keepHyphensTogether(task)}</li>
         ))}
