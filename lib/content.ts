@@ -11,8 +11,7 @@ export const profile = {
     focus: "B2C",
     status: "Open to Work",
     workMode: "Hybrid",
-    // Put your photo in public/assets/badge/ and set the path, e.g. "/assets/badge/photo.jpg"
-    photo: null as string | null,
+    photo: "/assets/badge/sarvin.webp" as string | null,
   },
   stats: [
     { value: "4", label: "Years of Experience" },
