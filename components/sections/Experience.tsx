@@ -31,9 +31,9 @@ function JobCard({ job }: { job: Job }) {
       </span>
       <div className="flex flex-col gap-1 leading-normal">
         <h3 className="text-[18px] font-bold">{job.role}</h3>
-        <p className="text-[15px]">{job.company}</p>
-        <p className="text-[14px]">{job.location}</p>
-        <p className="text-[14px]">
+        <p className="text-[14px] font-medium">{job.company}</p>
+        <p className="text-[14px] font-medium">{job.location}</p>
+        <p className="text-[14px] font-medium">
           <time>{job.dates}</time>
         </p>
       </div>
@@ -61,7 +61,7 @@ function Tasks({ job }: { job: Job }) {
       <RoseBar />
       <Connector className="left-2 top-[15.5px]" />
       <h4 className="pl-11 text-[18px] font-bold leading-normal">Completed Tasks</h4>
-      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[16px] leading-normal sm:w-[340px]">
+      <ul className="mt-9 flex max-w-[420px] flex-col gap-[22px] text-pretty text-[18px] font-medium leading-normal sm:w-[340px]">
         {job.tasks.map((task) => (
           <li key={task}>{keepHyphensTogether(task)}</li>
         ))}
