@@ -7,10 +7,7 @@ Every font and text size on the site, where it is set, and how big it actually l
 | Font | Used for | Loaded in |
 |---|---|---|
 | **Playfair Display** | headlines, section titles, project and paper titles | [globals.css:2](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L2) |
-| **PP Neue Montreal** (Medium; Bold still missing, so bold is Medium thickened by the browser) | all body text | [globals.css:12](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L12) |
-| **Instrument Sans** | project field, tags and description (as in Figma) | [globals.css:4](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L4) |
-| **IBM Plex Mono** | small labels on the Research card | [globals.css:5](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L5) |
-| Inter | only a fallback for characters PP Neue Montreal lacks | |
+| **PP Neue Montreal** (Medium; Bold still missing, so bold is Medium thickened by the browser) | all other text, including project details and the small labels on the Research card | [globals.css:12](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L12) |
 
 ## Sizes
 
@@ -73,9 +70,9 @@ Every font and text size on the site, where it is set, and how big it actually l
 |---|---|---|---|---|---|
 | Title “What I’ve done” | Playfair Display | 700 | 28 on screen | 27 | [ProjectDeck.tsx:65](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L65) |
 | Project name | Playfair Display | 800 | 36 (30 phone) | 34.9 | [ProjectDeck.tsx:95](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L95) |
-| Field (“Media:”) | Instrument Sans | 600 | 20 | 19.4 | [ProjectDeck.tsx:97](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L97) |
-| Tags (B2C, iOS) | Instrument Sans | 600 | 16 | 15.5 | [ProjectDeck.tsx:99](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L99) |
-| Description | Instrument Sans | 400 | 16 | 15.5 | [ProjectDeck.tsx:104](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L104) |
+| Field (“Media:”) | PP Neue Montreal | 600 | 20 | 19.4 | [ProjectDeck.tsx:97](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L97) |
+| Tags (B2C, iOS) | PP Neue Montreal | 600 | 16 | 15.5 | [ProjectDeck.tsx:99](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L99) |
+| Description | PP Neue Montreal | 400 | 16 | 15.5 | [ProjectDeck.tsx:104](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L104) |
 | View Case Study | PP Neue Montreal | 700 | 14 | 13.6 | [ProjectDeck.tsx:113](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/ProjectDeck.tsx#L113) |
 
 ### Research
@@ -83,11 +80,11 @@ Every font and text size on the site, where it is set, and how big it actually l
 | Text | Font | Weight | In code (px) | On screen at 1440 (px) | Where |
 |---|---|---|---|---|---|
 | Title “My research area” | Playfair Display | 700 | 28 on screen | 27 | [BarList.tsx:38](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/BarList.tsx#L38) |
-| Journal label “JOURNAL · 2025” | IBM Plex Mono | 400 | 10 | 8.9 | [Research.tsx:53](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L53) |
+| Journal label “JOURNAL · 2025” | PP Neue Montreal | 400 | 10 | 8.9 | [Research.tsx:53](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L53) |
 | Journal name | Playfair Display | 700 | 23 | 20.5 | [Research.tsx:56](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L56) |
 | “Elsevier · peer-reviewed” | PP Neue Montreal | 500 | 11 | 9.8 | [Research.tsx:57](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L57) |
 | Stamp “Published” | Playfair Display | 700 | 20 (17 phone) | 17.8 | [Research.tsx:40](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L40) |
-| Stamp “PEER / REVIEWED” | IBM Plex Mono | 500 | 8 (7 phone) | 7.1 | [Research.tsx:39](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L39) |
+| Stamp “PEER / REVIEWED” | PP Neue Montreal | 500 | 8 (7 phone) | 7.1 | [Research.tsx:39](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L39) |
 | Keywords | PP Neue Montreal | 600 | 13 | 11.6 | [Research.tsx:74](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L74) |
 | Paper title | Playfair Display | 700 | 22 | 19.6 | [Research.tsx:80](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L80) |
 | Authors | PP Neue Montreal | 500 (your name 600) | 13 | 11.6 | [Research.tsx:82](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/components/sections/Research.tsx#L82) |

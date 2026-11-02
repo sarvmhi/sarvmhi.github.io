@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/playfair-display/wght.css";
 @import "@fontsource-variable/playfair-display/wght-italic.css";
-@import "@fontsource-variable/instrument-sans/wght.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
-/* Fallback for any character PP Neue Montreal lacks */
-@import "@fontsource-variable/inter/wght.css";
 
 /* PP Neue Montreal, the body font from Figma. Only Medium is here so far; bold text is
    drawn by thickening Medium until PPNeueMontreal-Bold.woff2 is added (see app/fonts/README.md). */
@@ -39,9 +34,7 @@
   --color-track: #bdb9bc;
 
   --font-display: "Playfair Display Variable", "Playfair Display", Georgia, serif;
-  --font-sans: "PP Neue Montreal", "Inter Variable", "Helvetica Neue", Arial, sans-serif;
-  --font-instrument: "Instrument Sans Variable", "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
 
   /* "leading-normal" means the font's own line height, like "Auto" in Figma */
   --leading-normal: normal;

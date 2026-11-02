@@ -36,9 +36,9 @@ function PublishedStamp() {
     >
       <span className="absolute inset-[6px] rounded-full border border-rose/35 sm:inset-[7px]" />
       <span className="flex flex-col items-center leading-none">
-        <span className="pl-[0.3em] font-mono text-[7px] font-medium tracking-[0.3em] sm:text-[8px]">PEER</span>
+        <span className="pl-[0.3em] text-[7px] font-medium tracking-[0.3em] sm:text-[8px]">PEER</span>
         <span className="my-[3px] font-display text-[17px] font-bold sm:text-[20px]">Published</span>
-        <span className="pl-[0.3em] font-mono text-[7px] font-medium tracking-[0.3em] sm:text-[8px]">REVIEWED</span>
+        <span className="pl-[0.3em] text-[7px] font-medium tracking-[0.3em] sm:text-[8px]">REVIEWED</span>
       </span>
     </div>
   );
@@ -50,7 +50,7 @@ function JournalCover() {
       {/* rose block peeking out behind the cover */}
       <span aria-hidden className="absolute inset-0 translate-x-[5px] translate-y-[5px] rounded-[3px] bg-[#d99a9e]" />
       <div className="relative flex h-[227px] flex-col justify-between rounded-[3px] bg-[#362e31] px-[18px] pb-[18px] pt-[22px]">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#ef9ea2]">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-[#ef9ea2]">
           Journal · {research.year}
         </p>
         <p className="font-display text-[23px] font-bold leading-[1.1] text-white">{research.journal}</p>
