@@ -95,13 +95,13 @@ export function Certificates() {
               />
               <p
                 className="absolute font-bold leading-[1.2]"
-                style={{ ...box(stamp.title.at[0], stamp.title.at[1], stamp.title.w), fontSize: u(24) }}
+                style={{ ...box(stamp.title.at[0], stamp.title.at[1], stamp.title.w), fontSize: u(23.5) }}
               >
                 {cert.title}
               </p>
               <p
-                className="absolute font-bold leading-[1.2]"
-                style={{ ...box(stamp.issuer.at[0], stamp.issuer.at[1]), fontSize: u(20) }}
+                className="absolute font-medium leading-[1.2]"
+                style={{ ...box(stamp.issuer.at[0], stamp.issuer.at[1]), fontSize: u(18.8) }}
               >
                 {cert.issuer}
               </p>

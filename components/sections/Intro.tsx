@@ -24,12 +24,12 @@ export function IntroContent() {
           </span>
         </h2>
 
-        <p className="mt-8 flex items-center gap-3 text-[20px] font-bold leading-normal sm:text-[22px] lg:mt-[44px]">
+        <p className="mt-8 flex items-center gap-3 text-[20px] font-bold leading-normal lg:mt-[44px]">
           <span className="block h-9 w-2 shrink-0 rounded-2xl bg-rose" aria-hidden />
           {profile.focusArea}
         </p>
 
-        <p className="mt-6 text-[17px] leading-7 sm:text-[18px] lg:mt-[29px] lg:text-justify">
+        <p className="mt-6 text-[16px] leading-7 sm:text-[18px] lg:mt-[29px] lg:text-justify">
           My Computer Engineering background taught me to take systems apart, and product design lets me
           rebuild them to be simple, intuitive, and clear. Currently I&apos;m focused on{" "}
           {/* Hand-drawn underline from Figma ("Line 7"); it draws itself again on hover */}
@@ -46,7 +46,7 @@ export function IntroContent() {
           , designing tools that make learning easier to begin and harder to quit.
         </p>
 
-        <p className="mt-[14px] text-[17px] leading-[26px] sm:text-[18px] lg:text-justify">
+        <p className="mt-[14px] text-[16px] leading-[26px] sm:text-[18px] lg:text-justify">
           <strong className="font-bold">My superpower?</strong> Give me a weekend and an ominous deadline, and{" "}
           <strong className="text-gradient bg-[linear-gradient(to_right,rgba(20,22,26,0.8),rgba(229,107,111,0.95)_33.173%,#b56576_87.019%)] font-bold">
             I&apos;ll learn whatever the problem needs.

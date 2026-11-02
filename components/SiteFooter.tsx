@@ -61,7 +61,7 @@ export function SiteFooter() {
             </li>
           </ul>
         </div>
-        <p className="text-[13px] text-white/70">
+        <p className="text-[14px] font-medium text-white/70">
           © {new Date().getFullYear()} {profile.name}
         </p>
       </div>

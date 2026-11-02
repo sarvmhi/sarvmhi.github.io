@@ -102,7 +102,7 @@ export function HowIWork() {
                 <span className="mt-2 font-display text-[28px] font-bold leading-normal">{step.title}</span>
               </h3>
 
-              <ul className="list-[square] pl-[27px] text-[17px] leading-[30px] marker:text-ink sm:pl-[47px] sm:text-[18px]">
+              <ul className="list-[square] pl-[27px] text-[16px] leading-[30px] marker:text-ink sm:pl-[47px] sm:text-[18px]">
                 {step.skills.map((skill) => (
                   <li key={skill}>{skill}</li>
                 ))}

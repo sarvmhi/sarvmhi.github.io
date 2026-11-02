@@ -224,7 +224,7 @@ export function IdBadge() {
           </div>
 
           <div className="absolute left-[45px] top-[294px] flex w-[260px] flex-col items-center gap-[2px] font-bold leading-normal">
-            <p className="text-[22px]">{profile.name}</p>
+            <p className="text-[24px]">{profile.name}</p>
             <p className="text-[18px]">{profile.role}</p>
           </div>
 

@@ -181,7 +181,7 @@ export function SiteHeader() {
       <a
         href="#home"
         onClick={(e) => onNavClick(e, "home")}
-        className="absolute left-(--page-margin-scaled) top-[24px] font-display text-[20px] font-semibold italic leading-normal md:top-[35px]"
+        className="absolute left-(--page-margin-scaled) top-[24px] font-display text-[20px] font-bold italic leading-normal md:top-[35px]"
       >
         Sarv
       </a>

@@ -135,15 +135,15 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
 
       <div className="mt-8 md:mt-10" aria-live="polite">
         <h3 className="font-display text-[30px] font-extrabold leading-[1.05] sm:text-[36px]">{project.title}</h3>
-        <p className="mt-[10px] flex items-baseline gap-x-[18px] font-semibold leading-normal">
-          <span className="text-[20px] text-rose">{project.field}:</span>
+        <p className="mt-[10px] flex items-baseline gap-x-[18px] font-medium leading-normal">
+          <span className="text-[18px] font-bold text-rose">{project.field}:</span>
           {project.tags.map((tag) => (
             <span key={tag} className="text-[16px] text-muted">
               {tag}
             </span>
           ))}
         </p>
-        <p className="mt-[3px] max-w-[520px] text-[16px] font-normal leading-[1.55]">
+        <p className="mt-[3px] max-w-[520px] text-[16px] font-medium leading-[1.55] sm:text-[18px]">
           {project.description}
         </p>
       </div>
