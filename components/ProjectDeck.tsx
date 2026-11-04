@@ -70,76 +70,6 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
   }, [active]);
 
   const go = (index: number) => setActive(((index % count) + count) % count);
-
-  // Scrolling with the mouse over the carousel steps through the projects first: down goes to
-  // the next project until the last one, up goes back to the first; only then does the page
-  // scroll on. It takes over once most of the deck is on screen (then first settles the section
-  // under the header), so the page still scrolls the carousel into view normally. One step per wheel gesture (a pause in between), so a
-  // trackpad flick doesn't skip projects.
-  const rootRef = useRef<HTMLDivElement>(null);
-  const activeRef = useRef(active);
-  useEffect(() => {
-    activeRef.current = active;
-  }, [active]);
-  useEffect(() => {
-    const root = rootRef.current;
-    const deck = deckRef.current;
-    if (!root || !deck) return;
-    const HEADER = 74;
-    const GESTURE_GAP = 200; // ms without wheel events that ends a gesture (incl. trackpad inertia)
-    // After a step, the rest of that wheel gesture (a trackpad's glide-out included) is swallowed,
-    // so one flick moves exactly one project and never runs on into the page.
-    let swallowing = false;
-    let readyAt = 0;
-    let sum = 0;
-    let idle = 0;
-    const endGestureLater = () => {
-      window.clearTimeout(idle);
-      idle = window.setTimeout(() => {
-        swallowing = false;
-        sum = 0;
-      }, GESTURE_GAP);
-    };
-    const onWheel = (e: WheelEvent) => {
-      if (e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
-      if (swallowing || performance.now() < readyAt) {
-        e.preventDefault();
-        endGestureLater();
-        return;
-      }
-      // Firefox reports a mouse-wheel notch in lines (about 3), not pixels
-      const dy = e.deltaY * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? window.innerHeight : 1);
-      const down = dy > 0;
-      const at = activeRef.current;
-      const canStep = down ? at < count - 1 : at > 0;
-      if (!canStep) return; // first or last project: let the page scroll
-      // take over once the cards fill most of the screen (from above or from below)
-      const r = deck.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const visible = Math.min(r.bottom, vh) - Math.max(r.top, HEADER);
-      if (visible < Math.min(r.height, vh - HEADER) * 0.75) return;
-      e.preventDefault();
-      endGestureLater();
-      // first settle the whole section under the header, then start stepping
-      const section = root.closest("section");
-      if (section && Math.abs(section.getBoundingClientRect().top) > 8) {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
-        swallowing = true;
-        readyAt = performance.now() + 600;
-        return;
-      }
-      sum += dy;
-      if (Math.abs(sum) < 25) return;
-      swallowing = true;
-      readyAt = performance.now() + 550; // the cards' own move takes 500ms
-      setActive(at + (down ? 1 : -1));
-    };
-    root.addEventListener("wheel", onWheel, { passive: false });
-    return () => {
-      root.removeEventListener("wheel", onWheel);
-      window.clearTimeout(idle);
-    };
-  }, [count]);
   const project = projects[active];
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -165,7 +95,6 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
 
   return (
     <div
-      ref={rootRef}
       role="region"
       aria-roledescription="carousel"
       aria-label="Project carousel"
