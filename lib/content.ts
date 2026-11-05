@@ -104,7 +104,16 @@ export type Job = {
   tasks: string[];
 };
 
-export const jobs: Record<"shabakeh" | "freelance" | "filmnet", Job> = {
+export const jobs: Record<"namava" | "shabakeh" | "freelance" | "filmnet", Job> = {
+  namava: {
+    role: "Product Designer",
+    company: "Namava",
+    location: "On Site",
+    dates: "Nov 2026 - Present",
+    logo: { src: "/assets/logos/namava.webp", width: 50, height: 16 },
+    // just started: no completed tasks yet, so the card shows on its own
+    tasks: [],
+  },
   shabakeh: {
     role: "UI/UX Designer",
     company: "Shabakeh Afzar",

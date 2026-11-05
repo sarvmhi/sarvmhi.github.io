@@ -494,3 +494,17 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Experience: cards step in and out from the main bar from tablets up; the dotted line reaches
+   from the bar to 3px short of the card */
+.exp-row .exp-dots {
+  width: calc(36px - 8px - 3px);
+}
+@media (width >= 40rem) {
+  .exp-row {
+    padding-left: var(--indent);
+  }
+  .exp-row .exp-dots {
+    width: calc(var(--indent) - 8px - 3px);
+  }
+}
