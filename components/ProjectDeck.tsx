@@ -151,7 +151,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       <div className="mt-[26px] flex items-center justify-between gap-4">
         {project.caseStudyUrl ? (
           <a
-            href={project.caseStudyUrl}
+            href={project.caseStudyUrl.startsWith("/") ? asset(project.caseStudyUrl) : project.caseStudyUrl}
             className="glass glass-active flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study

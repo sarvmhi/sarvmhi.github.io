@@ -157,6 +157,15 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Filmnet TV v2.0",
+    field: "Media",
+    tags: ["B2C", "Smart TV"],
+    description:
+      "A remote-first redesign of Filmnet's TV app that cut dead clicks and early exits by ~27%.",
+    image: "/assets/projects/filmnet-tv/cover.webp",
+    caseStudyUrl: "/case-studies/filmnet-tv/",
+  },
+  {
     title: "Media Player Redesign",
     field: "Media",
     tags: ["B2C", "iOS"],
