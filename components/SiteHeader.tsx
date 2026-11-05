@@ -15,10 +15,10 @@ import {
   IconDownload,
   IconFileText,
   IconFileTextFilled,
+  IconFolder,
+  IconFolderFilled,
   IconHome,
   IconHomeFilled,
-  IconLayoutGrid,
-  IconLayoutGridFilled,
   IconUser,
   IconUserFilled,
 } from "@tabler/icons-react";
@@ -32,7 +32,7 @@ const ICONS: Record<SectionId, { outline: Icon; solid: Icon }> = {
   home: { outline: IconHome, solid: IconHomeFilled },
   about: { outline: IconUser, solid: IconUserFilled },
   experience: { outline: IconBriefcase, solid: IconBriefcaseFilled },
-  projects: { outline: IconLayoutGrid, solid: IconLayoutGridFilled },
+  projects: { outline: IconFolder, solid: IconFolderFilled },
   research: { outline: IconFileText, solid: IconFileTextFilled },
 };
 
