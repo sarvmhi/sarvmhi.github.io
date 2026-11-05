@@ -1,18 +1,10 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Compare } from "@/components/case-study/Compare";
-import { CaseStudyBar, SectionRail } from "@/components/case-study/CaseStudyChrome";
 import { asset } from "@/lib/asset";
-import "./case-study.css";
-
-export const metadata: Metadata = {
-  title: "Filmnet TV v2.0",
-  description: "Case study: reframing Filmnet's TV app for lean-back, remote-first viewing.",
-};
 
 const IMG = "/assets/projects/filmnet-tv";
 
-const RAIL = [
+export const FILMNET_TV_SECTIONS = [
   { id: "start", label: "Intro" },
   { id: "problem", label: "01 Problem" },
   { id: "research", label: "02 Research" },
@@ -57,7 +49,7 @@ function Card({
   children: ReactNode;
 }) {
   return (
-    <section className="card" id={id}>
+    <section className="card" id={`cs-${id}`}>
       <span className="step-no">{no}</span>
       <div className="head">
         {mine && <span className="mine">My work</span>}
@@ -82,14 +74,11 @@ function Shot({ name, label, children, hint }: { name: string; label: string; ch
 
 const A = ({ children }: { children: ReactNode }) => <em className="accent">{children}</em>;
 
-export default function FilmnetTvCaseStudy() {
+export function FilmnetTvContent({ onClose }: { onClose: () => void }) {
   return (
-    <div className="cs">
-      <CaseStudyBar title="Filmnet TV" />
-
       <div className="flow-wrap wrap">
         {/* INTRO */}
-        <section className="card" id="start">
+        <section className="card" id="cs-start">
           <div className="tagline">
             <span>Filmnet</span>
             <span>TV v2.0</span>
@@ -516,14 +505,11 @@ export default function FilmnetTvCaseStudy() {
           <p className="nda">Exact figures are under NDA; numbers are rounded.</p>
           <div className="end">
             <span className="small">Filmnet TV v2.0 · 2025</span>
-            <a className="pill glass" href={`${asset("/")}#projects`}>
-              ← All projects
-            </a>
+            <button type="button" className="pill glass" onClick={onClose}>
+              Close case study
+            </button>
           </div>
         </Card>
       </div>
-
-      <SectionRail items={RAIL} />
-    </div>
   );
 }

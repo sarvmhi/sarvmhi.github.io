@@ -25,7 +25,6 @@ import {
   CommandLineIcon as CommandLineSolid,
   DocumentTextIcon as DocumentTextSolid,
 } from "@heroicons/react/24/solid";
-import { usePathname } from "next/navigation";
 import { asset } from "@/lib/asset";
 import { profile } from "@/lib/content";
 import { SECTIONS, type SectionId } from "@/lib/sections";
@@ -149,15 +148,7 @@ function useActiveSection() {
   return { active, goTo };
 }
 
-/** Case study pages have their own top bar; the one-page nav (and its scroll tracking) is
-    only for the home page. */
 export function SiteHeader() {
-  const pathname = usePathname();
-  if (pathname?.startsWith("/case-studies")) return null;
-  return <HomeHeader />;
-}
-
-function HomeHeader() {
   const { active, goTo } = useActiveSection();
   // The item under the mouse (or keyboard focus) opens up to show its name;
   // otherwise the section in view does.

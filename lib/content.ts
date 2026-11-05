@@ -153,6 +153,8 @@ export type Project = {
   // Put cover images in public/assets/projects/ and set the path here
   image: string | null;
   caseStudyUrl: string | null;
+  // A case study built into the site: "View Case Study" opens it over the page
+  caseStudy?: "filmnet-tv";
 };
 
 export const projects: Project[] = [
@@ -163,7 +165,8 @@ export const projects: Project[] = [
     description:
       "A remote-first redesign of Filmnet's TV app that cut dead clicks and early exits by ~27%.",
     image: "/assets/projects/filmnet-tv/cover.webp",
-    caseStudyUrl: "/case-studies/filmnet-tv/",
+    caseStudyUrl: null,
+    caseStudy: "filmnet-tv",
   },
   {
     title: "Media Player Redesign",
