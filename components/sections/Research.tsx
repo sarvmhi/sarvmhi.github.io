@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import { SectionTitle } from "@/components/BarList";
 import { ViewCitation } from "@/components/ViewCitation";
 import { asset } from "@/lib/asset";
@@ -90,12 +90,12 @@ function PublicationCard() {
           {research.paperUrl ? (
             <a href={research.paperUrl} target="_blank" rel="noreferrer" className={buttonClass}>
               View Case Study
-              <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
+              <IconArrowUpRight className="size-[22px] p-[2px]" stroke={1.75} aria-hidden />
             </a>
           ) : (
             <span role="link" aria-disabled="true" title="Link coming soon" className={buttonClass}>
               View Case Study
-              <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
+              <IconArrowUpRight className="size-[22px] p-[2px]" stroke={1.75} aria-hidden />
             </span>
           )}
         </div>

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Compare } from "@/components/case-study/Compare";
 import { asset } from "@/lib/asset";
+import { IconClock, IconPlayerPlay, IconRoute, IconTrendingUp } from "@tabler/icons-react";
 import { A, Card, Flow } from "./parts";
 
 const IMG = "/assets/projects/filmnet-tv";
@@ -411,16 +412,16 @@ export function FilmnetTvContent({ onClose }: { onClose: () => void }) {
 
         <Card id="changed" no="10" label="What changed" title={<>The <A>outcome</A></>}>
           <ul className="changes">
-            {[
-              ["M8 5v14l11-7z", "Fewer steps to playback", "Users reach content faster, with fewer clicks"],
-              ["M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18M12 8v4l3 2", "Visible subscription status", "Users know their status and next step"],
-              ["M3 12h4l3-8 4 16 3-8h4", "Predictable navigation", "Back behaves the same from every entry point"],
-              ["M3 17l6-6 4 4 8-8M15 7h6v6", "~27% fewer dead clicks and early exits", "Measured in Microsoft Clarity and by the analytics team"],
-            ].map(([d, title, sub]) => (
+            {(
+              [
+                [IconPlayerPlay, "Fewer steps to playback", "Users reach content faster, with fewer clicks"],
+                [IconClock, "Visible subscription status", "Users know their status and next step"],
+                [IconRoute, "Predictable navigation", "Back behaves the same from every entry point"],
+                [IconTrendingUp, "~27% fewer dead clicks and early exits", "Measured in Microsoft Clarity and by the analytics team"],
+              ] as const
+            ).map(([Icon, title, sub]) => (
               <li key={title}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <path d={d} />
-                </svg>
+                <Icon stroke={1.75} aria-hidden />
                 <div>
                   <b>{title}</b>
                   <span>{sub}</span>

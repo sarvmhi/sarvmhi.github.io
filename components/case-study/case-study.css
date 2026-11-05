@@ -49,14 +49,13 @@
 @media (max-width: 640px) { .cs .step-no { left: 20px; } }
 .cs .mine { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--cs-rose); color: #fff; padding: 4px 11px; border-radius: 999px; }
 
-.cs .flow { display: flex; justify-content: center; height: 84px; }
-.cs .flow svg { width: 24px; height: 84px; overflow: visible; }
-.cs .flow .l { stroke: var(--cs-rose); stroke-width: 2; stroke-dasharray: 5 6; fill: none; }
-.cs .flow .h { fill: var(--cs-rose); }
+.cs .flow { display: flex; flex-direction: column; align-items: center; height: 84px; padding-top: 4px; }
+.cs .flow-line { flex: 1; width: 2px; background-image: linear-gradient(var(--cs-rose) 55%, transparent 0); background-size: 2px 11px; }
+.cs .flow-head { color: var(--cs-rose); margin-top: -8px; margin-bottom: 2px; }
 @media (prefers-reduced-motion: no-preference) {
-  .cs .flow .l { animation: cs-march 1.2s linear infinite; }
+  .cs .flow-line { animation: cs-march 1.2s linear infinite; }
 }
-@keyframes cs-march { to { stroke-dashoffset: -11; } }
+@keyframes cs-march { to { background-position: 0 11px; } }
 
 /* intro */
 .cs .tagline { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -200,7 +199,7 @@
 /* platform path */
 .cs .path { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .cs .path li { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; color: var(--cs-ink); }
-.cs .path li + li::before { content: "→"; color: var(--cs-rose); }
+.cs .path .step-arrow { width: 20px; height: 20px; color: var(--cs-rose); }
 .cs .path .chip { padding: 8px 14px; border-radius: 999px; background: var(--cs-slot); }
 .cs .path .on .chip { background: var(--cs-rose); color: #fff; }
 /* colour scales */
