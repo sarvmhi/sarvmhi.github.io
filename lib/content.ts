@@ -164,7 +164,7 @@ export const projects: Project[] = [
     tags: ["B2C", "Smart TV"],
     description:
       "A remote-first redesign of Filmnet's TV app that cut dead clicks and early exits by ~27%.",
-    image: "/assets/projects/filmnet-tv/cover.webp",
+    image: "/assets/projects/filmnet-tv/cover-v2.webp",
     caseStudyUrl: null,
     caseStudy: "filmnet-tv",
   },
