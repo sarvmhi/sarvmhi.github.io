@@ -1,9 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import dynamic from "next/dynamic";
 import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { asset } from "@/lib/asset";
 import type { Project } from "@/lib/content";
+
+// Loaded only when a case study is opened, so the home page stays light
+const CaseStudyModal = dynamic(() => import("@/components/case-study/CaseStudyModal").then((m) => m.CaseStudyModal));
 
 /*
  * Figma frame 4: a deck of three cards. The open project is the big card in front;
@@ -26,6 +30,8 @@ const SLOTS = [
 
 export function ProjectDeck({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState(0);
+  const [openStudy, setOpenStudy] = useState<NonNullable<Project["caseStudy"]> | null>(null);
+  const closeStudy = useCallback(() => setOpenStudy(null), []);
   const count = projects.length;
   const swipe = useRef<{ x: number; id: number } | null>(null);
 
@@ -149,9 +155,19 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
       </div>
 
       <div className="mt-[26px] flex items-center justify-between gap-4">
-        {project.caseStudyUrl ? (
+        {project.caseStudy ? (
+          <button
+            type="button"
+            onClick={() => setOpenStudy(project.caseStudy!)}
+            aria-haspopup="dialog"
+            className="glass glass-active flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
+          >
+            View Case Study
+            <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
+          </button>
+        ) : project.caseStudyUrl ? (
           <a
-            href={project.caseStudyUrl}
+            href={project.caseStudyUrl.startsWith("/") ? asset(project.caseStudyUrl) : project.caseStudyUrl}
             className="glass glass-active flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study
@@ -197,6 +213,7 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
           </button>
         ))}
       </div>
+      {openStudy && <CaseStudyModal id={openStudy} onClose={closeStudy} />}
     </div>
   );
 }
