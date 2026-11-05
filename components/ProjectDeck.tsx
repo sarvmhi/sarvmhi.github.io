@@ -141,7 +141,8 @@ export function ProjectDeck({
               aria-hidden={!isFront}
               data-slot={slot}
               onClick={isFront ? undefined : () => go(i)}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]} ${isFront ? "" : "cursor-pointer"}`}
+              // Only three cards show; any further ones wait, hidden, in the last slot
+              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[Math.min(slot, SLOTS.length - 1)]} ${slot >= SLOTS.length ? "pointer-events-none z-0! opacity-0" : ""} ${isFront ? "" : "cursor-pointer"}`}
             >
               {p.image && (
                 // eslint-disable-next-line @next/next/no-img-element
