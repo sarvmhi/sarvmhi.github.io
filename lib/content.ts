@@ -174,7 +174,7 @@ export const projects: Project[] = [
     tags: ["Design System", "Web"],
     description:
       "Filmnet's first design system, built from zero for web and later extended to mobile, TV, iOS and Android.",
-    image: "/assets/projects/filmnet-ds/cover.webp",
+    image: "/assets/projects/filmnet-ds/cover-v2.webp",
     caseStudyUrl: null,
     caseStudy: "filmnet-ds",
   },

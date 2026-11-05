@@ -116,7 +116,7 @@ export function FilmnetDsContent({ onClose }: { onClose: () => void }) {
         <figure className="hero">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={asset(`${IMG}/cover.webp`)}
+            src={asset(`${IMG}/cover-v2.webp`)}
             alt="Filmnet design system: Persian type weights, colour scales, primary buttons and icons"
             width={1600}
             height={1200}
