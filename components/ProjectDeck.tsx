@@ -21,11 +21,14 @@ const CaseStudyModal = dynamic(() => import("@/components/case-study/CaseStudyMo
  * overlap like a deck: on a short screen the deck gets smaller and stays on the left, and on a
  * narrow one the cards squeeze closer so the small one never passes the right edge.
  * Phones use a tighter stack.
+ *
+ * From 1440px wide (where the content area reaches its full 1280px) the cards are exactly
+ * 580x436, 436x328 and 348x260, at (0,0), (518,54) and (932,87).
  */
 const SLOTS = [
-  "z-30 left-0 top-0 w-[86%] md:w-auto md:h-full",
-  "z-20 left-[15%] top-[4.65%] w-[78%] md:w-auto md:left-[min(calc(50%_-_0.2805*var(--deck-h)),calc(1.1908*var(--deck-h)))] md:top-[12.41%] md:h-[75.17%]",
-  "z-10 left-[30%] top-[9.3%] w-[70%] md:w-auto md:left-[min(calc(100%_-_0.8*var(--deck-h)),calc(2.1425*var(--deck-h)))] md:top-[20%] md:h-[60%]",
+  "z-30 left-0 top-0 w-[86%] md:w-auto md:h-full min-[90rem]:h-[436px] min-[90rem]:w-[580px]",
+  "z-20 left-[15%] top-[4.65%] w-[78%] md:w-auto md:left-[min(calc(50%_-_0.2805*var(--deck-h)),calc(1.1908*var(--deck-h)))] md:top-[12.41%] md:h-[75.17%] min-[90rem]:left-[518px] min-[90rem]:top-[54px] min-[90rem]:h-[328px] min-[90rem]:w-[436px]",
+  "z-10 left-[30%] top-[9.3%] w-[70%] md:w-auto md:left-[min(calc(100%_-_0.8*var(--deck-h)),calc(2.1425*var(--deck-h)))] md:top-[20%] md:h-[60%] min-[90rem]:left-[932px] min-[90rem]:top-[87px] min-[90rem]:h-[260px] min-[90rem]:w-[348px]",
 ];
 // Projects that are not on show wait hidden behind the last card, ready to slide in.
 const HIDDEN_SLOT = `${SLOTS[2].replace("z-10", "z-0")} opacity-0 pointer-events-none`;
@@ -137,7 +140,7 @@ export function ProjectDeck({
       )}
       <div
         ref={deckRef}
-        className="relative aspect-[1/0.645] touch-pan-y md:aspect-auto md:h-(--deck-h)"
+        className="relative aspect-[1/0.645] touch-pan-y md:aspect-auto md:h-(--deck-h) min-[90rem]:h-[436px]"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={() => (swipe.current = null)}
@@ -154,7 +157,7 @@ export function ProjectDeck({
               aria-hidden={!isFront}
               data-deck-slot={slot}
               onClick={isFront ? undefined : () => go(i)}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${slotClass(slot)} ${isFront ? "" : "cursor-pointer"}`}
+              className={`absolute aspect-[4/3] min-[90rem]:aspect-auto overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${slotClass(slot)} ${isFront ? "" : "cursor-pointer"}`}
             >
               {p.image && (
                 // eslint-disable-next-line @next/next/no-img-element
