@@ -16,7 +16,7 @@ function Brand({ d }: { d: string }) {
 
 function Contact({ href, label, children }: { href: string | null; label: string; children: ReactNode }) {
   const className =
-    "glass flex size-[50px] items-center justify-center text-white";
+    "glass flex size-[50px] items-center justify-center text-ink";
   if (!href) {
     return (
       <span role="link" aria-disabled="true" aria-label={`${label} (coming soon)`} title={`${label}: link coming soon`} className={className}>
@@ -39,10 +39,11 @@ function Contact({ href, label, children }: { href: string | null; label: string
 
 export function SiteFooter() {
   return (
-    <footer className="mt-28 bg-[#656e89] px-page pb-32 pt-20 text-white md:mt-44 md:pb-20 md:pt-24">
-      <div className="ui-scale mx-auto flex max-w-[1280px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+    // A white card inside the page margins, rounded and shadowed like the other white cards
+    <footer className="mt-28 px-page pb-24 md:mt-44 md:pb-10">
+      <div className="ui-scale mx-auto flex max-w-[1280px] flex-col gap-8 rounded-[16px] bg-white px-6 pb-10 pt-14 text-ink shadow-card sm:flex-row sm:items-end sm:justify-between md:px-14 md:pb-14 md:pt-16">
         <div>
-          <h2 className="font-display text-[36px] font-extrabold leading-tight md:text-[44px]">Let’s get in touch</h2>
+          <h2 className="font-display text-[30px] font-extrabold leading-tight md:text-[36px]">Let’s get in touch</h2>
           <ul className="mt-8 flex gap-2">
             <li>
               <Contact href={contact.email && `mailto:${contact.email}`} label="Email">
@@ -61,7 +62,7 @@ export function SiteFooter() {
             </li>
           </ul>
         </div>
-        <p className="text-[14px] font-medium text-white/70">
+        <p className="text-[14px] font-medium text-ink/60">
           © {new Date().getFullYear()} {profile.name}
         </p>
       </div>
