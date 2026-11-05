@@ -27,10 +27,19 @@ const SLOTS = [
   "z-20 left-[15%] top-[4.65%] w-[78%] md:w-auto md:left-[min(calc(50%_-_0.2805*var(--deck-h)),calc(1.1908*var(--deck-h)))] md:top-[12.41%] md:h-[75.17%]",
   "z-10 left-[30%] top-[9.3%] w-[70%] md:w-auto md:left-[min(calc(100%_-_0.8*var(--deck-h)),calc(2.1425*var(--deck-h)))] md:top-[20%] md:h-[60%]",
 ];
-// With more than three projects, the rest wait hidden behind the last card, ready to slide in.
-// (Without a slot they had no size or place and showed at full image size.)
+// Projects that are not on show wait hidden behind the last card, ready to slide in.
 const HIDDEN_SLOT = `${SLOTS[2].replace("z-10", "z-0")} opacity-0 pointer-events-none`;
 const slotClass = (slot: number) => SLOTS[slot] ?? HIDDEN_SLOT;
+// The three cards on show: the open project in front, the next one behind it, and the one you
+// just left at the back. So a swipe sends the front card to the back and brings the next one
+// forward, as a loop; any other projects wait hidden until their turn.
+function slotOf(index: number, active: number, count: number) {
+  const d = (index - active + count) % count;
+  if (d === 0) return 0;
+  if (d === 1) return 1;
+  if (d === count - 1) return 2;
+  return 3;
+}
 
 export function ProjectDeck({
   projects,
@@ -134,7 +143,7 @@ export function ProjectDeck({
         onPointerCancel={() => (swipe.current = null)}
       >
         {projects.map((p, i) => {
-          const slot = (i - active + count) % count;
+          const slot = slotOf(i, active, count);
           const isFront = slot === 0;
           return (
             <div
