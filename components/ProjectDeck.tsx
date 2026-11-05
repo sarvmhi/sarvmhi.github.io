@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import dynamic from "next/dynamic";
-import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { asset } from "@/lib/asset";
 import type { Project } from "@/lib/content";
 
@@ -186,28 +186,29 @@ export function ProjectDeck({
             type="button"
             onClick={() => setOpenStudy(project.caseStudy!)}
             aria-haspopup="dialog"
-            className="glass glass-active flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
+            className="glass group flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study
-            <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
+            {/* points right; tilts up to the north-east on hover */}
+            <ArrowRightIcon className="size-[22px] p-[3px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
           </button>
         ) : project.caseStudyUrl ? (
           <a
             href={project.caseStudyUrl.startsWith("/") ? asset(project.caseStudyUrl) : project.caseStudyUrl}
-            className="glass glass-active flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
+            className="glass group flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study
-            <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
+            <ArrowRightIcon className="size-[22px] p-[3px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
           </a>
         ) : (
           <span
             role="link"
             aria-disabled
             title="Case study coming soon"
-            className="glass glass-active flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
+            className="glass group flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study
-            <ArrowUpRightIcon className="size-[22px] p-[3px]" aria-hidden />
+            <ArrowRightIcon className="size-[22px] p-[3px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
           </span>
         )}
 
