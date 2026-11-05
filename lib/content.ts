@@ -179,56 +179,18 @@ export const projects: Project[] = [
     caseStudy: "filmnet-ds",
   },
   {
-    title: "Media Player Redesign",
+    title: "Filmnet iOS",
     field: "Media",
     tags: ["B2C", "iOS"],
-    description: "Filmnet media player, with Shabakeh Afzar. [ONE LINE: THE PROBLEM AND WHAT CHANGED]",
-    image: null,
-    caseStudyUrl: null,
-  },
-  // DRAFT: the next two are built from your Experience page text. Edit or replace them.
-  {
-    title: "Pediatric Booking Platform",
-    field: "Health",
-    tags: ["B2C", "Web"],
-    description:
-      "A booking platform for mothers of children under 5, with vaccine reminders and urgent visits.",
-    image: null,
-    caseStudyUrl: null,
-  },
-  {
-    title: "Eyewear Store with Virtual Try-On",
-    field: "E-commerce",
-    tags: ["B2C", "Web"],
-    description:
-      "An eyewear e-commerce site with AR virtual try-on that moved ~30% of sales from social media to the website.",
+    description: "Filmnet's iOS app. [ONE LINE: THE PROBLEM AND WHAT CHANGED]",
     image: null,
     caseStudyUrl: null,
   },
 ];
 
-// Second carousel, under the first. DRAFT: for now a copy of the projects above, so the layout
-// can be seen; replace these with the other projects.
+// Second carousel, under the first. DRAFT: the two freelance projects, built from the Experience
+// page text; edit or replace them.
 export const moreProjects: Project[] = [
-  {
-    title: "Filmnet TV v2.0",
-    field: "Media",
-    tags: ["B2C", "Smart TV"],
-    description:
-      "A remote-first redesign of Filmnet's TV app that cut dead clicks and early exits by ~27%.",
-    image: "/assets/projects/filmnet-tv/cover-v2.webp",
-    caseStudyUrl: null,
-    caseStudy: "filmnet-tv",
-  },
-  {
-    title: "Media Player Redesign",
-    field: "Media",
-    tags: ["B2C", "iOS"],
-    description: "Filmnet media player, with Shabakeh Afzar. [ONE LINE: THE PROBLEM AND WHAT CHANGED]",
-    image: null,
-    caseStudyUrl: null,
-  },
-  // DRAFT: the next two are built from your Experience page text. Edit or replace them.
   {
     title: "Pediatric Booking Platform",
     field: "Health",
