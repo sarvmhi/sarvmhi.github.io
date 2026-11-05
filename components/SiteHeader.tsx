@@ -169,11 +169,12 @@ export function SiteHeader() {
 
   return (
     <header className="ui-scale fixed inset-x-0 top-0 z-50 h-[74px]">
-      {/* Backdrop once the page moves, so the pills stay readable over content. It sits on its
-          own layer: a backdrop-filter on the header would trap the fixed mobile nav inside it. */}
+      {/* Backdrop once the page moves: page-coloured glass with a strong blur, so the pills stay
+          readable over content. It sits on its own layer: a backdrop-filter on the header itself
+          would trap the fixed mobile nav inside it. */}
       <div
         aria-hidden
-        className={`absolute inset-0 bg-page/90 transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-page/80 backdrop-blur-[18px] backdrop-saturate-120 transition-opacity duration-300 ${
           scrolled ? "opacity-100" : "opacity-0"
         }`}
       />
