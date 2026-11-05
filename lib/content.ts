@@ -154,7 +154,7 @@ export type Project = {
   image: string | null;
   caseStudyUrl: string | null;
   // A case study built into the site: "View Case Study" opens it over the page
-  caseStudy?: "filmnet-tv";
+  caseStudy?: "filmnet-tv" | "filmnet-ds";
 };
 
 export const projects: Project[] = [
@@ -167,6 +167,16 @@ export const projects: Project[] = [
     image: "/assets/projects/filmnet-tv/cover-v2.webp",
     caseStudyUrl: null,
     caseStudy: "filmnet-tv",
+  },
+  {
+    title: "Filmnet Design System",
+    field: "Media",
+    tags: ["Design System", "Web"],
+    description:
+      "Filmnet's first design system, built from zero for web and later extended to mobile, TV, iOS and Android.",
+    image: "/assets/projects/filmnet-ds/cover.webp",
+    caseStudyUrl: null,
+    caseStudy: "filmnet-ds",
   },
   {
     title: "Media Player Redesign",

@@ -188,3 +188,51 @@
 .cs .rail button:hover { color: var(--cs-ink); }
 .cs .rail button.on { background: var(--cs-ink); color: #fff; }
 .cs .end .pill { border: 0; cursor: pointer; font-family: inherit; }
+
+/* ---- shared by the design system case study ---- */
+.cs .fig { margin: 22px 0 0; background: var(--cs-slot); border-radius: 14px; padding: 14px; }
+.cs .fig img { display: block; width: 100%; height: auto; border-radius: 8px; background: #fff; }
+.cs .fig figcaption { font-size: 13px; color: var(--cs-muted); text-align: center; margin-top: 10px; }
+.cs .sub-h { font-family: var(--cs-display); font-size: 24px; margin-top: 34px; }
+.cs .sub-p { margin-top: 6px; }
+.cs .note { font-size: 14px; margin-top: 18px; }
+
+/* platform path */
+.cs .path { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.cs .path li { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; color: var(--cs-ink); }
+.cs .path li + li::before { content: "→"; color: var(--cs-rose); }
+.cs .path .chip { padding: 8px 14px; border-radius: 999px; background: var(--cs-slot); }
+.cs .path .on .chip { background: var(--cs-rose); color: #fff; }
+/* colour scales */
+.cs .palette { display: flex; flex-direction: column; gap: 16px; }
+.cs .pal-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: center; }
+.cs .pal-name b { display: block; font-size: 16px; }
+.cs .pal-name span { font-size: 13px; color: var(--cs-muted); }
+.cs .scale { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 6px; }
+.cs .sw { aspect-ratio: 1 / 1; border-radius: 10px; display: flex; align-items: flex-end; padding: 6px; font-size: 11px; font-weight: 700; color: rgb(255 255 255 / 0.9); position: relative; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.06); }
+.cs .sw.lt { color: rgb(20 22 26 / 0.55); }
+.cs .sw.main::after { content: ""; position: absolute; top: 6px; right: 6px; width: 9px; height: 9px; border-radius: 50%; border: 2px solid currentColor; }
+@media (max-width: 760px) {
+  .cs .pal-row { grid-template-columns: 1fr; gap: 8px; }
+  .cs .scale { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+/* contrast list */
+.cs .contrast { margin-top: 14px; border-top: 1px solid var(--cs-line); max-width: 640px; }
+.cs .c-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) 80px 130px; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--cs-line); }
+.cs .c-chip { width: 44px; height: 32px; border-radius: 8px; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.cs .c-name { font-size: 15.5px; }
+.cs .c-ratio { font-variant-numeric: tabular-nums; font-weight: 700; }
+.cs .c-level { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 999px; justify-self: start; }
+.cs .c-level.ok { background: rgb(39 176 12 / 0.12); color: #1e7a0b; }
+.cs .c-level.mid { background: rgb(255 137 4 / 0.14); color: #995202; }
+.cs .c-level.low { background: rgb(225 29 72 / 0.1); color: #b4173a; }
+@media (max-width: 520px) { .cs .c-row { grid-template-columns: 40px minmax(0, 1fr) auto; } .cs .c-level { grid-column: 2 / -1; } }
+
+/* grid */
+.cs .grid-fig { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; align-items: start; }
+.cs .grid-fig .fig { margin: 0; max-width: 520px; }
+.cs .grid-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cs-line); }
+.cs .grid-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--cs-line); font-size: 15.5px; color: var(--cs-muted); }
+.cs .grid-list b { font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .cs .grid-fig { grid-template-columns: 1fr; } }

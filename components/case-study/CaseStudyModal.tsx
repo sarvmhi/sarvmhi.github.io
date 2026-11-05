@@ -3,13 +3,19 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import type { ComponentType } from "react";
+import { FILMNET_DS_SECTIONS, FilmnetDsContent } from "./FilmnetDs";
 import { FILMNET_TV_SECTIONS, FilmnetTvContent } from "./FilmnetTv";
 import "./case-study.css";
 
-export type CaseStudyId = "filmnet-tv";
+export type CaseStudyId = "filmnet-tv" | "filmnet-ds";
 
-const STUDIES: Record<CaseStudyId, { title: string; sections: { id: string; label: string }[] }> = {
-  "filmnet-tv": { title: "Filmnet TV", sections: FILMNET_TV_SECTIONS },
+const STUDIES: Record<
+  CaseStudyId,
+  { title: string; sections: { id: string; label: string }[]; Content: ComponentType<{ onClose: () => void }> }
+> = {
+  "filmnet-tv": { title: "Filmnet TV", sections: FILMNET_TV_SECTIONS, Content: FilmnetTvContent },
+  "filmnet-ds": { title: "Filmnet Design System", sections: FILMNET_DS_SECTIONS, Content: FilmnetDsContent },
 };
 
 /*
@@ -95,7 +101,7 @@ export function CaseStudyModal({ id, onClose }: { id: CaseStudyId; onClose: () =
           </div>
         </header>
 
-        <FilmnetTvContent onClose={onClose} />
+        <study.Content onClose={onClose} />
 
         <div className="rail wrap">
           <nav ref={navRef} className="glass" aria-label="Case study sections">
