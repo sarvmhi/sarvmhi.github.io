@@ -43,7 +43,7 @@ export function SiteFooter() {
     <footer className="mt-28 px-page pb-24 md:mt-44 md:pb-10">
       <div className="ui-scale mx-auto flex max-w-[1280px] flex-col gap-8 rounded-[16px] bg-white px-6 pb-10 pt-14 text-ink shadow-card sm:flex-row sm:items-end sm:justify-between md:px-14 md:pb-14 md:pt-16">
         <div>
-          <h2 className="font-display text-[30px] font-extrabold leading-tight md:text-[36px]">Let’s get in touch</h2>
+          <h2 className="font-display text-[28px] font-semibold leading-tight">Let’s get in touch</h2>
           <ul className="mt-8 flex gap-2">
             <li>
               <Contact href={contact.email && `mailto:${contact.email}`} label="Email">

@@ -193,7 +193,7 @@
      (rose, coral, ink, coral, rose) slid along by one tile per loop. "Complexity" runs half a
      loop ahead, so it starts on the ink-to-rose half, like in Figma. */
   .headline-clarity {
-    background-image: linear-gradient(to right, #b56576 53.846%, #e56b6f 74.038%, rgb(0 0 0 / 0.8));
+    background-image: linear-gradient(to right, #b56576 53.846%, #e56b6f 74.038%, rgb(20 22 26 / 0.8));
   }
   .headline-complexity {
     background-image: linear-gradient(
