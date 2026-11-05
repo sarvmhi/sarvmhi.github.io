@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
+import { IconArrowsHorizontal } from "@tabler/icons-react";
 import { asset } from "@/lib/asset";
 
 /** Before / after slider: the "before" screen sits on top and is clipped at the handle. */
@@ -25,7 +26,7 @@ export function Compare({ before, after, label }: { before: string; after: strin
         />
         <div className="handle" />
         <div className="grip" aria-hidden>
-          ↔
+          <IconArrowsHorizontal size={18} stroke={2} />
         </div>
       </div>
     </div>

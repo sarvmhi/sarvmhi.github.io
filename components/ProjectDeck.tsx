@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import dynamic from "next/dynamic";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { asset } from "@/lib/asset";
 import type { Project } from "@/lib/content";
 
@@ -193,7 +193,7 @@ export function ProjectDeck({
           >
             View Case Study
             {/* points right; tilts up to the north-east on hover */}
-            <ArrowRightIcon className="size-[22px] p-[3px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
+            <IconArrowRight stroke={1.75} className="size-[22px] p-[2px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
           </button>
         ) : project.caseStudyUrl ? (
           <a
@@ -201,7 +201,7 @@ export function ProjectDeck({
             className="glass group flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study
-            <ArrowRightIcon className="size-[22px] p-[3px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
+            <IconArrowRight stroke={1.75} className="size-[22px] p-[2px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
           </a>
         ) : (
           <span
@@ -211,16 +211,16 @@ export function ProjectDeck({
             className="glass group flex items-center gap-1 p-[14px] text-[14px] font-bold leading-[22px]"
           >
             View Case Study
-            <ArrowRightIcon className="size-[22px] p-[3px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
+            <IconArrowRight stroke={1.75} className="size-[22px] p-[2px] transition-transform duration-300 ease-out group-hover:-rotate-45" aria-hidden />
           </span>
         )}
 
         <div className="flex gap-3 opacity-80">
           <button type="button" onClick={() => go(active - 1)} className="glass flex size-[50px] items-center justify-center" aria-label="Previous project">
-            <ArrowLeftIcon className="size-[22px] p-[2px]" aria-hidden />
+            <IconArrowLeft stroke={1.75} className="size-[22px] p-[1px]" aria-hidden />
           </button>
           <button type="button" onClick={() => go(active + 1)} className="glass flex size-[50px] items-center justify-center" aria-label="Next project">
-            <ArrowRightIcon className="size-[22px] p-[2px]" aria-hidden />
+            <IconArrowRight stroke={1.75} className="size-[22px] p-[1px]" aria-hidden />
           </button>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { IconChevronDown } from "@tabler/icons-react";
 
 // Building blocks shared by every case study: section cards, the arrows between them, accents.
 
@@ -6,10 +7,8 @@ import type { ReactNode } from "react";
 export function Flow() {
   return (
     <div className="flow" aria-hidden>
-      <svg viewBox="0 0 24 84">
-        <path className="l" d="M12 4 V70" />
-        <path className="h" d="M5 68 L12 80 L19 68 Z" />
-      </svg>
+      <span className="flow-line" />
+      <IconChevronDown className="flow-head" size={22} stroke={2.25} />
     </div>
   );
 }

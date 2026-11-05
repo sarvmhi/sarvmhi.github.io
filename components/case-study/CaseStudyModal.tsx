@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { IconX } from "@tabler/icons-react";
 import type { ComponentType } from "react";
 import { FILMNET_DS_SECTIONS, FilmnetDsContent } from "./FilmnetDs";
 import { FILMNET_TV_SECTIONS, FilmnetTvContent } from "./FilmnetTv";
@@ -95,7 +95,7 @@ export function CaseStudyModal({ id, onClose }: { id: CaseStudyId; onClose: () =
               Sarv<small>{study.title} · case study</small>
             </span>
             <button ref={closeBtn} type="button" className="pill glass close" onClick={onClose}>
-              <XMarkIcon className="size-[18px]" aria-hidden />
+              <IconX className="size-[18px]" stroke={2} aria-hidden />
               Close
             </button>
           </div>

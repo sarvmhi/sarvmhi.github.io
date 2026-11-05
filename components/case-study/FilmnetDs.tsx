@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { asset } from "@/lib/asset";
+import { IconArrowNarrowRight, IconArrowsExchange, IconBolt, IconLayoutGrid, IconTrendingUp } from "@tabler/icons-react";
 import { A, Card, Flow } from "./parts";
 
 const IMG = "/assets/projects/filmnet-ds";
@@ -182,10 +183,12 @@ export function FilmnetDsContent({ onClose }: { onClose: () => void }) {
         intro="We began with desktop web, the platform updated most often, so the system paid off right away. Then we extended it platform by platform."
       >
         <ol className="path" aria-label="Order the system was rolled out to platforms">
-          <li className="on"><span className="chip">Desktop web</span></li>
-          <li><span className="chip">Mobile web</span></li>
-          <li><span className="chip">TV</span></li>
-          <li><span className="chip">iOS &amp; Android</span></li>
+          {["Desktop web", "Mobile web", "TV", "iOS & Android"].map((step, i) => (
+            <li key={step} className={i === 0 ? "on" : undefined}>
+              {i > 0 && <IconArrowNarrowRight className="step-arrow" stroke={1.75} aria-hidden />}
+              <span className="chip">{step}</span>
+            </li>
+          ))}
         </ol>
         <p className="note">This case study focuses on the web foundations; the same system was later expanded to the other platforms.</p>
       </Card>
@@ -470,16 +473,16 @@ export function FilmnetDsContent({ onClose }: { onClose: () => void }) {
 
       <Card id="impact" no="10" label="Impact" title={<>One language for <A>every team</A></>}>
         <ul className="changes">
-          {[
-            ["M4 12h16M12 4v16", "Smoother handoff", "Far fewer questions and back-and-forth with developers"],
-            ["M4 6h16M4 12h16M4 18h16", "A consistent product", "Pages share the same colors, icons and components"],
-            ["M5 12l5 5 9-10", "Faster design work", "New pages and redesigns start from ready-made parts"],
-            ["M3 17l6-6 4 4 8-8M15 7h6v6", "A foundation that scaled", "Extended to mobile, TV, iOS and Android"],
-          ].map(([d, title, sub]) => (
+          {(
+            [
+              [IconArrowsExchange, "Smoother handoff", "Far fewer questions and back-and-forth with developers"],
+              [IconLayoutGrid, "A consistent product", "Pages share the same colors, icons and components"],
+              [IconBolt, "Faster design work", "New pages and redesigns start from ready-made parts"],
+              [IconTrendingUp, "A foundation that scaled", "Extended to mobile, TV, iOS and Android"],
+            ] as const
+          ).map(([Icon, title, sub]) => (
             <li key={title}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d={d} />
-              </svg>
+              <Icon stroke={1.75} aria-hidden />
               <div>
                 <b>{title}</b>
                 <span>{sub}</span>

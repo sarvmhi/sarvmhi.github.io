@@ -231,10 +231,9 @@ export const research = {
   ],
 };
 
-// Footer links. Set the email and Google Scholar profile; an icon without a link shows but
-// doesn't go anywhere yet.
+// Footer links: LinkedIn, email and GitHub. An icon without a link shows but doesn't go anywhere yet.
 export const contact = {
+  linkedin: null as string | null, // e.g. "https://www.linkedin.com/in/..."
   email: null as string | null, // e.g. "you@example.com"
-  scholar: null as string | null, // e.g. "https://scholar.google.com/citations?user=..."
   github: "https://github.com/sarvmhi" as string | null,
 };

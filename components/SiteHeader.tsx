@@ -8,35 +8,32 @@ import {
   type FocusEvent,
   type MouseEvent,
   type PointerEvent,
-  type SVGProps,
 } from "react";
 import {
-  HomeIcon,
-  UserIcon,
-  BriefcaseIcon,
-  CommandLineIcon,
-  DocumentTextIcon,
-  ArrowDownTrayIcon,
-} from "@heroicons/react/24/outline";
-import {
-  HomeIcon as HomeSolid,
-  UserIcon as UserSolid,
-  BriefcaseIcon as BriefcaseSolid,
-  CommandLineIcon as CommandLineSolid,
-  DocumentTextIcon as DocumentTextSolid,
-} from "@heroicons/react/24/solid";
+  IconBriefcase,
+  IconBriefcaseFilled,
+  IconDownload,
+  IconFileText,
+  IconFileTextFilled,
+  IconHome,
+  IconHomeFilled,
+  IconLayoutGrid,
+  IconLayoutGridFilled,
+  IconUser,
+  IconUserFilled,
+} from "@tabler/icons-react";
 import { asset } from "@/lib/asset";
 import { profile } from "@/lib/content";
 import { SECTIONS, type SectionId } from "@/lib/sections";
 
-type Icon = ComponentType<SVGProps<SVGSVGElement>>;
+type Icon = ComponentType<{ className?: string; stroke?: number; "aria-hidden"?: boolean }>;
 
 const ICONS: Record<SectionId, { outline: Icon; solid: Icon }> = {
-  home: { outline: HomeIcon, solid: HomeSolid },
-  about: { outline: UserIcon, solid: UserSolid },
-  experience: { outline: BriefcaseIcon, solid: BriefcaseSolid },
-  projects: { outline: CommandLineIcon, solid: CommandLineSolid },
-  research: { outline: DocumentTextIcon, solid: DocumentTextSolid },
+  home: { outline: IconHome, solid: IconHomeFilled },
+  about: { outline: IconUser, solid: IconUserFilled },
+  experience: { outline: IconBriefcase, solid: IconBriefcaseFilled },
+  projects: { outline: IconLayoutGrid, solid: IconLayoutGridFilled },
+  research: { outline: IconFileText, solid: IconFileTextFilled },
 };
 
 type NavItem = { id: string; label: string; disabled: boolean; icon?: Icon };
@@ -199,7 +196,7 @@ export function SiteHeader() {
             const isActive = item.id === active;
             const open = hovered === null ? isActive : hovered === item.id;
             const icons = item.disabled ? null : ICONS[item.id as SectionId];
-            const IconCmp = icons ? (isActive ? icons.solid : icons.outline) : (item.icon ?? DocumentTextIcon);
+            const IconCmp = icons ? (isActive ? icons.solid : icons.outline) : (item.icon ?? IconFileText);
             const className = `glass flex h-[50px] w-full items-center justify-center overflow-hidden ${
               isActive ? "glass-active" : ""
             }`;
@@ -211,7 +208,7 @@ export function SiteHeader() {
             };
             const content = (
               <>
-                <IconCmp className="size-[22px] shrink-0" aria-hidden />
+                <IconCmp className="size-[22px] shrink-0" stroke={1.75} aria-hidden />
                 <span
                   className={`overflow-hidden whitespace-nowrap text-[14px] font-bold leading-normal transition-[max-width,opacity,margin] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                     open ? "ml-1 max-w-[84px] opacity-100" : "ml-0 max-w-0 opacity-0"
@@ -267,7 +264,7 @@ export function SiteHeader() {
         download
         className="glass absolute right-5 top-[16px] flex h-[42px] items-center justify-center gap-1 px-3 text-[14px] font-bold leading-normal md:right-[36px] md:top-[24px] md:h-[50px] md:w-[124px]"
       >
-        <ArrowDownTrayIcon className="size-[18px] md:hidden" aria-hidden />
+        <IconDownload className="size-[18px] md:hidden" stroke={1.75} aria-hidden />
         Download CV
       </a>
     </header>
