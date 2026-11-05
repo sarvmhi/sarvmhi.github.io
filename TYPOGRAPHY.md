@@ -7,7 +7,7 @@ Every font and text size on the site, where it is set, and how big it actually l
 | Font | Used for | Loaded in |
 |---|---|---|
 | **Playfair Display** | headlines, section titles, project and paper titles | [globals.css:2](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L2) |
-| **PP Neue Montreal** (Medium; Bold still missing, so bold is Medium thickened by the browser) | all other text, including project details and the small labels on the Research card | [globals.css:12](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L12) |
+| **PP Neue Montreal** (Medium 500 and Bold 700; semibold uses Bold) | all other text, including project details and the small labels on the Research card | [globals.css:12](https://github.com/sarvmhi/sarvmhi.github.io/blob/main/app/globals.css#L12) |
 
 ## Sizes
 

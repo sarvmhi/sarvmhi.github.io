@@ -2,22 +2,20 @@
 @import "@fontsource-variable/playfair-display/wght.css";
 @import "@fontsource-variable/playfair-display/wght-italic.css";
 
-/* PP Neue Montreal, the body font from Figma. Only Medium is here so far; bold text is
-   drawn by thickening Medium until PPNeueMontreal-Bold.woff2 is added (see app/fonts/README.md). */
+/* PP Neue Montreal, the body font from Figma: Medium (500) and Bold (700). Semibold (600)
+   text uses the Bold file, so nothing is thickened by the browser any more. */
 @font-face {
   font-family: "PP Neue Montreal";
   src: url("./fonts/PPNeueMontreal-Medium.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
-/* Add the Bold file and uncomment:
 @font-face {
   font-family: "PP Neue Montreal";
   src: url("./fonts/PPNeueMontreal-Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
-*/
 
 /* Tokens taken from the Figma file (Design Hub, page 3) */
 @theme {
