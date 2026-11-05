@@ -5,7 +5,7 @@ import { ExperienceContent } from "@/components/sections/Experience";
 import { HomeContent } from "@/components/sections/Home";
 import { IntroContent } from "@/components/sections/Intro";
 import { ResearchContent } from "@/components/sections/Research";
-import { projects } from "@/lib/content";
+import { moreProjects, projects } from "@/lib/content";
 
 // One Figma frame. It keeps 74px at its top for the fixed header, so jumping to it from the nav
 // shows it like its Figma frame. Spacing is the same everywhere: each section's title starts
@@ -45,7 +45,9 @@ export default function Page() {
       </section>
       <section id="projects" aria-label="Projects">
         <Frame>
-          <ProjectDeck projects={projects} />
+          <ProjectDeck projects={projects} title="What I’ve done" />
+          {/* a second deck right under the first, same layout, its own projects */}
+          <ProjectDeck projects={moreProjects} label="More projects" className="mt-24 md:mt-28" />
         </Frame>
       </section>
       <section id="research" aria-label="Research">

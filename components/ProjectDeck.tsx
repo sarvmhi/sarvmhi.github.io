@@ -28,7 +28,18 @@ const SLOTS = [
   "z-10 left-[30%] top-[9.3%] w-[70%] md:w-auto md:left-[min(calc(100%_-_0.8*var(--deck-h)),calc(2.1425*var(--deck-h)))] md:top-[20%] md:h-[60%]",
 ];
 
-export function ProjectDeck({ projects }: { projects: Project[] }) {
+export function ProjectDeck({
+  projects,
+  title,
+  label = "Project carousel",
+  className = "pt-10",
+}: {
+  projects: Project[];
+  /** Section title above the deck; leave out for a deck that follows another one */
+  title?: string;
+  label?: string;
+  className?: string;
+}) {
   const [active, setActive] = useState(0);
   const [openStudy, setOpenStudy] = useState<NonNullable<Project["caseStudy"]> | null>(null);
   const closeStudy = useCallback(() => setOpenStudy(null), []);
@@ -103,12 +114,14 @@ export function ProjectDeck({ projects }: { projects: Project[] }) {
     <div
       role="region"
       aria-roledescription="carousel"
-      aria-label="Project carousel"
+      aria-label={label}
       onKeyDown={onKeyDown}
       // isolate: the cards' stacking order stays inside the deck, under the fixed header
-      className="project-deck isolate pt-10"
+      className={`project-deck isolate ${className}`}
     >
-      <h2 className="mb-8 font-display text-[calc(28px/var(--section-zoom,1))] font-bold leading-normal text-rose">What I’ve done</h2>
+      {title && (
+        <h2 className="mb-8 font-display text-[calc(28px/var(--section-zoom,1))] font-bold leading-normal text-rose">{title}</h2>
+      )}
       <div
         ref={deckRef}
         className="relative aspect-[1/0.645] touch-pan-y md:aspect-auto md:h-(--deck-h)"
