@@ -27,6 +27,10 @@ const SLOTS = [
   "z-20 left-[15%] top-[4.65%] w-[78%] md:w-auto md:left-[min(calc(50%_-_0.2805*var(--deck-h)),calc(1.1908*var(--deck-h)))] md:top-[12.41%] md:h-[75.17%]",
   "z-10 left-[30%] top-[9.3%] w-[70%] md:w-auto md:left-[min(calc(100%_-_0.8*var(--deck-h)),calc(2.1425*var(--deck-h)))] md:top-[20%] md:h-[60%]",
 ];
+// With more than three projects, the rest wait hidden behind the last card, ready to slide in.
+// (Without a slot they had no size or place and showed at full image size.)
+const HIDDEN_SLOT = `${SLOTS[2].replace("z-10", "z-0")} opacity-0 pointer-events-none`;
+const slotClass = (slot: number) => SLOTS[slot] ?? HIDDEN_SLOT;
 
 export function ProjectDeck({
   projects,
@@ -62,8 +66,8 @@ export function ProjectDeck({
       // 0 while the deck's top is at the bottom of the screen, 1 once it is 45% from the top
       const r = Math.min(1, Math.max(0, (vh - top) / (vh * 0.55)));
       const out = 1 - (1 - r) ** 3; // eases out
-      deck.querySelectorAll<HTMLElement>("[data-slot]").forEach((card) => {
-        const slot = Number(card.dataset.slot);
+      deck.querySelectorAll<HTMLElement>("[data-deck-slot]").forEach((card) => {
+        const slot = Number(card.dataset.deckSlot);
         if (slot === 0 || out === 1) {
           card.style.translate = "";
           card.style.rotate = "";
@@ -139,9 +143,9 @@ export function ProjectDeck({
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${count}: ${p.title}`}
               aria-hidden={!isFront}
-              data-slot={slot}
+              data-deck-slot={slot}
               onClick={isFront ? undefined : () => go(i)}
-              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${SLOTS[slot]} ${isFront ? "" : "cursor-pointer"}`}
+              className={`absolute aspect-[4/3] overflow-hidden rounded-[16px] bg-white shadow-card transition-[left,top,width,height,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${slotClass(slot)} ${isFront ? "" : "cursor-pointer"}`}
             >
               {p.image && (
                 // eslint-disable-next-line @next/next/no-img-element
